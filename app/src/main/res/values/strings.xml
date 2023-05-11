@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">NQ</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="web_client_ID">117592915920-51d2f8345nug2iiigm7896kbvi6h3u0b.apps.googleusercontent.com</string>
 </resources>
