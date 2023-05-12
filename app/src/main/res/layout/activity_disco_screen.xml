@@ -89,7 +89,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_location_android"
+                    android:src="@drawable/ic_ubication_03"
                     app:tint="@color/dark_grey_01" />
 
                 <TextView

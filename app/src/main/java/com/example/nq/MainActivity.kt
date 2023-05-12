@@ -1,14 +1,22 @@
 package com.example.nq
 
+import android.content.pm.PackageManager
+import android.content.pm.PathPermission
 import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
+import android.view.MenuInflater
 import android.view.MenuItem
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import com.example.nq.firebase.FirebaseManager
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.jar.Manifest
 
 class MainActivity : AppCompatActivity() {
 
@@ -138,5 +146,32 @@ class MainActivity : AppCompatActivity() {
         myTicketsMenuItem.setIcon(R.drawable.ic_ticket_nofull_01)
         myProfileMenuItem.setIcon(R.drawable.ic_profile_full_01)
         invalidateOptionsMenu()
+    }
+
+    //Permissions
+    fun requestPermission() {
+        if (!hasLocationForegroundPermission()){
+            val permissionsToRequest = mutableListOf(android.Manifest.permission.ACCESS_COARSE_LOCATION)
+            ActivityCompat.requestPermissions(this, permissionsToRequest.toTypedArray(), 0)
+        }
+        else {
+        }
+    }
+
+    private fun hasLocationForegroundPermission() =
+        ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == 0 && grantResults.isNotEmpty()) {
+            for (i in grantResults.indices){
+                if (grantResults[i] == PackageManager.PERMISSION_GRANTED)
+                    Log.d("PermissionsRequest", "${permissions[i]} granted")
+            }
+        }
     }
 }

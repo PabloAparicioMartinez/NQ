@@ -45,11 +45,18 @@
     </style>
 
     <style name="NQ.ActionBar.TitleTextStyle" parent="TextAppearance.Material3.ActionBar.Title">
-        <item name="android:textStyle">bold</item>
-        <item name="android:textAlignment">center</item>
-        <item name="android:gravity">center</item>
-        <item name="android:layout_gravity">center</item>
-        <item name="layout_anchorGravity">center</item>
+<!--        <item name="android:textStyle">bold</item>-->
+        <item name="fontFamily">@font/roboto_black</item>
+    </style>
+
+    <style name="Theme.NQ.NoActionBar" parent="Theme.NQ">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.NQ.ActionBar" parent="Theme.NQ">
+        <item name="windowActionBar">true</item>
+        <item name="iconTint">@color/mid_blue</item>
     </style>
 
     <style name="BottomNavMenu_MaterialComponents" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
@@ -70,15 +77,6 @@
         <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash_logo_03</item>
         <item name="windowSplashScreenBackground">@color/white</item>
         <item name="postSplashScreenTheme">@style/Theme.NQ.NoActionBar</item>
-    </style>
-
-    <style name="Theme.NQ.NoActionBar" parent="Theme.NQ">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
-    <style name="Theme.NQ.ActionBar" parent="Theme.NQ">
-        <item name="windowActionBar">true</item>
     </style>
 
     <style name="NQ.Button.Full" parent="Widget.Material3.Button.Icon">
@@ -153,5 +151,12 @@
         <item name="android:textSize">14sp</item>
         <item name="android:backgroundTint">@android:color/transparent</item>
     </style>
+
+<!--De prueba aquí abajo-->
+
+    <style name="MenuItemStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="android:iconTint">@color/mid_blue</item>
+    </style>
+
 
 </resources>

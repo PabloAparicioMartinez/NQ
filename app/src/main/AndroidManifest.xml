@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.nq" >
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -36,7 +39,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="false"
-            android:theme="@style/Theme.NQ.NoActionBar"
+            android:theme="@style/Theme.NQ.ActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".DiscoScreenActivity"

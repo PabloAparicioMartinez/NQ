@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/topMenu_location"
+        android:title="Ubicación"
+        android:icon="@drawable/ic_ubication_03"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/topMenu_information"
+        android:title="Información"
+        app:showAsAction="never" />
+
+</menu>
