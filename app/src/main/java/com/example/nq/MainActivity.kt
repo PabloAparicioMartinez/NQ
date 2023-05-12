@@ -37,6 +37,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //Eliminar luego
+
         //Variables initialization
         buyTicketsFragment = FragmentBuyTickets()
         myTicketsFragmentUnsignedIn = FragmentMyTicketsUnsignedIn()
