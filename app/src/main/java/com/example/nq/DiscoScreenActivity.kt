@@ -7,12 +7,9 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.nq.recyclerViewDates.DatesAdapter
 import com.example.nq.recyclerViewDates.DatesData
 import com.example.nq.recyclerViewDates.DatesInterface
@@ -28,8 +25,9 @@ import kotlinx.coroutines.launch
 class DiscoScreenActivity : AppCompatActivity(), DatesInterface, EventsInterface {
 
     val datesAdapter = DatesAdapter(DatesRepository.dates, this)
-    val eventsAdapter = EventsAdapter(EventsRepository.events, this)
+    lateinit var eventsAdapter : EventsAdapter
     var selectedDatesList = mutableListOf<DatesData>()
+    lateinit var discoName: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,21 +39,26 @@ class DiscoScreenActivity : AppCompatActivity(), DatesInterface, EventsInterface
             actionBar.setDisplayHomeAsUpEnabled(true)
         }
 
+        discoName = intent.getStringExtra("EXTRA_NAME").toString()
+        discoScreen_DiscoName.text = discoName
         discoScreen_discoImage.setImageResource(intent.getIntExtra("EXTRA_IMAGE", -1))
-        discoScreen_DiscoName.text = intent.getStringExtra("EXTRA_NAME")
         discoScreen_discoLocation.text = intent.getStringExtra("EXTRA_LOCATION")
         discoScreen_discoDistance.text = intent.getStringExtra("EXTRA_DISTANCE")
 
         screenDisco_datesRecyclerView.adapter = datesAdapter
         screenDisco_datesRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
+        when (intent.getStringExtra("EXTRA_NAME")) {
+            "BACK&STAGE" -> eventsAdapter = EventsAdapter(EventsRepository.backStageEvents, this)
+            "FEVER" -> eventsAdapter = EventsAdapter(EventsRepository.feverEvents, this)
+            "SONORA" -> eventsAdapter = EventsAdapter(EventsRepository.sonoraEvents, this)
+        }
+
         screenDisco_eventsRecyclerView.adapter = eventsAdapter
         screenDisco_eventsRecyclerView.layoutManager = LinearLayoutManager(this)
 
         lifecycleScope.launch {
-            screenDisco_loadingLayout.visibility = View.GONE
-            screenDisco_eventsRecyclerView.visibility = View.VISIBLE
-            screenDisco_noResultsLayout.visibility = View.GONE
+            loadEventsInDate(selectedDatesList)
         }
     }
 
@@ -88,31 +91,25 @@ class DiscoScreenActivity : AppCompatActivity(), DatesInterface, EventsInterface
         lifecycleScope.launch {
             loadEventsInDate(selectedDatesList)
         }
-
     }
 
-
     private suspend fun loadEventsInDate(datesList: List<DatesData>) {
+
+        datesAdapter.EnableClicking(false)
+
         setLayoutsVisibilities(listOf(View.VISIBLE, View.GONE, View.GONE))
 
-        delay(2000)
+        delay(1000)
 
-        if (datesList.isEmpty()) {
-            eventsAdapter.setFilteredList(EventsRepository.events)
-            setLayoutsVisibilities(listOf(View.GONE, View.VISIBLE, View.GONE))
-        }
-        else
-        {
-            val filteredEvents = EventsRepository.ReturnEvents(datesList)
-            eventsAdapter.setFilteredList(filteredEvents)
-            if (filteredEvents.isNotEmpty()){
-                setLayoutsVisibilities(listOf(View.GONE, View.VISIBLE, View.GONE))
-            }
-            else
-            {
-                setLayoutsVisibilities(listOf(View.GONE, View.VISIBLE, View.VISIBLE))
-            }
-        }
+        val filteredEvents: List<EventsData>
+        if (datesList.isEmpty()) filteredEvents = EventsRepository.ReturnEvents(discoName, DatesRepository.dates)
+        else filteredEvents = EventsRepository.ReturnEvents(discoName, datesList)
+        eventsAdapter.setFilteredList(filteredEvents)
+
+        if (filteredEvents.isNotEmpty()) setLayoutsVisibilities(listOf(View.GONE, View.VISIBLE, View.GONE))
+        else setLayoutsVisibilities(listOf(View.GONE, View.VISIBLE, View.VISIBLE))
+
+        datesAdapter.EnableClicking(true)
     }
 
     fun setLayoutsVisibilities (layoutVisibility: List<Int>){
@@ -122,12 +119,25 @@ class DiscoScreenActivity : AppCompatActivity(), DatesInterface, EventsInterface
     }
 
     override fun onItemClick(eventData: EventsData) {
-        Intent(this, EventScreenActivity::class.java).also {
-            it.putExtra("EXTRA_IMAGE", eventData.eventImage)
-            it.putExtra("EXTRA_NAME", eventData.eventName)
-            it.putExtra("EXTRA_MUSIC", eventData.eventMusic)
-            it.putExtra("EXTRA_DATE", eventData.eventDate)
-            startActivity(it)
+        when (eventData.eventAvailability){
+            "DISPONIBLES" -> {
+                Intent(this, EventScreenActivityAvailable::class.java).also {
+                    it.putExtra("EXTRA_IMAGE", eventData.eventImage)
+                    it.putExtra("EXTRA_NAME", eventData.eventName)
+                    it.putExtra("EXTRA_MUSIC", eventData.eventMusic)
+                    it.putExtra("EXTRA_DATE", eventData.eventDate)
+                    startActivity(it)
+                }
+            }
+            "AGOTADAS" -> {
+                Intent(this, EventScreenActivityNotAvailable::class.java).also {
+                    it.putExtra("EXTRA_IMAGE", eventData.eventImage)
+                    it.putExtra("EXTRA_NAME", eventData.eventName)
+                    it.putExtra("EXTRA_MUSIC", eventData.eventMusic)
+                    it.putExtra("EXTRA_DATE", eventData.eventDate)
+                    startActivity(it)
+                }
+            }
         }
     }
 }

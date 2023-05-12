@@ -40,7 +40,7 @@
                 android:id="@+id/discoScreen_discoImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:srcCompat="@drawable/ic_disco_back_stage" />
+                tools:srcCompat="null" />
 
             <View
                 android:layout_width="wrap_content"

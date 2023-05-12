@@ -26,11 +26,6 @@ class DiscosAdapter(
         }
     }
 
-    fun setFilteredList (discos: List<DiscosData>){
-        this.discos = discos
-        notifyDataSetChanged()
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DiscosViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_disco, parent, false)
         return DiscosViewHolder(view)

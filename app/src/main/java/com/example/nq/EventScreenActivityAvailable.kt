@@ -3,18 +3,29 @@ package com.example.nq
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Layout
+import android.view.LayoutInflater
 import android.view.MenuItem
-import kotlinx.android.synthetic.main.activity_event_screen.*
+import android.view.View
+import android.widget.LinearLayout
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.size
+import kotlinx.android.synthetic.main.activity_event_screen_available.*
+import kotlinx.android.synthetic.main.item_ticket_info.view.*
 
-class EventScreenActivity : AppCompatActivity() {
+class EventScreenActivityAvailable : AppCompatActivity() {
 
     var ticketCount = 1
     var ticketPrice = 12
     var moneyCount = 12
 
+    lateinit var extraTicketsLayout: LinearLayout
+    lateinit var extraTicketsInflater: LayoutInflater
+    lateinit var extraTicketLayoutToAdd: View
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_event_screen)
+        setContentView(R.layout.activity_event_screen_available)
 
         val actionBar = supportActionBar
         if (actionBar != null) {
@@ -29,6 +40,10 @@ class EventScreenActivity : AppCompatActivity() {
 
         eventScreen_plus.setOnClickListener { ChangeTicketCount("Plus") }
         eventScreen_minus.setOnClickListener { ChangeTicketCount("Minus") }
+
+        extraTicketsLayout = findViewById(R.id.eventScreen_layout)
+        extraTicketsInflater = LayoutInflater.from(this)
+        extraTicketLayoutToAdd = extraTicketsInflater.inflate(R.layout.item_ticket_info, null)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -50,6 +65,10 @@ class EventScreenActivity : AppCompatActivity() {
 
                     eventScreen_number.text = ticketCount.toString()
                     eventScreen_price.text = "$moneyCount,00 €"
+
+                    extraTicketLayoutToAdd = extraTicketsInflater.inflate(R.layout.item_ticket_info, null)
+                    extraTicketsLayout.addView(extraTicketLayoutToAdd)
+                    extraTicketLayoutToAdd.itemTicketInfo_text.text = "Entrada $ticketCount:"
                 }
             }
             "Minus" -> {
@@ -59,6 +78,10 @@ class EventScreenActivity : AppCompatActivity() {
 
                     eventScreen_number.text = ticketCount.toString()
                     eventScreen_price.text = "$moneyCount,00 €"
+
+                    extraTicketLayoutToAdd = extraTicketsInflater.inflate(R.layout.item_ticket_info, null)
+                    extraTicketsLayout.removeViewAt(extraTicketsLayout.size - 1)
+                    extraTicketLayoutToAdd.itemTicketInfo_text.text = "Entrada $ticketCount:"
                 }
             }
         }

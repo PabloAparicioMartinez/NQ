@@ -5,15 +5,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.cardview.widget.CardView
+import androidx.core.view.get
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nq.R
 import kotlinx.android.synthetic.main.item_date.view.*
+import kotlinx.coroutines.launch
 
 class DatesAdapter(
     private var dates: List<DatesData>,
     val listener: DatesInterface
 ) : RecyclerView.Adapter<DatesAdapter.DatesViewHolder>() {
 
+    val dateCardViews = mutableListOf<CardView>()
 
     inner class DatesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) , View.OnClickListener {
 
@@ -30,7 +35,6 @@ class DatesAdapter(
         override fun onClick(p0: View?) {
             val position = absoluteAdapterPosition
             if (position != RecyclerView.NO_POSITION){
-
                 dates[position].clicked = !dates[position].clicked
                 listener.onItemClick(dates[position], linearLayout, textViews)
             }
@@ -47,10 +51,18 @@ class DatesAdapter(
             itemDate_week.text = dates[position].dateWeek
             itemDate_number.text = dates[position].dateNumber.toString()
             itemDate_month.text = dates[position].dateMonth
+
+            dateCardViews.add(itemDate_cardView)
         }
     }
 
     override fun getItemCount(): Int {
         return dates.size
+    }
+
+    fun EnableClicking (shouldEnable: Boolean) {
+        for (i in dateCardViews.indices){
+            dateCardViews[i].isClickable = shouldEnable
+        }
     }
 }
