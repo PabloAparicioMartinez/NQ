@@ -18,8 +18,6 @@ class DatesAdapter(
     val listener: DatesInterface
 ) : RecyclerView.Adapter<DatesAdapter.DatesViewHolder>() {
 
-    // cambio
-
     val dateCardViews = mutableListOf<CardView>()
 
     inner class DatesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) , View.OnClickListener {
