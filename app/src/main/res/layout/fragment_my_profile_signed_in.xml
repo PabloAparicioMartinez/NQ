@@ -36,8 +36,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:scaleType="centerCrop"
-                android:src="@drawable/png_user"
                 android:background="@drawable/shape_border_circle"
+                android:src="@null"
                 android:outlineProvider="background"
                 android:clipToOutline="true"/>
 
@@ -62,7 +62,7 @@
                 style="@style/Theme.NQ.TextBlack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="PABLO APARICIO"
+                android:text="NOMBRE"
                 android:layout_marginBottom="4dp"
                 android:textAlignment="viewStart"
                 android:textColor="@color/black_01"
@@ -74,7 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="0dp"
-                android:text="pablo.aparicio1996@gmail.com"
+                android:text="Mail"
                 android:textColor="@color/dark_grey_01"
                 android:textSize="12sp" />
 

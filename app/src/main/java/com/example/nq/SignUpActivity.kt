@@ -1,19 +1,25 @@
 package com.example.nq
 
+import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.view.inputmethod.InputMethodManager
+import android.widget.RadioButton
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.example.nq.firebase.FirebaseRepository
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthException
+import com.google.firebase.auth.UserProfileChangeRequest
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
-import java.lang.Exception
 
 class SignUpActivity : AppCompatActivity() {
 
@@ -36,9 +42,15 @@ class SignUpActivity : AppCompatActivity() {
             signUp_passwordLayout.isEndIconVisible = hasFocus
         }
 
-        signUp_passwordConfirm_layout.isEndIconVisible = false
-        signUp_passwordConfirmLayout.onFocusChangeListener = View.OnFocusChangeListener { view, hasFocus ->
-            signUp_passwordConfirm_layout.isEndIconVisible = hasFocus
+        signUp_passwordConfirmLayout.isEndIconVisible = false
+        signUp_passwordConfirmText.onFocusChangeListener = View.OnFocusChangeListener { view, hasFocus ->
+            signUp_passwordConfirmLayout.isEndIconVisible = hasFocus
+        }
+
+        //Buttons
+        signUpLayout.setOnClickListener() {
+            val inputMethodManager = this.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(signUpLayout.windowToken, 0)
         }
 
         signUp_signUpButton.setOnClickListener(){
@@ -57,40 +69,100 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun registerUser(){
-        var email = signUp_emailText.text.toString()
-        var password = signUp_passwordText.text.toString()
-        var passwordConfirm = signUp_passwordConfirmLayout.text.toString()
+        val email = signUp_emailText.text.toString()
+        val password = signUp_passwordText.text.toString()
+        val passwordConfirm = signUp_passwordConfirmText.text.toString()
+        val name = signUp_nameText.text.toString()
 
-        if (email.isNotEmpty() && password.isNotEmpty() && passwordConfirm.isNotEmpty()){
+        if (email.isNotEmpty() && password.isNotEmpty() && passwordConfirm.isNotEmpty() && name.isNotEmpty()){
             if(password == passwordConfirm){
                 CoroutineScope(Dispatchers.IO).launch {
                     try{
                         auth.createUserWithEmailAndPassword(email, password).await()
                         withContext(Dispatchers.Main){
-                            Toast.makeText(this@SignUpActivity, "¡Cuenta creada!", Toast.LENGTH_SHORT).show()
+                            createProfile(name, email)
                             Intent(this@SignUpActivity, MainActivity::class.java).also {
                                 startActivity(it)
                             }
                             finish()
                         }
-                    } catch (e: Exception){
+                    } catch (error: Exception){
                         withContext(Dispatchers.Main){
-                            Toast.makeText(this@SignUpActivity, e.message, Toast.LENGTH_SHORT).show()
+
+                            val errorCode = (error as FirebaseAuthException).errorCode
+                            val errorMessage = getString(FirebaseRepository.authErrors[errorCode] ?: R.string.error_login_default_error)
+
+                            var errorCodeIndex = -1
+                            for ((index, entry) in FirebaseRepository.authErrors.entries.withIndex()) {
+                                if (entry.key == errorCode) {
+                                    errorCodeIndex = index
+                                    break
+                                }
+                            }
+
+                            when (errorCodeIndex) {
+                                1 -> {
+                                    signUp_emailLayout.error = errorMessage
+                                    signUp_emailText.text?.clear()
+                                }
+                                else -> {
+                                    signUp_emailLayout.error = errorMessage
+                                    Toast.makeText(this@SignUpActivity, "$errorMessage", Toast.LENGTH_SHORT).show()
+                                }
+                            }
                         }
                     }
                 }
             } else {
-                Toast.makeText(this@SignUpActivity, "Las constraseñas no coinciden", Toast.LENGTH_SHORT).show()
+                signUp_passwordConfirmLayout.error = "Las contraseñas no coinciden"
             }
         }
         else if(email.isEmpty()){
-            Toast.makeText(this@SignUpActivity, "Introduce tu email por favor", Toast.LENGTH_SHORT).show()
+            signUp_emailLayout.error = "Introduce una dirección de correo electrónico"
         }
         else if(password.isEmpty()){
-            Toast.makeText(this@SignUpActivity, "Introduce tu contraseña por favor", Toast.LENGTH_SHORT).show()
+            signUp_passwordLayout.error = "Introduce la contraseña"
+        }
+        else if(passwordConfirm.isEmpty()){
+            signUp_passwordConfirmLayout.error = "Confirma la contraseña"
         }
         else{
-            Toast.makeText(this@SignUpActivity, "Confirma la contraseña por favor", Toast.LENGTH_SHORT).show()
+            signUp_nameLayout.error = "Introduce tu nombre"
+        }
+    }
+
+    fun createProfile(name: String, email: String) {
+
+        auth.currentUser?.let { user ->
+            val radioButtonID = signUp_radioGroup.checkedRadioButtonId
+            val selectedButton = findViewById<RadioButton>(radioButtonID).text as String
+            var photoURI = Uri.parse("android.resource://$packageName/${R.drawable.png_boy_01}")
+
+            when (selectedButton) {
+                "Hombre" -> photoURI = Uri.parse("android.resource://$packageName/${R.drawable.png_boy_01}")
+                "Mujer" -> photoURI = Uri.parse("android.resource://$packageName/${R.drawable.png_girl_01}")
+            }
+
+            val createProfile = UserProfileChangeRequest.Builder()
+                .setDisplayName(name)
+                .setPhotoUri(photoURI)
+                .build()
+
+            CoroutineScope(Dispatchers.IO).launch {
+                try {
+                    user.updateProfile(createProfile).await()
+                    withContext(Dispatchers.Main) {
+                        FirebaseRepository.userName = name
+                        FirebaseRepository.userImage = photoURI
+                        FirebaseRepository.userGmail = email
+                        Toast.makeText(this@SignUpActivity, "¡Cuenta creada!", Toast.LENGTH_SHORT).show()
+                    }
+                } catch (error: Exception) {
+                    withContext(Dispatchers.Main){
+                        Toast.makeText(this@SignUpActivity, "$error", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
         }
     }
 }

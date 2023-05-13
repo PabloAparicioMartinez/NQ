@@ -158,5 +158,16 @@
         <item name="android:iconTint">@color/mid_blue</item>
     </style>
 
+    <style name="NQ.TextInputLayout.Blue" parent="Theme.NQ">
+        <item name="startIconTint">@color/icon_color_focused_blue</item>
+        <item name="endIconTint">@color/icon_color_focused_blue</item>
+    </style>
+
+    <style name="NQ.TextInputLayout.Red" parent="Theme.NQ">
+        <item name="startIconTint">@color/icon_color_focused_blue</item>
+        <item name="endIconTint">@color/icon_color_focused_blue</item>
+    </style>
+
+
 
 </resources>
