@@ -29,6 +29,10 @@
         <item name="colorAccent">@color/dark_grey_01</item>
     </style>
 
+    <style name="Theme.NQ.ProgressbarProfile">
+        <item name="colorAccent">@color/black_01</item>
+    </style>
+
     <style name="Theme.NQ.DateNotSelected">
         <item name="android:backgroundTint">@color/white</item>
         <item name="android:textColor">@color/black_01</item>
@@ -93,7 +97,7 @@
         <item name="strokeWidth">1.5dp</item>
     </style>
     <style name="NQ.Button.Tonal" parent="Widget.Material3.Button.TonalButton">
-        <item name="backgroundTint">@color/light_blue</item>
+        <item name="fontFamily">@font/roboto_black</item>
         <item name="cornerFamily">rounded</item>
         <item name="cornerRadius">6dp</item>
     </style>
@@ -124,50 +128,45 @@
         <item name="android:textColor">@color/dark_blue</item>
     </style>
 
-    <style name="NQ.AlertDialog.Text" parent="@android:style/TextAppearance.Material.Subhead">
-        <item name="android:textColor">@color/black_01</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">28sp</item>
+    <style name="NQ.AlertDialog.Title" parent="@android:style/TextAppearance.Material.Subhead">
+        <item name="android:fontFamily">@font/roboto_black</item>
+        <item name="android:textSize">24sp</item>
+<!--        <item name="android:padding">16dp</item>-->
     </style>
 
-    <style name="NQ.AlertDialog.TicketCard" parent="">
+    <style name="NQ.AlertDialog.TicketCard" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="colorSurface">@color/white</item>
         <item name="buttonBarPositiveButtonStyle">@style/MyPositiveButtonStyle</item>
         <item name="buttonBarNegativeButtonStyle">@style/MyNegativeButtonStyle</item>
     </style>
 
     <style name="MyPositiveButtonStyle" parent="NQ.Button.Full">
-        <item name="android:padding">10dp</item>
-        <item name="android:layout_marginStart">14dp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">14sp</item>
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerRadius">20dp</item>
-    </style>
-
-    <style name="MyNegativeButtonStyle" parent="NQ.Button.Full">
-        <item name="android:padding">10dp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/black_01</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:layout_marginStart">12dp</item>
+        <item name="android:textColor">@color/mid_blue</item>
         <item name="android:backgroundTint">@android:color/transparent</item>
     </style>
 
-<!--De prueba aquí abajo-->
-
-    <style name="MenuItemStyle" parent="Widget.AppCompat.Toolbar">
-        <item name="android:iconTint">@color/mid_blue</item>
+    <style name="MyNegativeButtonStyle" parent="NQ.Button.Full">
+        <item name="android:padding">0dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/mid_grey_01</item>
+        <item name="android:backgroundTint">@android:color/transparent</item>
     </style>
 
-    <style name="NQ.TextInputLayout.Blue" parent="Theme.NQ">
-        <item name="startIconTint">@color/icon_color_focused_blue</item>
-        <item name="endIconTint">@color/icon_color_focused_blue</item>
-    </style>
+<!--    <style name="MenuItemStyle" parent="Widget.AppCompat.Toolbar">-->
+<!--        <item name="android:iconTint">@color/mid_blue</item>-->
+<!--    </style>-->
 
-    <style name="NQ.TextInputLayout.Red" parent="Theme.NQ">
-        <item name="startIconTint">@color/icon_color_focused_blue</item>
-        <item name="endIconTint">@color/icon_color_focused_blue</item>
-    </style>
+<!--    <style name="NQ.TextInputLayout.Blue" parent="Theme.NQ">-->
+<!--        <item name="startIconTint">@color/icon_color_focused_blue</item>-->
+<!--        <item name="endIconTint">@color/icon_color_focused_blue</item>-->
+<!--    </style>-->
 
-
+<!--    <style name="NQ.TextInputLayout.Red" parent="Theme.NQ">-->
+<!--        <item name="startIconTint">@color/icon_color_focused_blue</item>-->
+<!--        <item name="endIconTint">@color/icon_color_focused_blue</item>-->
+<!--    </style>-->
 
 </resources>

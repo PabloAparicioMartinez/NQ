@@ -76,7 +76,7 @@
         android:id="@+id/tv_alika"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="NQ v1.20"
+        android:text="NQ v1.21"
         android:textColor="@color/dark_grey_02"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"

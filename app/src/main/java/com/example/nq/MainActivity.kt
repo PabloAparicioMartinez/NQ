@@ -1,59 +1,43 @@
 package com.example.nq
 
 import android.content.pm.PackageManager
-import android.content.pm.PathPermission
 import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
-import com.example.nq.firebase.FirebaseManager
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.jar.Manifest
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var buyTicketsFragment : Fragment
-    private lateinit var myTicketsFragmentUnsignedIn : Fragment
-    private lateinit var myProfileFragmentUnsignedIn: Fragment
-    private lateinit var myTicketsFragmentSignedIn : Fragment
-    private lateinit var myProfileFragmentSignedIn: Fragment
+    private lateinit var myTicketsFragment : Fragment
+    private lateinit var myProfileFragment : Fragment
 
     lateinit var bottomMenu : Menu
     private lateinit var buyTicketsMenuItem : MenuItem
     private lateinit var myTicketsMenuItem : MenuItem
     private lateinit var myProfileMenuItem : MenuItem
 
-    private lateinit var firebaseManager : FirebaseManager
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //Eliminar luego
-
-        //Variables initialization
+        //VARIABLES INITIALIZATION
         buyTicketsFragment = FragmentBuyTickets()
-        myTicketsFragmentUnsignedIn = FragmentMyTicketsUnsignedIn()
-        myProfileFragmentUnsignedIn = FragmentMyProfileUnsignedIn()
-        myTicketsFragmentSignedIn = FragmentMyTicketsSignedIn()
-        myProfileFragmentSignedIn = FragmentMyProfileSignedIn()
+        myTicketsFragment = FragmentMyTickets()
+        myProfileFragment = FragmentMyProfile()
 
         bottomMenu = mainActivity_botMenu.menu
         buyTicketsMenuItem = bottomMenu.findItem(R.id.navigation_buy_tickets)
         myTicketsMenuItem = bottomMenu.findItem(R.id.navigation_my_tickets)
         myProfileMenuItem = bottomMenu.findItem(R.id.navigation_my_profile)
 
-        firebaseManager = FirebaseManager()
-
-        //Set initial fragment
+        //SET INITIAL FRAGMENT
         setCurrentFragment(buyTicketsFragment)
         buyTicketsMenuItem.setIcon(R.drawable.ic_loupe_full_01)
         invalidateOptionsMenu()
@@ -61,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         mainActivity_botMenu.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.navigation_buy_tickets -> {
-                    setCurrentFragment(returnFragmentName(it.itemId))
+                    setCurrentFragment(buyTicketsFragment)
                     setMenuIcons(listOf(
                         ContextCompat.getDrawable(this, R.drawable.ic_loupe_full_01),
                         ContextCompat.getDrawable(this, R.drawable.ic_ticket_nofull_01),
@@ -70,7 +54,7 @@ class MainActivity : AppCompatActivity() {
                     invalidateOptionsMenu()
                 }
                 R.id.navigation_my_tickets -> {
-                    setCurrentFragment(returnFragmentName(it.itemId))
+                    setCurrentFragment(myTicketsFragment)
                     setMenuIcons(listOf(
                         ContextCompat.getDrawable(this, R.drawable.ic_loupe_nofull_01),
                         ContextCompat.getDrawable(this, R.drawable.ic_ticket_full_01),
@@ -79,7 +63,7 @@ class MainActivity : AppCompatActivity() {
                     invalidateOptionsMenu()
                 }
                 R.id.navigation_my_profile -> {
-                    setCurrentFragment(returnFragmentName(it.itemId))
+                    setCurrentFragment(myProfileFragment)
                     setMenuIcons(listOf(
                         ContextCompat.getDrawable(this, R.drawable.ic_loupe_nofull_01),
                         ContextCompat.getDrawable(this, R.drawable.ic_ticket_nofull_01),
@@ -89,26 +73,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             true
-        }
-    }
-
-    private fun returnFragmentName(fragmentId : Int) : Fragment {
-        when (fragmentId) {
-            R.id.navigation_buy_tickets -> {
-                return buyTicketsFragment
-            }
-            R.id.navigation_my_tickets -> {
-                if (!firebaseManager.checkIfUserIsSignedInToFirebase())
-                    return myTicketsFragmentUnsignedIn
-                else
-                    return myTicketsFragmentSignedIn
-            }
-            else -> {
-                if (!firebaseManager.checkIfUserIsSignedInToFirebase())
-                    return myProfileFragmentUnsignedIn
-                else
-                    return myProfileFragmentSignedIn
-            }
         }
     }
 
@@ -133,20 +97,10 @@ class MainActivity : AppCompatActivity() {
     //Called from FragmentMyTicketsUnsignedIn
     fun clickOnBuyTicketsMenuIcon(){
         buyTicketsMenuItem.isChecked = true
-        setCurrentFragment(returnFragmentName(R.id.navigation_buy_tickets))
+        setCurrentFragment(buyTicketsFragment)
         buyTicketsMenuItem.setIcon(R.drawable.ic_loupe_full_01)
         myTicketsMenuItem.setIcon(R.drawable.ic_ticket_nofull_01)
         myProfileMenuItem.setIcon(R.drawable.ic_profile_nofull_01)
-        invalidateOptionsMenu()
-    }
-
-    //Called from ProfileActivities
-    fun clickOnMyProfileMenuIcon(){
-        myProfileMenuItem.isChecked = true
-        setCurrentFragment(returnFragmentName(R.id.navigation_my_profile))
-        buyTicketsMenuItem.setIcon(R.drawable.ic_loupe_nofull_01)
-        myTicketsMenuItem.setIcon(R.drawable.ic_ticket_nofull_01)
-        myProfileMenuItem.setIcon(R.drawable.ic_profile_full_01)
         invalidateOptionsMenu()
     }
 

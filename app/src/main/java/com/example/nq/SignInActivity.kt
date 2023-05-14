@@ -11,6 +11,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import com.example.nq.firebase.FirebaseManager
 import com.example.nq.firebase.FirebaseRepository
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -55,7 +56,7 @@ class SignInActivity : AppCompatActivity() {
             signIn_passwordLayout.isEndIconVisible = hasFocus
         }
 
-        //Buttons
+        //BUTTONS
         signInLayout.setOnClickListener() {
             val inputMethodManager = this.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
             inputMethodManager.hideSoftInputFromWindow(signInLayout.windowToken, 0)
@@ -88,11 +89,6 @@ class SignInActivity : AppCompatActivity() {
         }
     }
 
-    fun signOutUser() {
-        auth = FirebaseAuth.getInstance()
-        auth.signOut()
-    }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId){
             android.R.id.home -> {
@@ -111,14 +107,15 @@ class SignInActivity : AppCompatActivity() {
             CoroutineScope(Dispatchers.IO).launch {
                 try {
                     auth.signInWithEmailAndPassword(email, password).await()
-                    withContext(Dispatchers.Main){
+                    withContext(Dispatchers.Main) {
                         Toast.makeText(this@SignInActivity, "¡Sesión iniciada correctamente!", Toast.LENGTH_SHORT).show()
                         Intent(this@SignInActivity, MainActivity::class.java).also {
                             startActivity(it)
                         }
                     }
                 } catch (error: Exception) {
-                    withContext(Dispatchers.Main){
+                    println("ERRORAAA: $error")
+                    withContext(Dispatchers.Main) {
 
                         val errorCode = (error as FirebaseAuthException).errorCode
                         val errorMessage = getString(FirebaseRepository.authErrors[errorCode] ?: R.string.error_login_default_error)
