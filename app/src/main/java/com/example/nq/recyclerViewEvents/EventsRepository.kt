@@ -10,13 +10,13 @@ object EventsRepository {
         EventsData(4, "Mayo",
             "JUEVES, 4 de Mayo", R.drawable.png_event_01,
             "SAFARI  +18", "Reggeaton & Latina",
-            "14 €", "DISPONIBLES",
+            "14 €  |  Incluye 2 cubatas", "DISPONIBLES",
         ),
         EventsData(
             5, "Mayo",
             "VIERNES, 5 de Mayo", R.drawable.png_event_02,
             "EUPHORIA  +24", "Comercial & Reggeaton",
-            "12 €", "AGOTADAS",
+            "14 €  |  Incluye 1 cubata", "AGOTADAS",
         )
     )
 
@@ -48,5 +48,7 @@ object EventsRepository {
         }
 
         return eventsListToReturn
+
+        //Mini
     }
 }
