@@ -47,5 +47,7 @@ object EventsRepository {
         }
 
         return eventsListToReturn
+
+        //Mini
     }
 }
