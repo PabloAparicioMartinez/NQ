@@ -80,7 +80,7 @@
 
                         <TextView
                             android:id="@+id/eventScreen_name"
-                            style="@style/Theme.NQ.TextBlack"
+                            style="@style/NQ.TextBlack"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="NOMBRE"
@@ -177,7 +177,7 @@
 
                     <TextView
                         android:id="@+id/textView11"
-                        style="@style/Theme.NQ.TextBlack"
+                        style="@style/NQ.TextBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="4dp"
@@ -227,7 +227,7 @@
 
                     <TextView
                         android:id="@+id/eventScreen_number"
-                        style="@style/Theme.NQ.TextBlack"
+                        style="@style/NQ.TextBlack"
                         android:layout_width="44dp"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -259,7 +259,7 @@
 
                 <TextView
                     android:id="@+id/fragmentBuyTicketsBasic_text01"
-                    style="@style/Theme.NQ.TextBlack"
+                    style="@style/NQ.TextBlack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
@@ -294,7 +294,7 @@
                     android:paddingBottom="12dp">
 
                     <TextView
-                        style="@style/Theme.NQ.TextBlack"
+                        style="@style/NQ.TextBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="4dp"
@@ -324,7 +324,7 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
-                            style="@style/Theme.NQ.TextBlack"
+                            style="@style/NQ.TextBlack"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
@@ -391,7 +391,7 @@
 
         <TextView
             android:id="@+id/eventScreen_price"
-            style="@style/Theme.NQ.TextBlack"
+            style="@style/NQ.TextBlack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

@@ -20,10 +20,10 @@
         <item name="actionBarStyle">@style/NQ.ActionBar</item>
     </style>
 
-    <style name="Theme.NQ.TextBlack">
-        <item name="fontFamily">@font/roboto_black</item>
-        <item name="android:textColor">@color/black_01</item>
-    </style>
+<!--    <style name="Theme.NQ.TextBlack">-->
+<!--        <item name="fontFamily">@font/roboto_black</item>-->
+<!--        <item name="android:textColor">@color/black_01</item>-->
+<!--    </style>-->
 
     <style name="Theme.NQ.Progressbar">
         <item name="colorAccent">@color/dark_grey_01</item>

@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,29 +16,37 @@
         android:paddingEnd="20dp"
         android:paddingBottom="14dp">
 
-        <FrameLayout
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+        <ImageView
+            android:id="@+id/itemFriend_image"
             android:layout_gravity="center"
-            android:layout_weight="0">
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/png_boy_01" />
 
-            <ImageView
-                android:id="@+id/itemFriend_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="centerCrop"
-                android:background="@drawable/shape_border_circle"
-                android:src="@null"
-                android:outlineProvider="background"
-                android:clipToOutline="true"/>
+<!--        <FrameLayout-->
+<!--            android:layout_width="45dp"-->
+<!--            android:layout_height="45dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_weight="0">-->
 
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@drawable/shape_border_circle" />
+<!--            <ImageView-->
+<!--                android:id="@+id/itemFriend_image"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:scaleType="centerCrop"-->
+<!--                android:background="@drawable/shape_border_circle"-->
+<!--                android:src="@null"-->
+<!--                android:outlineProvider="background"-->
+<!--                android:clipToOutline="true"/>-->
 
-        </FrameLayout>
+<!--            <View-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:background="@drawable/shape_border_circle" />-->
+
+<!--        </FrameLayout>-->
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -49,7 +58,7 @@
 
             <TextView
                 android:id="@+id/itemFriend_name"
-                style="@style/Theme.NQ.TextBlack"
+                style="@style/NQ.TextBlack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nombre"

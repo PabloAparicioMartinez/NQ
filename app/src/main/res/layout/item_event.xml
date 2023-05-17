@@ -79,7 +79,7 @@
 
             <TextView
                 android:id="@+id/itemDiscoEvent_name"
-                style="@style/Theme.NQ.TextBlack"
+                style="@style/NQ.TextBlack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="NOMBRE"
@@ -156,7 +156,7 @@
 
                 <TextView
                     android:id="@+id/itemDiscoEvent_availability"
-                    style="@style/Theme.NQ.TextBlack"
+                    style="@style/NQ.TextBlack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="DISPONIBILIDAD"

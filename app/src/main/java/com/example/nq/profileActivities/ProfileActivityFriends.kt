@@ -80,7 +80,7 @@ class ProfileActivityFriends : AppCompatActivity(), FriendsInterface {
         title.setTextAppearance(R.style.NQ_AlertDialog_Title)
         title.setPadding(64, 48, 0, 0)
         builder.setCustomTitle(title)
-        builder.setMessage("Conecta con un amigo introduciendo su mail")
+        builder.setMessage("Agrega a un amigo introduciendo su correo electrónico")
         builder.setView(customLayout)
 
         val alertDialog = builder.create()
@@ -114,7 +114,7 @@ class ProfileActivityFriends : AppCompatActivity(), FriendsInterface {
                         }
 
                         val addFriendMailLayout = customLayout.findViewById<TextInputLayout>(R.id.addFriend_emailLayout)
-                        addFriendMailLayout.error = "El usuario no existe"
+                        addFriendMailLayout.error = "El usuario introducido no existe"
 
                         addFriendLayout.visibility = View.VISIBLE
                         addFriendLoading.visibility = View.GONE

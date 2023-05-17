@@ -61,7 +61,7 @@
 
             <TextView
                 android:id="@+id/discoScreen_DiscoName"
-                style="@style/Theme.NQ.TextBlack"
+                style="@style/NQ.TextBlack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="NOMBRE"
@@ -130,7 +130,7 @@
 
         <TextView
             android:id="@+id/screenDisco_text01"
-            style="@style/Theme.NQ.TextBlack"
+            style="@style/NQ.TextBlack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"

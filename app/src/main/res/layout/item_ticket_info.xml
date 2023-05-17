@@ -24,7 +24,7 @@
 
             <TextView
                 android:id="@+id/itemTicketInfo_text"
-                style="@style/Theme.NQ.TextBlack"
+                style="@style/NQ.TextBlack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"

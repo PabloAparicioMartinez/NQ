@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="NQ.TextInput" parent="TextAppearance.Material3.BodySmall">
+        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/black_01</item>
+        <item name="android:scrollHorizontally">true</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="NQ.TextBlack" parent="Theme.NQ">
+        <item name="fontFamily">@font/roboto_black</item>
+        <item name="android:textSize">26sp</item>
+        <item name="android:textColor">@color/black_01</item>
+    </style>
+</resources>

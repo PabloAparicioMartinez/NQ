@@ -20,20 +20,21 @@
             style="?attr/textInputOutlinedStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Mail"
+            android:hint="Correo electrónico"
             app:boxStrokeColor="@color/mid_blue"
             app:boxStrokeErrorColor="@color/red_01"
             app:endIconMode="clear_text"
             android:visibility="visible"
-            app:endIconTint="@color/grey_default">
+            app:startIconTint="@color/grey_default"
+            app:endIconTint="@color/grey_default"
+            app:startIconDrawable="@drawable/ic_email_android">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/addFriend_emailText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="13sp"
+            android:textSize="14sp"
             android:textColor="@color/black_01" />
-
 
         </com.google.android.material.textfield.TextInputLayout>
 
