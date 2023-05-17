@@ -36,7 +36,7 @@
             android:name=".SignInForgetActivity"
             android:exported="false"
             android:parentActivityName=".SignInActivity"
-            android:theme="@style/Theme.NQ.ActionBar"/>
+            android:theme="@style/Theme.NQ.ActionBar" />
         <activity
             android:name=".SignUpActivity"
             android:exported="false"
@@ -60,6 +60,19 @@
             android:name=".EventScreenActivityNotAvailable"
             android:exported="false"
             android:theme="@style/Theme.NQ.ActionBar" />
+
+        <activity
+            android:name=".profileActivities.ProfileActivityProfile"
+            android:exported="false"
+            android:theme="@style/Theme.NQ.ActionBar" />
+        <activity
+            android:name=".profileActivities.ProfileActivityFriends"
+            android:exported="false"
+            android:theme="@style/Theme.NQ.ActionBar"/>
+        <activity
+            android:name=".profileActivities.ProfileActivityPayments"
+            android:exported="false"
+            android:theme="@style/Theme.NQ.ActionBar"/>
     </application>
 
 </manifest>

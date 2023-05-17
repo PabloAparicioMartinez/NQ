@@ -28,6 +28,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bot_nav_menu" />
+        app:menu="@menu/bot_menu_main" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

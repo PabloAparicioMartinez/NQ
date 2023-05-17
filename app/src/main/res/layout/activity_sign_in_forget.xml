@@ -46,7 +46,8 @@
             android:id="@+id/signInForget_emailText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black_01"/>
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView

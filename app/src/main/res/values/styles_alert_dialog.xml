@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="NQ.AlertDialog.Title" parent="@android:style/TextAppearance.Material.Subhead">
+        <item name="android:fontFamily">@font/roboto_black</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="NQ.AlertDialog.TicketCard" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorSecondary">@color/white</item>
+        <item name="colorSurface">@color/white</item>
+        <item name="colorOnSurface">@color/white</item>
+        <item name="alertDialogStyle">@style/MaterialAlertDialog.App</item>
+        <item name="buttonBarPositiveButtonStyle">@style/MyPositiveButtonStyle</item>
+        <item name="buttonBarNegativeButtonStyle">@style/MyNegativeButtonStyle</item>
+    </style>
+
+    <style name="MaterialAlertDialog.App" parent="MaterialAlertDialog.Material3">
+        <item name="shapeAppearance">@style/ShapeAppearance.App.MediumComponent</item>
+        <item name="shapeAppearanceOverlay">@null</item>
+    </style>
+
+    <style name="ShapeAppearance.App.MediumComponent" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+
+    <style name="MyPositiveButtonStyle" parent="NQ.Button.Full">
+        <item name="fontFamily">@font/roboto_bold</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:layout_marginStart">0dp</item>
+        <item name="android:textColor">@color/black_01</item>
+        <item name="android:backgroundTint">@android:color/transparent</item>
+    </style>
+
+    <style name="MyNegativeButtonStyle" parent="NQ.Button.Full">
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/mid_grey_01</item>
+        <item name="android:backgroundTint">@android:color/transparent</item>
+    </style>
+</resources>
