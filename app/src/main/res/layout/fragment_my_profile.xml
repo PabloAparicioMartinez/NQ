@@ -81,12 +81,14 @@
                         style="@style/NQ.TextBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="NOMBRE"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="Nombre"
+                        android:textAllCaps="true"
                         android:layout_marginBottom="4dp"
                         android:textAlignment="viewStart"
                         android:textColor="@color/black_01"
-                        android:textSize="24sp"
-                        android:textStyle="" />
+                        android:textSize="24sp" />
 
                     <TextView
                         android:id="@+id/fragMyProfile_mail"

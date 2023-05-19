@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.NQ" parent="Theme.Material3.Light">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/mid_blue</item>
+        <item name="colorPrimary">@color/dark_blue</item>
         <item name="colorPrimaryVariant">@color/dark_blue</item>
         <item name="colorOnPrimary">@color/white</item>
         <item name="colorOnSurface">@color/dark_blue</item>
@@ -20,11 +20,6 @@
         <item name="actionBarStyle">@style/NQ.ActionBar</item>
     </style>
 
-<!--    <style name="Theme.NQ.TextBlack">-->
-<!--        <item name="fontFamily">@font/roboto_black</item>-->
-<!--        <item name="android:textColor">@color/black_01</item>-->
-<!--    </style>-->
-
     <style name="Theme.NQ.Progressbar">
         <item name="colorAccent">@color/dark_grey_01</item>
     </style>
@@ -39,7 +34,7 @@
     </style>
 
     <style name="Theme.NQ.DateSelected">
-        <item name="android:backgroundTint">@color/mid_blue</item>
+        <item name="android:backgroundTint">@color/dark_blue</item>
         <item name="android:textColor">@color/white</item>
     </style>
 
@@ -60,12 +55,12 @@
 
     <style name="Theme.NQ.ActionBar" parent="Theme.NQ">
         <item name="windowActionBar">true</item>
-        <item name="iconTint">@color/mid_blue</item>
+        <item name="iconTint">@color/dark_blue</item>
     </style>
 
     <style name="BottomNavMenu_MaterialComponents" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/mid_blue</item>
+        <item name="colorPrimary">@color/dark_blue</item>
         <item name="colorPrimaryVariant">@color/dark_blue</item>
         <item name="colorOnPrimary">@color/white</item>
         <item name="colorOnSurface">#C0C3C5</item>
@@ -78,38 +73,9 @@
     </style>
 
     <style name="NQ.SplashScreen" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash_logo_03</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash_logo_04</item>
         <item name="windowSplashScreenBackground">@color/white</item>
         <item name="postSplashScreenTheme">@style/Theme.NQ.NoActionBar</item>
-    </style>
-
-    <style name="NQ.Button.Full" parent="Widget.Material3.Button.Icon">
-        <item name="fontFamily">@font/roboto_black</item>
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerRadius">6dp</item>
-    </style>
-    <style name="NQ.Button.Outline" parent="Widget.Material3.Button.OutlinedButton.Icon">
-        <item name="fontFamily">@font/roboto_black</item>
-        <item name="android:textColor">@color/black_01</item>
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerRadius">6dp</item>
-        <item name="strokeColor">@color/black_01</item>
-        <item name="strokeWidth">1.5dp</item>
-    </style>
-    <style name="NQ.Button.Tonal" parent="Widget.Material3.Button.TonalButton">
-        <item name="fontFamily">@font/roboto_black</item>
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerRadius">6dp</item>
-    </style>
-
-    <style name="NQ.Button.PlusMinus" parent="Widget.Material3.Button.Icon">
-        <item name="android:background">@color/mid_blue</item>
-        <item name="cornerFamily">rounded</item>
-        <item name="android:radius">60dp</item>
-    </style>
-
-    <style name="NQ.Button.Profile" parent="Widget.Material3.Button.Icon">
-        <item name="cornerRadius">0dp</item>
     </style>
 
     <style name="NQ.Toolbar" parent="Theme.Material3.Light">
@@ -137,19 +103,5 @@
         <item name="android:clickable">true</item>
         <item name="android:background">@drawable/ripple_button_grey</item>
     </style>
-
-<!--    <style name="MenuItemStyle" parent="Widget.AppCompat.Toolbar">-->
-<!--        <item name="android:iconTint">@color/mid_blue</item>-->
-<!--    </style>-->
-
-<!--    <style name="NQ.TextInputLayout.Blue" parent="Theme.NQ">-->
-<!--        <item name="startIconTint">@color/icon_color_focused_blue</item>-->
-<!--        <item name="endIconTint">@color/icon_color_focused_blue</item>-->
-<!--    </style>-->
-
-<!--    <style name="NQ.TextInputLayout.Red" parent="Theme.NQ">-->
-<!--        <item name="startIconTint">@color/icon_color_focused_blue</item>-->
-<!--        <item name="endIconTint">@color/icon_color_focused_blue</item>-->
-<!--    </style>-->
 
 </resources>

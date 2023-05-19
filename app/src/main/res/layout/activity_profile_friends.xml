@@ -47,7 +47,7 @@
 
     </LinearLayout>
 
-<!--    NO FRIEND-->
+<!--    NO FRIENDS-->
     <LinearLayout
         android:id="@+id/profileFriends_noFriendsLayout"
         android:layout_width="match_parent"
@@ -65,11 +65,6 @@
             android:layout_height="100dp"
             android:alpha="0.75"
             android:src="@drawable/ic_sad_face_01"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/dark_grey_02" />
 
         <TextView

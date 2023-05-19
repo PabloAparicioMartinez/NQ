@@ -36,7 +36,7 @@ class FriendsAdapter(
             itemFriend_image.setImageResource(friends[position].image)
             itemFriend_name.text = friends[position].name
             itemFriend_mail.text = friends[position].mail
-            itemFriend_friendsBoolean.text = ReturnFriendsBooleanText(friends[position].friends)
+            itemFriend_friendsBoolean.text = returnFriendsBooleanText(friends[position].friends)
         }
     }
 
@@ -44,7 +44,7 @@ class FriendsAdapter(
         return friends.size
     }
 
-    fun ReturnFriendsBooleanText(friendsBoolean: Boolean) : String {
+    private fun returnFriendsBooleanText(friendsBoolean: Boolean) : String {
         if (friendsBoolean) return ""
         else return "Solicitud enviada"
     }

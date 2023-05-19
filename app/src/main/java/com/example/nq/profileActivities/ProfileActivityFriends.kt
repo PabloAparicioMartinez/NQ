@@ -147,6 +147,6 @@ class ProfileActivityFriends : AppCompatActivity(), FriendsInterface {
     }
 
     override fun onItemClick(usersData: UsersData) {
-        TODO("Not yet implemented")
+        Toast.makeText(this, "¡Clicked!", Toast.LENGTH_SHORT).show()
     }
 }

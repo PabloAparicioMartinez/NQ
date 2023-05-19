@@ -158,6 +158,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/google_black_01"
+        android:drawableTint="@color/dark_blue"
         android:layout_marginTop="18dp"
         android:paddingTop="14dp"
         android:paddingBottom="14dp"

@@ -22,7 +22,7 @@
             android:layout_gravity="center"
             android:layout_marginStart="8dp"
             android:src="@drawable/ic_calendar_01"
-            app:tint="@color/mid_blue" />
+            app:tint="@color/dark_blue" />
 
         <TextView
             android:id="@+id/itemDiscoEvent_date"
@@ -160,7 +160,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="DISPONIBILIDAD"
-                    android:textColor="@color/mid_blue"
+                    android:textColor="@android:color/holo_green_dark"
                     android:textSize="14sp"
                     android:textStyle="bold"/>
             </LinearLayout>
@@ -175,7 +175,7 @@
             android:scaleType="centerCrop"
             android:layout_marginEnd="0dp"
             android:src="@drawable/ic_arrow_android"
-            app:tint="@color/mid_blue" />
+            app:tint="@color/dark_blue" />
 
     </LinearLayout>
 

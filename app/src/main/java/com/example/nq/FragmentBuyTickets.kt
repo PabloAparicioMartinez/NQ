@@ -41,7 +41,7 @@ class FragmentBuyTickets : Fragment(R.layout.fragment_buy_tickets), MenuProvider
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
         when (menuItem.itemId) {
-            R.id.topMenu_location -> {
+            R.id.topMenuBuyTickets_location -> {
                 (activity as MainActivity).requestPermission()
             }
         }

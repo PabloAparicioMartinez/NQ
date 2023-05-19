@@ -23,7 +23,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/itemTicketInfo_text"
+                android:id="@+id/itemTicketNoInfo_text"
                 style="@style/NQ.TextBlack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -44,23 +44,15 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_gravity="center"
-                android:paddingTop="6dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Para: "
-                    android:textSize="14sp"
-                    android:layout_gravity="center"/>
+                android:layout_marginTop="6dp">
 
                 <Button
+                    android:id="@+id/itemTicketNoInfo_button"
                     style="@style/NQ.Button.Full"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingTop="4dp"
-                    android:paddingBottom="4dp"
-                    android:layout_marginStart="4dp"
-                    android:text="ALGUIEN DE MI LISTA DE AMIGOS"
+                    android:layout_marginStart="0dp"
+                    android:text="COMPRAR PARA UN AMIGO"
                     android:textSize="12sp"
                     android:textStyle="bold"
                     android:layout_gravity="center_vertical"/>
