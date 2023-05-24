@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/topMenu_addFriend"
+        android:title="Añadir amigo"
+        android:icon="@drawable/ic_plus_02"
+        app:showAsAction="ifRoom" />
+
+</menu>

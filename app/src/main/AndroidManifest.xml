@@ -10,9 +10,9 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_icon_02"
+        android:icon="@mipmap/ic_icon_03"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_icon_02_round"
+        android:roundIcon="@mipmap/ic_icon_03_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NQ"
         tools:targetApi="31">
@@ -36,7 +36,7 @@
             android:name=".SignInForgetActivity"
             android:exported="false"
             android:parentActivityName=".SignInActivity"
-            android:theme="@style/Theme.NQ.ActionBar"/>
+            android:theme="@style/Theme.NQ.ActionBar" />
         <activity
             android:name=".SignUpActivity"
             android:exported="false"
@@ -52,12 +52,24 @@
             android:exported="false"
             android:theme="@style/Theme.NQ.ActionBar" />
         <activity
-            android:name=".EventScreenActivityAvailable"
+            android:name=".EventScreenActivity"
             android:exported="false"
             android:theme="@style/Theme.NQ.ActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".EventScreenActivityNotAvailable"
+            android:name=".EventScreenActivitySearch"
+            android:exported="false"
+            android:theme="@style/Theme.NQ.ActionBar"/>
+        <activity
+            android:name=".profileActivities.ProfileActivityProfile"
+            android:exported="false"
+            android:theme="@style/Theme.NQ.ActionBar" />
+        <activity
+            android:name=".profileActivities.ProfileActivityFriends"
+            android:exported="false"
+            android:theme="@style/Theme.NQ.ActionBar" />
+        <activity
+            android:name=".profileActivities.ProfileActivityHistory"
             android:exported="false"
             android:theme="@style/Theme.NQ.ActionBar" />
     </application>
