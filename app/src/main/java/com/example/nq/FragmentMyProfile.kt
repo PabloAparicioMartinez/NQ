@@ -31,9 +31,10 @@ class FragmentMyProfile : Fragment(R.layout.fragment_my_profile) {
         } else {
             setLayoutVisibilities(listOf(View.VISIBLE, View.GONE, View.GONE))
 
-            fragMyProfile_name.setText(FirebaseRepository.userName)
+            val fragMyProfileName = "${FirebaseRepository.userName} ${FirebaseRepository.userSurnames}"
+            fragMyProfile_name.setText(fragMyProfileName)
             fragMyProfile_image.setImageURI(FirebaseRepository.userImage)
-            fragMyProfile_mail.setText(FirebaseRepository.userGmail)
+            fragMyProfile_mail.setText(FirebaseRepository.userEmail)
         }
 
         //BUTTONS

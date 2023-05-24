@@ -1,18 +1,18 @@
 package com.example.nq
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import com.example.nq.firebase.FirebaseManager
 import com.example.nq.firebase.FirebaseRepository
+import com.example.nq.firebase.FirebaseUserData
+import com.example.nq.recyclerViewTickets.TicketsRepository
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -20,6 +20,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_sign_in.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -108,7 +111,17 @@ class SignInActivity : AppCompatActivity() {
                 try {
                     auth.signInWithEmailAndPassword(email, password).await()
                     withContext(Dispatchers.Main) {
+                        // Cargar los datos desde Firebase al repositorio de Usuario
+                        val userData = fetchUserData(email)
+                        FirebaseRepository.userName = userData.name
+                        FirebaseRepository.userSurnames = userData.surnames
+                        FirebaseRepository.userImage = Uri.parse(userData.uri)
+                        FirebaseRepository.userEmail = userData.email
+                        // Cargar la lista de tickets al repositorio de Tickets
+                        TicketsRepository.fetchTicketData(email)
+                        // Mostrar por pantalla que se ha inicado sesión
                         Toast.makeText(this@SignInActivity, "¡Sesión iniciada correctamente!", Toast.LENGTH_SHORT).show()
+                        // Cambiar de actividad
                         Intent(this@SignInActivity, MainActivity::class.java).also {
                             startActivity(it)
                         }
@@ -181,6 +194,23 @@ class SignInActivity : AppCompatActivity() {
                     Toast.makeText(this@SignInActivity, error.message, Toast.LENGTH_SHORT).show()
                 }
             }
+        }
+    }
+
+    // Función para recibir la info del Usuario en Firebase
+    internal suspend fun fetchUserData(email:String): FirebaseUserData {
+        return try {
+            val querySnapshot = Firebase.firestore
+                .collection("UserData")
+                .document(email)
+                .collection("UserInfo")
+                .document("Data")
+                .get()
+                .await()
+            val userData = querySnapshot.toObject<FirebaseUserData>()
+            userData ?: FirebaseUserData() // Use default values if userData is null
+        } catch (e: Exception) {
+            FirebaseUserData()
         }
     }
 }

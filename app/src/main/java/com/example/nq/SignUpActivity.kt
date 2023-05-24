@@ -11,9 +11,14 @@ import android.widget.RadioButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.nq.firebase.FirebaseRepository
+import com.example.nq.firebase.FirebaseUserData
+import com.example.nq.recyclerViewTickets.TicketData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.auth.UserProfileChangeRequest
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -73,14 +78,15 @@ class SignUpActivity : AppCompatActivity() {
         val password = signUp_passwordText.text.toString()
         val passwordConfirm = signUp_passwordConfirmText.text.toString()
         val name = signUp_nameText.text.toString()
+        val surnames = signUp_surnameText.text.toString()
 
-        if (email.isNotEmpty() && password.isNotEmpty() && passwordConfirm.isNotEmpty() && name.isNotEmpty()){
+        if (email.isNotEmpty() && password.isNotEmpty() && passwordConfirm.isNotEmpty() && name.isNotEmpty() && surnames.isNotEmpty()){
             if(password == passwordConfirm){
                 CoroutineScope(Dispatchers.IO).launch {
                     try{
                         auth.createUserWithEmailAndPassword(email, password).await()
                         withContext(Dispatchers.Main){
-                            createProfile(name, email)
+                            createProfile(name, surnames, email)
                             Intent(this@SignUpActivity, MainActivity::class.java).also {
                                 startActivity(it)
                             }
@@ -131,7 +137,7 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
-    fun createProfile(name: String, email: String) {
+    fun createProfile(name: String, surnames: String, email: String) {
 
         auth.currentUser?.let { user ->
             val radioButtonID = signUp_radioGroup.checkedRadioButtonId
@@ -152,9 +158,12 @@ class SignUpActivity : AppCompatActivity() {
                 try {
                     user.updateProfile(createProfile).await()
                     withContext(Dispatchers.Main) {
+                        val userData = FirebaseUserData(name,surnames,photoURI.toString(),email)
+                        saveUserData(userData)
                         FirebaseRepository.userName = name
+                        FirebaseRepository.userSurnames = surnames
                         FirebaseRepository.userImage = photoURI
-                        FirebaseRepository.userGmail = email
+                        FirebaseRepository.userEmail = email
                         Toast.makeText(this@SignUpActivity, "¡Cuenta creada!", Toast.LENGTH_SHORT).show()
                     }
                 } catch (error: Exception) {
@@ -165,4 +174,23 @@ class SignUpActivity : AppCompatActivity() {
             }
         }
     }
+
+    // Función para cargar la info del Usuario en Firebase
+    // El path para cargar la info del usuario será: UserData/UserInfo/Datos del usuario
+    private fun saveUserData(userData: FirebaseUserData)
+            = CoroutineScope(Dispatchers.IO).launch {
+        try {
+            Firebase.firestore
+                .collection("UserData")
+                .document(userData.email)
+                .collection("UserInfo")
+                .document("Data")
+                .set(userData)
+                .await()
+        } catch (e: Exception) {
+            throw e
+        }
+    }
+
+
 }

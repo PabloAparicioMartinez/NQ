@@ -7,9 +7,38 @@
     android:orientation="vertical"
     tools:context=".FragmentMyTickets">
 
-    <!--SIGNED IN LAYOUT-->
+    <!--SIGNED IN LAYOUT, TICKETS AVAILABLE -->
+    <RelativeLayout
+        android:id="@+id/fragMyTickets_signedInLayout_AvailableTickets"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/imageViewPagerAvailableTicket"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/circleIndicatorQR"
+            android:layout_alignParentTop="true" />
+
+        <me.relex.circleindicator.CircleIndicator3
+            android:id="@+id/circleIndicatorQR"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            app:ci_width="6dp"
+            app:ci_height="6dp"
+            app:ci_drawable="@drawable/shape_circleindicator3"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="25dp" />
+
+    </RelativeLayout>
+
+
+    <!--SIGNED IN LAYOUT, NO TICKETS AVAILABLE-->
     <LinearLayout
-        android:id="@+id/fragMyTickets_signedInLayout"
+        android:id="@+id/fragMyTickets_signedInLayout_NoTickets"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="48dp"
@@ -52,6 +81,7 @@
 
     </LinearLayout>
 
+
     <!--UNSIGNED IN LAYOUT-->
     <LinearLayout
         android:id="@+id/fragMyTickets_unsignedInLayout"
@@ -60,7 +90,7 @@
         android:layout_marginStart="48dp"
         android:layout_marginEnd="48dp"
         android:orientation="vertical"
-        android:visibility="visible"
+        android:visibility="gone"
         android:gravity="center" >
 
         <ImageView

@@ -1,9 +1,8 @@
 package com.example.nq.recyclerViewEvents
 
-class EventsData (
+data class EventsData (
     var eventDateNumber: Int,
     var eventDateMonth: String,
-
     var eventDate: String,
     var eventImage: Int,
     var eventName: String,

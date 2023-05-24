@@ -39,7 +39,7 @@ class DiscoScreenActivity : AppCompatActivity(), DatesInterface, EventsInterface
             actionBar.setDisplayHomeAsUpEnabled(true)
         }
 
-        discoName = intent.getStringExtra("EXTRA_NAME").toString()
+        discoName = intent.getStringExtra("EXTRA_DISCONAME").toString()
         discoScreen_DiscoName.text = discoName
         discoScreen_discoImage.setImageResource(intent.getIntExtra("EXTRA_IMAGE", -1))
         discoScreen_discoLocation.text = intent.getStringExtra("EXTRA_LOCATION")
@@ -48,7 +48,7 @@ class DiscoScreenActivity : AppCompatActivity(), DatesInterface, EventsInterface
         screenDisco_datesRecyclerView.adapter = datesAdapter
         screenDisco_datesRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
-        when (intent.getStringExtra("EXTRA_NAME")) {
+        when (intent.getStringExtra("EXTRA_DISCONAME")) {
             "BACK&STAGE" -> eventsAdapter = EventsAdapter(EventsRepository.backStageEvents, this)
             "FEVER" -> eventsAdapter = EventsAdapter(EventsRepository.feverEvents, this)
             "SONORA" -> eventsAdapter = EventsAdapter(EventsRepository.sonoraEvents, this)
@@ -102,8 +102,8 @@ class DiscoScreenActivity : AppCompatActivity(), DatesInterface, EventsInterface
         delay(1000)
 
         val filteredEvents: List<EventsData>
-        if (datesList.isEmpty()) filteredEvents = EventsRepository.ReturnEvents(discoName, DatesRepository.dates)
-        else filteredEvents = EventsRepository.ReturnEvents(discoName, datesList)
+        if (datesList.isEmpty()) filteredEvents = EventsRepository.returnEvents(discoName, DatesRepository.dates)
+        else filteredEvents = EventsRepository.returnEvents(discoName, datesList)
         eventsAdapter.setFilteredList(filteredEvents)
 
         if (filteredEvents.isNotEmpty()) setLayoutsVisibilities(listOf(View.GONE, View.VISIBLE, View.GONE))
@@ -126,6 +126,7 @@ class DiscoScreenActivity : AppCompatActivity(), DatesInterface, EventsInterface
                     it.putExtra("EXTRA_NAME", eventData.eventName)
                     it.putExtra("EXTRA_MUSIC", eventData.eventMusic)
                     it.putExtra("EXTRA_DATE", eventData.eventDate)
+                    it.putExtra("EXTRA_DISCONAME", discoName)
                     startActivity(it)
                 }
             }
@@ -135,6 +136,7 @@ class DiscoScreenActivity : AppCompatActivity(), DatesInterface, EventsInterface
                     it.putExtra("EXTRA_NAME", eventData.eventName)
                     it.putExtra("EXTRA_MUSIC", eventData.eventMusic)
                     it.putExtra("EXTRA_DATE", eventData.eventDate)
+                    it.putExtra("EXTRA_DISCONAME", discoName)
                     startActivity(it)
                 }
             }

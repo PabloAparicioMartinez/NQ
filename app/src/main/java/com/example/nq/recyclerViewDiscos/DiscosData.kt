@@ -1,6 +1,6 @@
 package com.example.nq.recyclerViewDiscos
 
-class DiscosData (
+data class DiscosData (
     var discoImage: Int,
     var discoName: String,
     var discoLocation: String,

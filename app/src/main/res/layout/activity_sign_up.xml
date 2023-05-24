@@ -59,7 +59,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         app:boxStrokeColor="@color/mid_blue"
         app:boxStrokeErrorColor="@color/red_01"
@@ -90,7 +90,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         app:boxStrokeColor="@color/mid_blue"
         app:boxStrokeErrorColor="@color/red_01"
@@ -120,7 +120,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         app:boxStrokeColor="@color/mid_blue"
         app:boxStrokeErrorColor="@color/red_01"
@@ -145,16 +145,47 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/signUp_surnameLayout"
+        style="?attr/textInputOutlinedStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        app:boxStrokeColor="@color/mid_blue"
+        app:boxStrokeErrorColor="@color/red_01"
+        android:hint="Apellidos"
+        app:endIconMode="clear_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUp_nameLayout"
+        app:startIconDrawable="@drawable/ic_profile_full_01"
+        app:startIconTint="@color/grey_default"
+        app:endIconTint="@color/grey_default">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/signUp_surnameText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black_01"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:inputType="text"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
     <RadioGroup
         android:id="@+id/signUp_radioGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:checkedButton="@id/signUp_manButton"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:layout_marginStart="8dp"
         android:gravity="start"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/signUp_nameLayout">
+        app:layout_constraintTop_toBottomOf="@+id/signUp_surnameLayout">
 
         <RadioButton
             android:id="@+id/signUp_manButton"
@@ -175,7 +206,7 @@
         android:id="@+id/textView5"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:text="Podrás modificar los datos de tu perfil más adelante en la pestaña &quot;Mi Perfil&quot;"
