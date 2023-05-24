@@ -11,7 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.nq.firebase.FirebaseManager
 import com.example.nq.firebase.FirebaseRepository
 import com.example.nq.profileActivities.ProfileActivityFriends
-import com.example.nq.profileActivities.ProfileActivityPayments
+import com.example.nq.profileActivities.ProfileActivityHistory
 import com.example.nq.profileActivities.ProfileActivityProfile
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.fragment_my_profile.*
@@ -50,7 +50,7 @@ class FragmentMyProfile : Fragment(R.layout.fragment_my_profile) {
         }
 
         fragMyProfile_paymentsButton.setOnClickListener() {
-            Intent(activity, ProfileActivityPayments::class.java).also {
+            Intent(activity, ProfileActivityHistory::class.java).also {
                 startActivity(it)
             }
         }

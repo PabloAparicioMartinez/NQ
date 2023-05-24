@@ -76,24 +76,18 @@
 
         </LinearLayout>
 
-        <LinearLayout
+        <Button
+            android:id="@+id/itemTicketYesInfo_button"
+            style="@style/NQ.Button.Square"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_height="match_parent"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
             android:layout_weight="0"
-            android:layout_marginEnd="24dp">
-
-            <Button
-                android:id="@+id/itemTicketYesInfo_button"
-                style="@style/NQ.Button.Full"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="CAMBIAR"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                android:textAlignment="center"/>
-
-        </LinearLayout>
+            android:text="CAMBIAR"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
 
     </LinearLayout>
 

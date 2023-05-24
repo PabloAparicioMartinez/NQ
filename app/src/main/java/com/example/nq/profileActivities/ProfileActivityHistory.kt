@@ -5,10 +5,10 @@ import android.os.Bundle
 import android.view.MenuItem
 import com.example.nq.R
 
-class ProfileActivityPayments : AppCompatActivity() {
+class ProfileActivityHistory : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_profile_payments)
+        setContentView(R.layout.activity_profile_history)
 
         val actionBar = supportActionBar
         if (actionBar != null) {

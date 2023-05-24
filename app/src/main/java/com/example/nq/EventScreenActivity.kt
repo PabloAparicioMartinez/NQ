@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -26,6 +27,8 @@ class EventScreenActivity : AppCompatActivity() {
     lateinit var extraTicketsLayout: LinearLayout
     lateinit var extraTicketsInflater: LayoutInflater
     lateinit var extraTicketLayoutToAdd: View
+
+    var indexOfSelected: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -95,8 +98,10 @@ class EventScreenActivity : AppCompatActivity() {
 
                     extraTicketLayoutToAdd = extraTicketsInflater.inflate(R.layout.item_ticket_info_name_no, null)
                     extraTicketsLayout.addView(extraTicketLayoutToAdd)
-                    extraTicketLayoutToAdd.itemTicketNoInfo_text.text = "Entrada $ticketCount:"
+
+                    extraTicketLayoutToAdd.itemTicketNoInfo_text.text = "Entrada $ticketCount"
                     extraTicketLayoutToAdd.itemTicketNoInfo_button.setOnClickListener() {
+
                         val intent = Intent(this, EventScreenActivitySearch::class.java)
                         friendsSearchLauncherV1.launch(intent)
                     }
@@ -135,16 +140,17 @@ class EventScreenActivity : AppCompatActivity() {
         }
     }
 
-    private val friendsSearchLauncherV1: ActivityResultLauncher<Intent> = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+    private val friendsSearchLauncherV1: ActivityResultLauncher<Intent> =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
             val receivedData = result.data?.getStringExtra("receivedData")
 
-            extraTicketLayoutToAdd = extraTicketsInflater.inflate(R.layout.item_ticket_info_name_no, null)
             extraTicketsLayout.removeViewAt(extraTicketsLayout.size - 1)
 
             extraTicketLayoutToAdd = extraTicketsInflater.inflate(R.layout.item_ticket_info_name_yes, null)
             extraTicketsLayout.addView(extraTicketLayoutToAdd)
-            extraTicketLayoutToAdd.itemTicketYesInfo_text.text = "Entrada $ticketCount:"
+
+            extraTicketLayoutToAdd.itemTicketYesInfo_text.text = "Entrada $ticketCount"
             extraTicketLayoutToAdd.itemTicketYesInfo_name.text = receivedData
             extraTicketLayoutToAdd.itemTicketYesInfo_button.setOnClickListener() {
                 val intent = Intent(this, EventScreenActivitySearch::class.java)
@@ -159,11 +165,12 @@ class EventScreenActivity : AppCompatActivity() {
         if (result.resultCode == Activity.RESULT_OK) {
             val receivedData = result.data?.getStringExtra("receivedData")
 
-            extraTicketLayoutToAdd = extraTicketsInflater.inflate(R.layout.item_ticket_info_name_no, null)
             extraTicketsLayout.removeViewAt(extraTicketsLayout.size - 1)
 
             extraTicketLayoutToAdd = extraTicketsInflater.inflate(R.layout.item_ticket_info_name_yes, null)
             extraTicketsLayout.addView(extraTicketLayoutToAdd)
+
+            extraTicketLayoutToAdd.itemTicketYesInfo_text.text = "Entrada $ticketCount"
             extraTicketLayoutToAdd.itemTicketYesInfo_name.text = receivedData
             extraTicketLayoutToAdd.itemTicketYesInfo_button.setOnClickListener() {
                 val intent = Intent(this, EventScreenActivitySearch::class.java)
