@@ -56,15 +56,15 @@ class EventsAdapter(
 
     fun ReturnAvailabilityColor(availabiliy: String): Int {
         return when(availabiliy){
-            "DISPONIBLES" -> Color.rgb(50, 130, 184)
-            "AGOTADAS" -> Color.rgb(26, 32, 41)
+            "DISPONIBLES" -> Color.rgb(0, 175, 0)
+            "AGOTADAS" -> Color.rgb(175, 0, 0)
             else -> Color.rgb(0, 0, 0)
         }
     }
 
     fun ReturnArrowColor(availabiliy: String): Int {
         return when(availabiliy){
-            "DISPONIBLES" -> Color.rgb(50, 130, 184)
+            "DISPONIBLES" -> Color.rgb(15, 76, 117)
             "AGOTADAS" -> Color.rgb(237, 239, 236)
             else -> Color.rgb(0, 0, 0)
         }

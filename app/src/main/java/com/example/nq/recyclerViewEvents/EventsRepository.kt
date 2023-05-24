@@ -25,9 +25,6 @@ object EventsRepository {
 
     fun ReturnEvents(discoName: String, datesList: List<DatesData>): List<EventsData> {
 
-        println("Prueba pal Nija")
-        println("Prueba pal Apa")
-
         val eventsListToReturn = mutableListOf<EventsData>()
 
         when(discoName){

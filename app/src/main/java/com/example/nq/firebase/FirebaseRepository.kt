@@ -11,9 +11,9 @@ object FirebaseRepository {
         "Gmail"
     )
 
-    var userName = "NOMBRE"
+    var userName = "Nombre"
     var userImage = Uri.parse("android.resource://com.example.nq/${R.drawable.png_boy_01}")
-    var userGmail = "Gmail"
+    var userGmail = "mail"
 
     val authErrors = mapOf(
         "ERROR_INVALID_EMAIL" to R.string.error_login_invalid_email,

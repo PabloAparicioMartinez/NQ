@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="24dp"
+    android:paddingEnd="24dp">
+
+<!--    ADD FRIEND LAYOUT-->
+    <LinearLayout
+        android:id="@+id/addFriend_addLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/addFriend_emailLayout"
+            style="?attr/textInputOutlinedStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Correo electrónico"
+            app:boxStrokeColor="@color/mid_blue"
+            app:boxStrokeErrorColor="@color/red_01"
+            app:endIconMode="clear_text"
+            android:visibility="visible"
+            app:startIconTint="@color/grey_default"
+            app:endIconTint="@color/grey_default"
+            app:startIconDrawable="@drawable/ic_email_android">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/addFriend_emailText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/black_01" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+<!--    LOADING LAYOUT-->
+    <LinearLayout
+        android:id="@+id/addFriend_loadingLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:gravity="center">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:theme="@style/Theme.NQ.Progressbar" />
+
+    </LinearLayout>
+
+</LinearLayout>
