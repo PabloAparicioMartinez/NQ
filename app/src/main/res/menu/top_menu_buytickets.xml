@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/topMenu_location"
+        android:id="@+id/topMenuBuyTickets_location"
         android:title="Ubicación"
         android:icon="@drawable/ic_ubication_03"
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/topMenu_information"
+        android:id="@+id/topMenuBuyTickets_information"
         android:title="Información"
         app:showAsAction="never" />
 

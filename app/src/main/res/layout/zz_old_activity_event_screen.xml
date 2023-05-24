@@ -71,7 +71,7 @@
 
                     <TextView
                         android:id="@+id/eventScreenNot_name"
-                        style="@style/Theme.NQ.TextBlack"
+                        style="@style/NQ.TextBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="NOMBRE"
@@ -168,7 +168,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    style="@style/Theme.NQ.TextBlack"
+                    style="@style/NQ.TextBlack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingTop="14dp"
@@ -229,7 +229,7 @@
 
         <TextView
             android:id="@+id/eventScreen_price"
-            style="@style/Theme.NQ.TextBlack"
+            style="@style/NQ.TextBlack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

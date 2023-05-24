@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/profileLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginStart="24dp"
+    android:layout_marginTop="16dp"
+    android:layout_marginEnd="24dp"
+    android:orientation="vertical"
+    android:focusableInTouchMode="true"
+    android:clickable="true"
+    android:focusable="true"
+    tools:context=".profileActivities.ProfileActivityProfile">
+
+    <TextView
+        android:id="@+id/textView2"
+        style="@style/NQ.TextBlack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Modificar perfil:" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/profileProfile_emailLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        app:boxStrokeColor="@color/mid_blue"
+        app:boxStrokeErrorColor="@color/red_01"
+        android:hint="Correo electrónico"
+        app:endIconMode="clear_text"
+        app:startIconDrawable="@drawable/ic_email_android"
+        app:startIconTint="@color/grey_default"
+        app:endIconTint="@color/grey_default">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/profileProfile_emailText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Correo electrónico"
+            android:textColor="@color/black_01"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:inputType="textEmailAddress"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/profileProfile_passwordLayout"
+        style="?attr/textInputOutlinedStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:boxStrokeColor="@color/mid_blue"
+        app:boxStrokeErrorColor="@color/red_01"
+        android:hint="Constraseña"
+        app:endIconMode="password_toggle"
+        app:startIconDrawable="@drawable/ic_lock_android"
+        app:startIconTint="@color/grey_default"
+        app:endIconTint="@color/grey_default">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/profileProfile_passwordText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black_01"
+            android:text="123456"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:inputType="textPassword" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/profileProfile_passwordConfirmLayout"
+        style="?attr/textInputOutlinedStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:boxStrokeColor="@color/mid_blue"
+        app:boxStrokeErrorColor="@color/red_01"
+        android:hint="Confirmar contraseña"
+        app:endIconMode="password_toggle"
+        app:startIconDrawable="@drawable/ic_lock_android"
+        app:startIconTint="@color/grey_default"
+        app:endIconTint="@color/grey_default">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/profileProfile_passwordConfirmText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black_01"
+            android:text="123456"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/profileProfile_nameLayout"
+        style="?attr/textInputOutlinedStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:boxStrokeColor="@color/mid_blue"
+        app:boxStrokeErrorColor="@color/red_01"
+        android:hint="Nombre"
+        app:endIconMode="clear_text"
+        app:startIconDrawable="@drawable/ic_profile_full_01"
+        app:startIconTint="@color/grey_default"
+        app:endIconTint="@color/grey_default">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/profileProfile_nameText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black_01"
+            android:text="Nombre"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:inputType="text"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <RadioGroup
+        android:id="@+id/profileProfile_radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checkedButton="@id/profileProfile_manButton"
+        android:layout_marginTop="6dp"
+        android:layout_marginStart="8dp"
+        android:gravity="start"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/profileProfile_manButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hombre" />
+
+        <RadioButton
+            android:id="@+id/profileProfile_womanButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Mujer" />
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/profileProfile_saveChanges"
+        style="@style/NQ.Button.Full"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:text="GUARDAR CAMBIOS"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+</LinearLayout>

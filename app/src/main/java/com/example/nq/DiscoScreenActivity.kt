@@ -75,7 +75,7 @@ class DiscoScreenActivity : AppCompatActivity(), DatesInterface, EventsInterface
     override fun onItemClick(datesData: DatesData, linearLayout: LinearLayout, textViews: List<TextView>) {
 
         if (datesData.clicked) {
-            linearLayout.setBackgroundResource(R.color.mid_blue)
+            linearLayout.setBackgroundResource(R.color.dark_blue)
             for (i in textViews.indices) {
                 textViews[i].setTextColor(ContextCompat.getColor(this, R.color.white))
             }
@@ -119,25 +119,14 @@ class DiscoScreenActivity : AppCompatActivity(), DatesInterface, EventsInterface
     }
 
     override fun onItemClick(eventData: EventsData) {
-        when (eventData.eventAvailability){
-            "DISPONIBLES" -> {
-                Intent(this, EventScreenActivityAvailable::class.java).also {
-                    it.putExtra("EXTRA_IMAGE", eventData.eventImage)
-                    it.putExtra("EXTRA_NAME", eventData.eventName)
-                    it.putExtra("EXTRA_MUSIC", eventData.eventMusic)
-                    it.putExtra("EXTRA_DATE", eventData.eventDate)
-                    startActivity(it)
-                }
-            }
-            "AGOTADAS" -> {
-                Intent(this, EventScreenActivityNotAvailable::class.java).also {
-                    it.putExtra("EXTRA_IMAGE", eventData.eventImage)
-                    it.putExtra("EXTRA_NAME", eventData.eventName)
-                    it.putExtra("EXTRA_MUSIC", eventData.eventMusic)
-                    it.putExtra("EXTRA_DATE", eventData.eventDate)
-                    startActivity(it)
-                }
-            }
+
+        Intent(this, EventScreenActivity::class.java).also {
+            it.putExtra("EXTRA_IMAGE", eventData.eventImage)
+            it.putExtra("EXTRA_NAME", eventData.eventName)
+            it.putExtra("EXTRA_MUSIC", eventData.eventMusic)
+            it.putExtra("EXTRA_DATE", eventData.eventDate)
+            it.putExtra("EXTRA_AVAILABILITY", eventData.eventAvailability)
+            startActivity(it)
         }
     }
 }

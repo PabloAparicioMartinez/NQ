@@ -2,8 +2,6 @@ package com.example.nq
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.Gravity
-import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.TextView
@@ -12,11 +10,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.nq.firebase.FirebaseManager
 import com.example.nq.firebase.FirebaseRepository
+import com.example.nq.profileActivities.ProfileActivityFriends
+import com.example.nq.profileActivities.ProfileActivityHistory
+import com.example.nq.profileActivities.ProfileActivityProfile
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.fragment_my_profile.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlin.math.sign
 
 class FragmentMyProfile : Fragment(R.layout.fragment_my_profile) {
 
@@ -31,20 +31,38 @@ class FragmentMyProfile : Fragment(R.layout.fragment_my_profile) {
         } else {
             setLayoutVisibilities(listOf(View.VISIBLE, View.GONE, View.GONE))
 
-            fragMyProfile_name.setText(FirebaseRepository.userName)
+            fragMyProfile_name.text = FirebaseRepository.userName
             fragMyProfile_image.setImageURI(FirebaseRepository.userImage)
-            fragMyProfile_mail.setText(FirebaseRepository.userGmail)
+            fragMyProfile_mail.text = FirebaseRepository.userGmail
         }
 
         //BUTTONS
-        fragMyProfile_signInButton.setOnClickListener() {
-            Intent(activity, SignInActivity::class.java).also {
+        fragMyProfile_profileButton.setOnClickListener() {
+            Intent(activity, ProfileActivityProfile::class.java).also {
+                startActivity(it)
+            }
+        }
+
+        fragMyProfile_friendsButton.setOnClickListener() {
+            Intent(activity, ProfileActivityFriends::class.java).also {
+                startActivity(it)
+            }
+        }
+
+        fragMyProfile_paymentsButton.setOnClickListener() {
+            Intent(activity, ProfileActivityHistory::class.java).also {
                 startActivity(it)
             }
         }
 
         fragMyProfile_signOutButton.setOnClickListener() {
-            showSignOutCard()
+            showSignOutAlertDialong()
+        }
+
+        fragMyProfile_signInButton.setOnClickListener() {
+            Intent(activity, SignInActivity::class.java).also {
+                startActivity(it)
+            }
         }
     }
 
@@ -54,7 +72,7 @@ class FragmentMyProfile : Fragment(R.layout.fragment_my_profile) {
         fragMyProfile_loadingLayout.visibility = listOfVisibilities[2]
     }
 
-    fun showSignOutCard() {
+    fun showSignOutAlertDialong() {
 
         val builder = MaterialAlertDialogBuilder(requireContext(), R.style.NQ_AlertDialog_TicketCard)
 
@@ -65,7 +83,7 @@ class FragmentMyProfile : Fragment(R.layout.fragment_my_profile) {
 
         builder.setCustomTitle(title)
         builder.setMessage("¿Estás seguro de que quieres cerrar sesión?")
-        builder.setPositiveButton("Confirmar") { dialog, which ->
+        builder.setPositiveButton("CONFIRMAR") { dialog, which ->
             lifecycleScope.launch {
                 signOutUser()
             }

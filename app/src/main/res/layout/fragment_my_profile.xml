@@ -8,488 +8,451 @@
     tools:context=".FragmentMyProfile">
 
     <!--SIGNED IN LAYOUT-->
-    <LinearLayout
+    <ScrollView
         android:id="@+id/fragMyProfile_signedInLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:visibility="visible"
-        android:background="@color/white">
-
-        <com.google.android.material.divider.MaterialDivider
-            android:id="@+id/materialDivider2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        android:visibility="visible">
 
         <LinearLayout
-            android:id="@+id/fragMyProfile_profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:clickable="true"
-            android:background="@drawable/ripple_button_grey"
-            android:paddingStart="24dp"
-            android:paddingTop="14dp"
-            android:paddingEnd="24dp"
-            android:paddingBottom="14dp">
+            android:orientation="vertical"
+            android:background="@color/white">
 
-            <FrameLayout
-                android:layout_width="65dp"
-                android:layout_height="65dp"
-                android:layout_gravity="center"
-                android:layout_weight="0">
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/materialDivider2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:id="@+id/fragMyProfile_profileButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:clickable="true"
+                android:background="@drawable/ripple_button_grey"
+                android:paddingStart="24dp"
+                android:paddingTop="14dp"
+                android:paddingEnd="24dp"
+                android:paddingBottom="14dp">
 
                 <ImageView
                     android:id="@+id/fragMyProfile_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:scaleType="centerCrop"
-                    android:background="@drawable/shape_border_circle"
-                    android:src="@null"
-                    android:outlineProvider="background"
-                    android:clipToOutline="true"/>
+                    android:src="@drawable/png_boy_01" />
 
-                <View
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:background="@drawable/shape_border_circle" />
+                    android:layout_marginStart="22dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-            </FrameLayout>
+                    <TextView
+                        android:id="@+id/fragMyProfile_name"
+                        style="@style/NQ.TextBlack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="Nombre"
+                        android:textAllCaps="true"
+                        android:layout_marginBottom="4dp"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black_01"
+                        android:textSize="24sp" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="22dp"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/fragMyProfile_mail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="0dp"
+                        android:text="Mail"
+                        android:textColor="@color/dark_grey_01"
+                        android:textSize="12sp" />
 
-                <TextView
-                    android:id="@+id/fragMyProfile_name"
-                    style="@style/Theme.NQ.TextBlack"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="NOMBRE"
-                    android:layout_marginBottom="4dp"
-                    android:textAlignment="viewStart"
-                    android:textColor="@color/black_01"
-                    android:textSize="24sp"
-                    android:textStyle="" />
+                </LinearLayout>
 
-                <TextView
-                    android:id="@+id/fragMyProfile_mail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="0dp"
-                    android:text="Mail"
-                    android:textColor="@color/dark_grey_01"
-                    android:textSize="12sp" />
-
-            </LinearLayout>
-
-            <ImageView
-                android:id="@+id/itemDiscoEvent_arrow"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_gravity="center"
-                android:scaleType="centerCrop"
-                android:layout_marginEnd="0dp"
-                android:src="@drawable/ic_arrow_android"
-                app:tint="@color/mid_blue" />
-
-        </LinearLayout>
-
-        <com.google.android.material.divider.MaterialDivider
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="18dp"
-            android:background="@color/light_grey_01"/>
-
-        <com.google.android.material.divider.MaterialDivider
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <LinearLayout
-            android:id="@+id/fragMyProfile_friendsList"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:clickable="true"
-            android:background="@drawable/ripple_button_grey"
-            android:paddingStart="24dp"
-            android:paddingTop="14dp"
-            android:paddingEnd="24dp"
-            android:paddingBottom="14dp">
-
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginStart="6dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_list_01" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="24dp"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    style="@style/Theme.NQ.TextBlack"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Lista de amigos"
-                    android:layout_marginBottom="2dp"
-                    android:textAlignment="viewStart"
-                    android:textColor="@color/black_01"
-                    android:textSize="18sp"
-                    android:textStyle="" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="25dp"
-                    android:layout_marginTop="0dp"
-                    android:paddingEnd="16dp"
-                    android:text="Añade a tus amigos a esta lista para comprar entradas para ellos fácilmente"
-                    android:textColor="@color/dark_grey_01"
-                    android:textSize="10sp" />
+                <ImageView
+                    android:id="@+id/itemDiscoEvent_arrow"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center"
+                    android:scaleType="centerCrop"
+                    android:layout_marginEnd="0dp"
+                    android:src="@drawable/ic_arrow_android"
+                    app:tint="@color/dark_blue" />
 
             </LinearLayout>
 
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_gravity="center"
-                android:scaleType="centerCrop"
-                android:layout_marginEnd="0dp"
-                android:src="@drawable/ic_arrow_android"
-                app:tint="@color/mid_blue" />
-
-        </LinearLayout>
-
-        <com.google.android.material.divider.MaterialDivider
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="18dp"
-            android:background="@color/light_grey_01"/>
-
-        <com.google.android.material.divider.MaterialDivider
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <LinearLayout
-            android:id="@+id/fragMyProfile_historic"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:clickable="true"
-            android:background="@drawable/ripple_button_grey"
-            android:paddingStart="24dp"
-            android:paddingTop="14dp"
-            android:paddingEnd="24dp"
-            android:paddingBottom="14dp">
-
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginStart="6dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_wallet_01" />
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="24dp"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:layout_width="match_parent"
+                android:layout_height="18dp"
+                android:background="@color/light_grey_01"/>
 
-                <TextView
-                    style="@style/Theme.NQ.TextBlack"
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:id="@+id/fragMyProfile_friendsButton"
+                style="@style/NQ.ProfileButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_list_01" />
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Histórico de pagos"
-                    android:layout_marginBottom="2dp"
-                    android:textAlignment="viewStart"
-                    android:textColor="@color/black_01"
-                    android:textSize="18sp"
-                    android:textStyle="" />
+                    android:layout_gravity="center"
+                    android:layout_marginStart="24dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="25dp"
-                    android:layout_marginTop="0dp"
-                    android:paddingEnd="16dp"
-                    android:text="Aquí encontrarás el las entradas que has comprado hasta la fecha"
-                    android:textColor="@color/dark_grey_01"
-                    android:textSize="10sp" />
+                    <TextView
+                        style="@style/NQ.TextBlack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Lista de amigos"
+                        android:layout_marginBottom="2dp"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black_01"
+                        android:textSize="18sp"
+                        android:textStyle="" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="0dp"
+                        android:paddingEnd="16dp"
+                        android:text="Añade a tus amigos a esta lista para comprar entradas para ellos fácilmente"
+                        android:textColor="@color/dark_grey_01"
+                        android:textSize="10sp" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center"
+                    android:scaleType="centerCrop"
+                    android:layout_marginEnd="0dp"
+                    android:src="@drawable/ic_arrow_android"
+                    app:tint="@color/dark_blue" />
 
             </LinearLayout>
 
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_gravity="center"
-                android:scaleType="centerCrop"
-                android:layout_marginEnd="0dp"
-                android:src="@drawable/ic_arrow_android"
-                app:tint="@color/mid_blue" />
-
-        </LinearLayout>
-
-        <com.google.android.material.divider.MaterialDivider
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <LinearLayout
-            android:id="@+id/fragMyProfile_reportProblem"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:clickable="true"
-            android:background="@drawable/ripple_button_grey"
-            android:paddingStart="24dp"
-            android:paddingTop="14dp"
-            android:paddingEnd="24dp"
-            android:paddingBottom="14dp">
-
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginStart="6dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_problem_01" />
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="24dp"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:layout_width="match_parent"
+                android:layout_height="18dp"
+                android:background="@color/light_grey_01"/>
 
-                <TextView
-                    style="@style/Theme.NQ.TextBlack"
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:id="@+id/fragMyProfile_paymentsButton"
+                style="@style/NQ.ProfileButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_wallet_01" />
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Reportar un problema"
-                    android:layout_marginBottom="2dp"
-                    android:textAlignment="viewStart"
-                    android:textColor="@color/black_01"
-                    android:textSize="18sp"
-                    android:textStyle="" />
+                    android:layout_gravity="center"
+                    android:layout_marginStart="24dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="25dp"
-                    android:layout_marginTop="0dp"
-                    android:paddingEnd="16dp"
-                    android:text="¿Tienes algún problema? ¡Nosotros te ayudamos!"
-                    android:textColor="@color/dark_grey_01"
-                    android:textSize="10sp" />
+                    <TextView
+                        style="@style/NQ.TextBlack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Método de pago"
+                        android:layout_marginBottom="2dp"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black_01"
+                        android:textSize="18sp"
+                        android:textStyle="" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="0dp"
+                        android:paddingEnd="16dp"
+                        android:text="Configura el método de pago que utilizas para comprar las entradas"
+                        android:textColor="@color/dark_grey_01"
+                        android:textSize="10sp" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center"
+                    android:scaleType="centerCrop"
+                    android:layout_marginEnd="0dp"
+                    android:src="@drawable/ic_arrow_android"
+                    app:tint="@color/dark_blue" />
 
             </LinearLayout>
 
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_gravity="center"
-                android:scaleType="centerCrop"
-                android:layout_marginEnd="0dp"
-                android:src="@drawable/ic_arrow_android"
-                app:tint="@color/mid_blue" />
-
-        </LinearLayout>
-
-        <com.google.android.material.divider.MaterialDivider
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="18dp"
-            android:background="@color/light_grey_01"/>
-
-        <com.google.android.material.divider.MaterialDivider
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <LinearLayout
-            android:id="@+id/fragMyProfile_settings"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:clickable="true"
-            android:background="@drawable/ripple_button_grey"
-            android:paddingStart="24dp"
-            android:paddingTop="14dp"
-            android:paddingEnd="24dp"
-            android:paddingBottom="14dp">
-
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginStart="6dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_settings_01" />
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="24dp"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:id="@+id/fragMyProfile_historyButton"
+                style="@style/NQ.ProfileButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                <TextView
-                    style="@style/Theme.NQ.TextBlack"
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_history_01" />
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Configuración"
-                    android:layout_marginBottom="2dp"
-                    android:textAlignment="viewStart"
-                    android:textColor="@color/black_01"
-                    android:textSize="18sp"
-                    android:textStyle="" />
+                    android:layout_gravity="center"
+                    android:layout_marginStart="24dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="25dp"
-                    android:layout_marginTop="0dp"
-                    android:paddingEnd="16dp"
-                    android:text="Configura los parámetros de la aplicación"
-                    android:textColor="@color/dark_grey_01"
-                    android:textSize="10sp" />
+                    <TextView
+                        style="@style/NQ.TextBlack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Histórico de entradas"
+                        android:layout_marginBottom="2dp"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black_01"
+                        android:textSize="18sp"
+                        android:textStyle="" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="0dp"
+                        android:paddingEnd="16dp"
+                        android:text="Aquí encontrarás las entradas que has comprado hasta la fecha"
+                        android:textColor="@color/dark_grey_01"
+                        android:textSize="10sp" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center"
+                    android:scaleType="centerCrop"
+                    android:layout_marginEnd="0dp"
+                    android:src="@drawable/ic_arrow_android"
+                    app:tint="@color/dark_blue" />
 
             </LinearLayout>
 
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_gravity="center"
-                android:scaleType="centerCrop"
-                android:layout_marginEnd="0dp"
-                android:src="@drawable/ic_arrow_android"
-                app:tint="@color/mid_blue" />
-
-        </LinearLayout>
-
-        <com.google.android.material.divider.MaterialDivider
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <LinearLayout
-            android:id="@+id/fragMyProfile_help"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:clickable="true"
-            android:background="@drawable/ripple_button_grey"
-            android:paddingStart="24dp"
-            android:paddingTop="14dp"
-            android:paddingEnd="24dp"
-            android:paddingBottom="14dp">
-
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginStart="6dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_help_01" />
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="24dp"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:layout_width="match_parent"
+                android:layout_height="18dp"
+                android:background="@color/light_grey_01"/>
 
-                <TextView
-                    style="@style/Theme.NQ.TextBlack"
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+
+            <LinearLayout
+                android:id="@+id/fragMyProfile_problemButton"
+                style="@style/NQ.ProfileButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_problem_01" />
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Centro de ayuda"
-                    android:layout_marginBottom="2dp"
-                    android:textAlignment="viewStart"
-                    android:textColor="@color/black_01"
-                    android:textSize="18sp"
-                    android:textStyle="" />
+                    android:layout_gravity="center"
+                    android:layout_marginStart="24dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="25dp"
-                    android:layout_marginTop="0dp"
-                    android:paddingEnd="16dp"
-                    android:text="¿Tienes alguna pregunta? Aquí intentamos respondértela"
-                    android:textColor="@color/dark_grey_01"
-                    android:textSize="10sp" />
+                    <TextView
+                        style="@style/NQ.TextBlack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Reportar un problema"
+                        android:layout_marginBottom="2dp"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black_01"
+                        android:textSize="18sp"
+                        android:textStyle="" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="0dp"
+                        android:paddingEnd="16dp"
+                        android:text="¿Tienes algún problema? ¡Nosotros te ayudamos!"
+                        android:textColor="@color/dark_grey_01"
+                        android:textSize="10sp" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center"
+                    android:scaleType="centerCrop"
+                    android:layout_marginEnd="0dp"
+                    android:src="@drawable/ic_arrow_android"
+                    app:tint="@color/dark_blue" />
 
             </LinearLayout>
 
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_gravity="center"
-                android:scaleType="centerCrop"
-                android:layout_marginEnd="0dp"
-                android:src="@drawable/ic_arrow_android"
-                app:tint="@color/mid_blue" />
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-        </LinearLayout>
+            <LinearLayout
+                android:id="@+id/fragMyProfile_helpButton"
+                style="@style/NQ.ProfileButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <com.google.android.material.divider.MaterialDivider
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_help_01" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="18dp"
-            android:background="@color/light_grey_01"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="24dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-        <com.google.android.material.divider.MaterialDivider
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+                    <TextView
+                        style="@style/NQ.TextBlack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Centro de ayuda"
+                        android:layout_marginBottom="2dp"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black_01"
+                        android:textSize="18sp"
+                        android:textStyle="" />
 
-        <LinearLayout
-            android:id="@+id/fragMyProfile_signOutButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:background="@drawable/ripple_button_grey"
-            android:padding="16dp"
-            android:gravity="center">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="0dp"
+                        android:paddingEnd="16dp"
+                        android:text="¿Tienes alguna pregunta? Aquí intentamos respondértela"
+                        android:textColor="@color/dark_grey_01"
+                        android:textSize="10sp" />
 
-            <TextView
-                style="@style/Theme.NQ.TextBlack"
-                android:layout_width="wrap_content"
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center"
+                    android:scaleType="centerCrop"
+                    android:layout_marginEnd="0dp"
+                    android:src="@drawable/ic_arrow_android"
+                    app:tint="@color/dark_blue" />
+
+            </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="18dp"
+                android:background="@color/light_grey_01"/>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:id="@+id/fragMyProfile_signOutButton"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Cerrar sesión"
-                android:textAlignment="viewStart"
-                android:textColor="@android:color/holo_red_light"
-                android:textSize="22sp" />
+                android:clickable="true"
+                android:background="@drawable/ripple_button_grey"
+                android:padding="16dp"
+                android:gravity="center">
+
+                <TextView
+                    style="@style/NQ.TextBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cerrar sesión"
+                    android:textAlignment="viewStart"
+                    android:textColor="@android:color/holo_red_light"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="600dp"-->
+<!--                android:background="@color/light_grey_01"/>-->
 
         </LinearLayout>
 
-        <com.google.android.material.divider.MaterialDivider
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:background="@color/light_grey_01"/>
-
-    </LinearLayout>
+    </ScrollView>
 
     <!--UNSIGNED IN LAYOUT-->
     <LinearLayout
@@ -542,7 +505,7 @@
         android:layout_height="match_parent"
         android:clickable="true"
         android:gravity="center"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <View
             android:layout_width="match_parent"
