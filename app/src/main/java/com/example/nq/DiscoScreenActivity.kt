@@ -121,7 +121,7 @@ class DiscoScreenActivity : AppCompatActivity(), DatesInterface, EventsInterface
     override fun onItemClick(eventData: EventsData) {
         when (eventData.eventAvailability){
             "DISPONIBLES" -> {
-                Intent(this, EventScreenActivityAvailable::class.java).also {
+                Intent(this, EventScreenActivity::class.java).also {
                     it.putExtra("EXTRA_IMAGE", eventData.eventImage)
                     it.putExtra("EXTRA_NAME", eventData.eventName)
                     it.putExtra("EXTRA_MUSIC", eventData.eventMusic)
@@ -131,7 +131,7 @@ class DiscoScreenActivity : AppCompatActivity(), DatesInterface, EventsInterface
                 }
             }
             "AGOTADAS" -> {
-                Intent(this, EventScreenActivityNotAvailable::class.java).also {
+                Intent(this, EventScreenActivity::class.java).also {
                     it.putExtra("EXTRA_IMAGE", eventData.eventImage)
                     it.putExtra("EXTRA_NAME", eventData.eventName)
                     it.putExtra("EXTRA_MUSIC", eventData.eventMusic)

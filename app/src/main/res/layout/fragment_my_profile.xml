@@ -67,7 +67,7 @@
 
                 <TextView
                     android:id="@+id/fragMyProfile_name"
-                    style="@style/Theme.NQ.TextBlack"
+                    style="@style/NQ.TextBlack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="NOMBRE"
@@ -141,7 +141,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    style="@style/Theme.NQ.TextBlack"
+                    style="@style/NQ.TextBlack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Lista de amigos"
@@ -214,7 +214,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    style="@style/Theme.NQ.TextBlack"
+                    style="@style/NQ.TextBlack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Histórico de pagos"
@@ -278,7 +278,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    style="@style/Theme.NQ.TextBlack"
+                    style="@style/NQ.TextBlack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Reportar un problema"
@@ -351,7 +351,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    style="@style/Theme.NQ.TextBlack"
+                    style="@style/NQ.TextBlack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Configuración"
@@ -415,7 +415,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    style="@style/Theme.NQ.TextBlack"
+                    style="@style/NQ.TextBlack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Centro de ayuda"
@@ -470,7 +470,7 @@
             android:gravity="center">
 
             <TextView
-                style="@style/Theme.NQ.TextBlack"
+                style="@style/NQ.TextBlack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Cerrar sesión"

@@ -4,8 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
-import android.widget.Button
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.nq.firebase.FirebaseManager
 import com.example.nq.recyclerViewTickets.TicketData
@@ -13,7 +11,6 @@ import com.example.nq.recyclerViewTickets.TicketsAdapter
 import com.example.nq.recyclerViewTickets.TicketsRepository
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.fragment_my_tickets.*
-import kotlinx.android.synthetic.main.fragment_my_tickets_viewpager.*
 import me.relex.circleindicator.CircleIndicator3
 
 class FragmentMyTickets : Fragment(R.layout.fragment_my_tickets) {

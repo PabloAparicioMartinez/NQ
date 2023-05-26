@@ -16,13 +16,24 @@
         <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/shape_background_blue.xml" value="0.26" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/shape_background_grey.xml" value="0.26" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/shape_background_light_blue_black_border.xml" value="0.26" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/shape_background_loading.xml" value="0.258" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/shape_border_circle.xml" value="0.258" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/shape_border_image.xml" value="0.26" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/shape_border_rectangle.xml" value="0.258" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/shape_circleindicator3.xml" value="0.26" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/activity_disco_screen.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/activity_event_screen.xml" value="0.264" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/activity_event_screen_available.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/activity_event_screen_not_available.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/activity_event_screen_search.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/activity_profile_friends.xml" value="0.20018115942028986" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/activity_profile_history.xml" value="0.20018115942028986" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/activity_profile_profile.xml" value="0.20018115942028986" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/activity_sign_in.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/activity_sign_in_forget.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/activity_sign_up.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/activity_start.xml" value="0.20018115942028986" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/fragment_buy_tickets.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/fragment_my_profile.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/fragment_my_profile_signed_in.xml" value="0.36666666666666664" />
@@ -34,10 +45,13 @@
         <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/fragment_my_tickets_signed_in_viewpager.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/fragment_my_tickets_unsigned_in.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/fragment_my_tickets_viewpager.xml" value="0.1" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/item_add_friend.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/item_date.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/item_disco.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/item_event.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/item_ticket_info.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/item_ticket_info_name_no.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/item_ticket_info_name_yes.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/zz_old_fragment_my_tickets_signed_in_data.xml" value="0.24139492753623187" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/menu/bot_nav_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/menu/top_nav_menu.xml" value="0.36666666666666664" />
