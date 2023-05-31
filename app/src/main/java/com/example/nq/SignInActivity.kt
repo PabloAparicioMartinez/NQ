@@ -10,6 +10,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import com.example.nq.firebase.FirebaseFriendsRepository
 import com.example.nq.firebase.FirebaseRepository
 import com.example.nq.firebase.FirebaseUserData
 import com.example.nq.recyclerViewTickets.TicketsRepository
@@ -117,6 +118,10 @@ class SignInActivity : AppCompatActivity() {
                         FirebaseRepository.userSurnames = userData.surnames
                         FirebaseRepository.userImage = Uri.parse(userData.uri)
                         FirebaseRepository.userEmail = userData.email
+                        val emailList:List<String> = userData.friendEmails
+                        FirebaseRepository.userFriendEmails = emailList as MutableList<String>
+                        // Cargar la lista con la info de los amigos al repositorio de Amigos
+                        FirebaseFriendsRepository.fetchFriendsData(emailList)
                         // Cargar la lista de tickets al repositorio de Tickets
                         TicketsRepository.fetchTicketData(email)
                         // Mostrar por pantalla que se ha inicado sesión

@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.fragment_buy_tickets.*
 
 class FragmentBuyTickets : Fragment(R.layout.fragment_buy_tickets), MenuProvider, DiscosInterface {
 
-    val discosAdapter = DiscosAdapter(DiscosRepository.discos, this)
+    private val discosAdapter = DiscosAdapter(DiscosRepository.discos, this)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -51,7 +51,7 @@ class FragmentBuyTickets : Fragment(R.layout.fragment_buy_tickets), MenuProvider
     override fun onItemClick(discoData: DiscosData) {
         Intent(activity, DiscoScreenActivity::class.java).also {
             it.putExtra("EXTRA_IMAGE", discoData.discoImage)
-            it.putExtra("EXTRA_DISCONAME", discoData.discoName)
+            it.putExtra("EXTRA_DISCO_NAME", discoData.discoName)
             it.putExtra("EXTRA_LOCATION", discoData.discoLocation)
             it.putExtra("EXTRA_DISTANCE", discoData.discoDistance)
             it.putExtra("EXTRA_MUSIC", discoData.discoMusic)

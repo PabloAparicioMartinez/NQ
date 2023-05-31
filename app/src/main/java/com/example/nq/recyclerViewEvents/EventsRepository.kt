@@ -9,13 +9,13 @@ object EventsRepository {
         EventsData(4, "Mayo",
             "JUEVES, 4 de Mayo", R.drawable.png_event_01,
             "SAFARI  +18", "Reggeaton & Latina",
-            "14 €  |  Incluye 2 cubatas", "DISPONIBLES",
+            14.00f,"Incluye 2 copas", "DISPONIBLES",
         ),
         EventsData(
             5, "Mayo",
             "VIERNES, 5 de Mayo", R.drawable.png_event_02,
             "EUPHORIA  +24", "Comercial & Reggeaton",
-            "14 €  |  Incluye 1 cubata", "AGOTADAS",
+            12.50f,"Incluye 1 copa", "AGOTADAS",
         )
     )
 
@@ -23,13 +23,13 @@ object EventsRepository {
         EventsData(4, "Mayo",
             "JUEVES, 4 de Mayo", R.drawable.png_event_03,
             "LA TRINIDAD", "Rock",
-            "7 €  |  Incluye 1 copa", "DISPONIBLES",
+            7.00f,"Incluye 1 copa", "DISPONIBLES",
         ),
         EventsData(
             5, "Mayo",
             "VIERNES, 5 de Mayo", R.drawable.png_event_04,
             "SAUROM", "Folk metal",
-            "22 €  |  Incluye 1 copa", "DISPONIBLES",
+            22.00f,"Incluye 1 copa", "DISPONIBLES",
         )
     )
     val sonoraEvents = mutableListOf<EventsData>()

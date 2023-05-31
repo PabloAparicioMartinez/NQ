@@ -9,6 +9,7 @@ object FirebaseRepository {
     var userSurnames = "APELLIDOS"
     var userImage = Uri.parse("android.resource://com.example.nq/${R.drawable.png_boy_01}")
     var userEmail = "EMAIL"
+    var userFriendEmails = mutableListOf<String>()
 
     val authErrors = mapOf(
         "ERROR_INVALID_EMAIL" to R.string.error_login_invalid_email,

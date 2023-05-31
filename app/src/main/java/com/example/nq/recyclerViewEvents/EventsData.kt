@@ -7,6 +7,7 @@ data class EventsData (
     var eventImage: Int,
     var eventName: String,
     var eventMusic: String,
-    var eventPrice: String,
+    var eventPrice: Float,
+    var eventIncludedWithTicket: String,
     var eventAvailability: String
 )

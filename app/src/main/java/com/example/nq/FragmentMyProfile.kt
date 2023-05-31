@@ -2,8 +2,6 @@ package com.example.nq
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.Gravity
-import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.TextView
@@ -12,11 +10,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.nq.firebase.FirebaseManager
 import com.example.nq.firebase.FirebaseRepository
+import com.example.nq.profileActivities.ProfileActivityFriends
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.fragment_my_profile.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlin.math.sign
 
 class FragmentMyProfile : Fragment(R.layout.fragment_my_profile) {
 
@@ -32,9 +30,9 @@ class FragmentMyProfile : Fragment(R.layout.fragment_my_profile) {
             setLayoutVisibilities(listOf(View.VISIBLE, View.GONE, View.GONE))
 
             val fragMyProfileName = "${FirebaseRepository.userName} ${FirebaseRepository.userSurnames}"
-            fragMyProfile_name.setText(fragMyProfileName)
+            fragMyProfile_name.text = fragMyProfileName
             fragMyProfile_image.setImageURI(FirebaseRepository.userImage)
-            fragMyProfile_mail.setText(FirebaseRepository.userEmail)
+            fragMyProfile_mail.text = FirebaseRepository.userEmail
         }
 
         //BUTTONS
@@ -47,6 +45,13 @@ class FragmentMyProfile : Fragment(R.layout.fragment_my_profile) {
         fragMyProfile_signOutButton.setOnClickListener() {
             showSignOutCard()
         }
+
+        fragMyProfile_friendsList.setOnClickListener() {
+            Intent(activity, ProfileActivityFriends::class.java).also {
+                startActivity(it)
+            }
+        }
+
     }
 
     private fun setLayoutVisibilities(listOfVisibilities: List<Int>) {
@@ -55,7 +60,7 @@ class FragmentMyProfile : Fragment(R.layout.fragment_my_profile) {
         fragMyProfile_loadingLayout.visibility = listOfVisibilities[2]
     }
 
-    fun showSignOutCard() {
+    private fun showSignOutCard() {
 
         val builder = MaterialAlertDialogBuilder(requireContext(), R.style.NQ_AlertDialog_TicketCard)
 

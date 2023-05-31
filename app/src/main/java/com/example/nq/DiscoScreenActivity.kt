@@ -39,7 +39,7 @@ class DiscoScreenActivity : AppCompatActivity(), DatesInterface, EventsInterface
             actionBar.setDisplayHomeAsUpEnabled(true)
         }
 
-        discoName = intent.getStringExtra("EXTRA_DISCONAME").toString()
+        discoName = intent.getStringExtra("EXTRA_DISCO_NAME").toString()
         discoScreen_DiscoName.text = discoName
         discoScreen_discoImage.setImageResource(intent.getIntExtra("EXTRA_IMAGE", -1))
         discoScreen_discoLocation.text = intent.getStringExtra("EXTRA_LOCATION")
@@ -48,7 +48,7 @@ class DiscoScreenActivity : AppCompatActivity(), DatesInterface, EventsInterface
         screenDisco_datesRecyclerView.adapter = datesAdapter
         screenDisco_datesRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
-        when (intent.getStringExtra("EXTRA_DISCONAME")) {
+        when (intent.getStringExtra("EXTRA_DISCO_NAME")) {
             "BACK&STAGE" -> eventsAdapter = EventsAdapter(EventsRepository.backStageEvents, this)
             "FEVER" -> eventsAdapter = EventsAdapter(EventsRepository.feverEvents, this)
             "SONORA" -> eventsAdapter = EventsAdapter(EventsRepository.sonoraEvents, this)
@@ -112,34 +112,24 @@ class DiscoScreenActivity : AppCompatActivity(), DatesInterface, EventsInterface
         datesAdapter.EnableClicking(true)
     }
 
-    fun setLayoutsVisibilities (layoutVisibility: List<Int>){
+    private fun setLayoutsVisibilities (layoutVisibility: List<Int>){
         screenDisco_loadingLayout.visibility = layoutVisibility[0]
         screenDisco_eventsRecyclerView.visibility = layoutVisibility[1]
         screenDisco_noResultsLayout.visibility = layoutVisibility[2]
     }
 
     override fun onItemClick(eventData: EventsData) {
-        when (eventData.eventAvailability){
-            "DISPONIBLES" -> {
-                Intent(this, EventScreenActivity::class.java).also {
-                    it.putExtra("EXTRA_IMAGE", eventData.eventImage)
-                    it.putExtra("EXTRA_NAME", eventData.eventName)
-                    it.putExtra("EXTRA_MUSIC", eventData.eventMusic)
-                    it.putExtra("EXTRA_DATE", eventData.eventDate)
-                    it.putExtra("EXTRA_DISCONAME", discoName)
-                    startActivity(it)
-                }
-            }
-            "AGOTADAS" -> {
-                Intent(this, EventScreenActivity::class.java).also {
-                    it.putExtra("EXTRA_IMAGE", eventData.eventImage)
-                    it.putExtra("EXTRA_NAME", eventData.eventName)
-                    it.putExtra("EXTRA_MUSIC", eventData.eventMusic)
-                    it.putExtra("EXTRA_DATE", eventData.eventDate)
-                    it.putExtra("EXTRA_DISCONAME", discoName)
-                    startActivity(it)
-                }
-            }
+
+        Intent(this, EventScreenActivity::class.java).also {
+            it.putExtra("EXTRA_IMAGE", eventData.eventImage)
+            it.putExtra("EXTRA_NAME", eventData.eventName)
+            it.putExtra("EXTRA_MUSIC", eventData.eventMusic)
+            it.putExtra("EXTRA_DATE", eventData.eventDate)
+            it.putExtra("EXTRA_PRICE", eventData.eventPrice)
+            it.putExtra("EXTRA_INCLUDE", eventData.eventIncludedWithTicket)
+            it.putExtra("EXTRA_AVAILABILITY", eventData.eventAvailability)
+            it.putExtra("EXTRA_DISCO_NAME", discoName)
+            startActivity(it)
         }
     }
 }

@@ -34,14 +34,15 @@ class EventsAdapter(
 
     override fun onBindViewHolder(holder: EventsViewHolder, position: Int) {
         holder.itemView.apply{
+            var priceDescription = "${events[position].eventPrice} € | ${events[position].eventIncludedWithTicket}"
             itemDiscoEvent_image.setImageResource(events[position].eventImage)
             itemDiscoEvent_date.text = events[position].eventDate
             itemDiscoEvent_name.text = events[position].eventName
             itemDiscoEvent_music.text = events[position].eventMusic
-            itemDiscoEvent_price.text = events[position].eventPrice
+            itemDiscoEvent_price.text = priceDescription
             itemDiscoEvent_availability.text = events[position].eventAvailability
-            itemDiscoEvent_availability.setTextColor(ReturnAvailabilityColor(events[position].eventAvailability))
-            itemDiscoEvent_arrow.setColorFilter(ReturnArrowColor(events[position].eventAvailability))
+            itemDiscoEvent_availability.setTextColor(returnAvailabilityColor(events[position].eventAvailability))
+            itemDiscoEvent_arrow.setColorFilter(returnArrowColor(events[position].eventAvailability))
         }
     }
 
@@ -49,12 +50,12 @@ class EventsAdapter(
         return events.size
     }
 
-    fun setFilteredList (events: List<EventsData>){
+    internal fun setFilteredList (events: List<EventsData>){
         this.events = events
         notifyDataSetChanged()
     }
 
-    fun ReturnAvailabilityColor(availabiliy: String): Int {
+    private fun returnAvailabilityColor(availabiliy: String): Int {
         return when(availabiliy){
             "DISPONIBLES" -> Color.rgb(0, 175, 0)
             "AGOTADAS" -> Color.rgb(175, 0, 0)
@@ -62,7 +63,7 @@ class EventsAdapter(
         }
     }
 
-    fun ReturnArrowColor(availabiliy: String): Int {
+    private fun returnArrowColor(availabiliy: String): Int {
         return when(availabiliy){
             "DISPONIBLES" -> Color.rgb(15, 76, 117)
             "AGOTADAS" -> Color.rgb(237, 239, 236)

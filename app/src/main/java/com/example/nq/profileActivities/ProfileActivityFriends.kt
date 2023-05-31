@@ -13,17 +13,26 @@ import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.nq.R
+import com.example.nq.firebase.FirebaseFriendsRepository
+import com.example.nq.firebase.FirebaseRepository
+import com.example.nq.firebase.FirebaseUserData
 import com.example.nq.recyclerViewFriends.*
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_profile_friends.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 
 class ProfileActivityFriends : AppCompatActivity(), FriendsInterface {
 
-    val friendsAdapter = FriendsAdapter(FriendsRepository.friends, this)
+    private val friendsAdapter = FriendsAdapter(FirebaseFriendsRepository.userFriends, this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,18 +59,18 @@ class ProfileActivityFriends : AppCompatActivity(), FriendsInterface {
                 return true
             }
             R.id.topMenu_addFriend -> {
-                showAddFriendAlertDialong()
+                showAddFriendAlertDialog()
             }
         }
         return super.onOptionsItemSelected(item)
     }
 
-    fun updateFriendsList() {
-        if (FriendsRepository.friends.isNullOrEmpty()){
+    private fun updateFriendsList() {
+        if (FirebaseFriendsRepository.userFriends.isNullOrEmpty()){
             profileFriends_noFriendsLayout.visibility = View.VISIBLE
             profileFriends_yesFriendsLayout.visibility = View.GONE
-        } else {
 
+        } else {
             profileFriends_recyclerView.adapter = friendsAdapter
             profileFriends_recyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -70,7 +79,7 @@ class ProfileActivityFriends : AppCompatActivity(), FriendsInterface {
         }
     }
 
-    fun showAddFriendAlertDialong() {
+    private fun showAddFriendAlertDialog() {
 
         val builder = MaterialAlertDialogBuilder(this, R.style.NQ_AlertDialog_TicketCard)
         val customLayout = LayoutInflater.from(this).inflate(R.layout.item_add_friend, null)
@@ -93,34 +102,49 @@ class ProfileActivityFriends : AppCompatActivity(), FriendsInterface {
                 val addFriendMailText: String = addFriendMailEditText.text?.toString() ?: ""
 
                 if (addFriendMailText.isNotEmpty()) {
+                    val addFriendMailLayout = customLayout.findViewById<TextInputLayout>(R.id.addFriend_emailLayout)
 
-                    lifecycleScope.launch {
+                    if (isValidEmailFormat(addFriendMailText)) {
+                        addFriendMailLayout.error = null
 
-                        val addFriendLayout = customLayout.findViewById<LinearLayout>(R.id.addFriend_addLayout)
-                        val addFriendLoading = customLayout.findViewById<LinearLayout>(R.id.addFriend_loadingLayout)
-                        addFriendLayout.visibility = View.GONE
-                        addFriendLoading.visibility = View.VISIBLE
+                        lifecycleScope.launch {
 
-                        delay(1000)
+                            val addFriendLayout =
+                                customLayout.findViewById<LinearLayout>(R.id.addFriend_addLayout)
+                            val addFriendLoading =
+                                customLayout.findViewById<LinearLayout>(R.id.addFriend_loadingLayout)
+                            addFriendLayout.visibility = View.GONE
+                            addFriendLoading.visibility = View.VISIBLE
 
-                        for (i in UsersRepository.existingUsers.indices){
-                            if (addFriendMailText == UsersRepository.existingUsers[i].mail){
-                                addFriend(UsersRepository.existingUsers[i])
-                                addFriendLayout.visibility = View.VISIBLE
+                            delay(1000)
+
+                            val exists = checkExistingUsers(addFriendMailText)
+                            if (exists) {
+                                // Email exists in the collection
+                                launch {
+                                    addFriend(addFriendMailText)
+
+                                    delay(1000)
+
+                                    addFriendLoading.visibility = View.GONE
+                                    addFriendLayout.visibility = View.VISIBLE
+
+                                    dialog.dismiss()
+                                }
+
+                            } else {
+                                // Email does not exist in the collection
+                                val addFriendMailLayout =
+                                    customLayout.findViewById<TextInputLayout>(R.id.addFriend_emailLayout)
+                                addFriendMailLayout.error = "El usuario introducido no existe"
+
                                 addFriendLoading.visibility = View.GONE
-                                dialog.dismiss()
-                                break
+                                addFriendLayout.visibility = View.VISIBLE
                             }
                         }
-
-                        val addFriendMailLayout = customLayout.findViewById<TextInputLayout>(R.id.addFriend_emailLayout)
-                        addFriendMailLayout.error = "El usuario introducido no existe"
-
-                        addFriendLayout.visibility = View.VISIBLE
-                        addFriendLoading.visibility = View.GONE
-
+                    } else {
+                        addFriendMailLayout.error = "Introduce una dirección de correo electrónico válida"
                     }
-
                 } else {
                     val addFriendMailLayout = customLayout.findViewById<TextInputLayout>(R.id.addFriend_emailLayout)
                     addFriendMailLayout.error = "Introduce una dirección de correo electrónico"
@@ -129,7 +153,7 @@ class ProfileActivityFriends : AppCompatActivity(), FriendsInterface {
         }
 
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "AÑADIR") { _, _ ->
-
+            // This block will not be executed as the positive button click listener is overridden
         }
 
         alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancelar") { dialog, _ ->
@@ -139,14 +163,43 @@ class ProfileActivityFriends : AppCompatActivity(), FriendsInterface {
         alertDialog.show()
     }
 
-    fun addFriend(usersData: UsersData) {
-        Toast.makeText(this, "¡Solicitud de amistad enviada!", Toast.LENGTH_SHORT).show()
+    private suspend fun addFriend(newEmail: String) {
 
-        FriendsRepository.friends.add(usersData)
-        updateFriendsList()
+        val userEmail = FirebaseRepository.userEmail
+
+        Firebase.firestore
+        .collection("UserData").document(userEmail)
+        .collection("UserInfo").document("Data")
+        .update("friendEmails", FieldValue.arrayUnion(newEmail))
+        .await()
+
+        val emailList = Firebase.firestore
+            .collection("UserData").document(userEmail)
+            .collection("UserInfo").document("Data")
+            .get()
+            .await()
+            .toObject<FirebaseUserData>()
+            ?.friendEmails
+
+        if (emailList != null) {
+            FirebaseFriendsRepository.fetchFriendsData(emailList)
+            Toast.makeText(this, "¡Amigo agregado a tu lista con éxito!", Toast.LENGTH_SHORT).show()
+        }
+
+        else Toast.makeText(this, "¡Algo ha salido mal! Por favor, vuelve a intentarlo", Toast.LENGTH_SHORT).show()
     }
 
-    override fun onItemClick(usersData: UsersData) {
+    private suspend fun checkExistingUsers(email: String): Boolean {
+        val result = FirebaseAuth.getInstance().fetchSignInMethodsForEmail(email).await()
+        return result.signInMethods?.isNotEmpty() == true
+    }
+
+    private fun isValidEmailFormat(email: String): Boolean {
+        val pattern = "^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$"
+        return email.matches(Regex(pattern))
+    }
+
+    override fun onItemClick(usersData: FirebaseUserData) {
         Toast.makeText(this, "¡Clicked!", Toast.LENGTH_SHORT).show()
     }
 }

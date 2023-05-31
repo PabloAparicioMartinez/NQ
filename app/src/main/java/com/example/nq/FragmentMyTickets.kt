@@ -35,7 +35,6 @@ class FragmentMyTickets : Fragment(R.layout.fragment_my_tickets) {
                 showNoTicketsAvailableView()
             }
         }
-
     }
 
     private fun showNotLoggedView() {
@@ -66,11 +65,10 @@ class FragmentMyTickets : Fragment(R.layout.fragment_my_tickets) {
         fragMyTickets_signedInLayout_AvailableTickets.visibility = View.VISIBLE
 
         // Adaptar la RecyclerView
-        val adapter = TicketsAdapter(tickets)
+        val adapter = TicketsAdapter(tickets, requireActivity().supportFragmentManager, mainActivityBotMenu)
         imageViewPagerAvailableTicket.adapter = adapter
         val circleIndicatorQR = view?.findViewById<CircleIndicator3>(R.id.circleIndicatorQR)
         circleIndicatorQR?.setViewPager(imageViewPagerAvailableTicket)
-
     }
 
     private fun showNoTicketsAvailableView() {

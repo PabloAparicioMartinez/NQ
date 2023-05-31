@@ -18,6 +18,7 @@ import com.example.nq.firebase.FirebaseManager
 import com.example.nq.firebase.FirebaseRepository
 import com.example.nq.recyclerViewTickets.TicketData
 import com.example.nq.recyclerViewTickets.TicketDates
+import com.example.nq.recyclerViewTickets.TicketNumberMapRepository
 import com.example.nq.recyclerViewTickets.TicketsRepository
 import com.google.firebase.firestore.AggregateSource
 import com.google.firebase.firestore.CollectionReference
@@ -33,7 +34,6 @@ import kotlinx.android.synthetic.main.activity_event_screen.eventScreen_music
 import kotlinx.android.synthetic.main.activity_event_screen.eventScreen_name
 import kotlinx.android.synthetic.main.activity_event_screen.eventScreen_number
 import kotlinx.android.synthetic.main.activity_event_screen.eventScreen_plus
-import kotlinx.android.synthetic.main.activity_event_screen.eventScreen_price
 import kotlinx.android.synthetic.main.item_ticket_info_name_yes.view.*
 import kotlinx.android.synthetic.main.item_ticket_info_name_no.view.*
 import kotlinx.coroutines.CoroutineScope
@@ -46,14 +46,12 @@ import kotlin.random.Random
 class EventScreenActivity : AppCompatActivity() {
 
     var ticketCount = 1
-    var ticketPrice = 12
-    var moneyCount = 12
+    var ticketPrice = 0.00f
+    var moneyCount = 1.00f
 
     lateinit var extraTicketsLayout: LinearLayout
     lateinit var extraTicketsInflater: LayoutInflater
     lateinit var extraTicketLayoutToAdd: View
-
-    var indexOfSelected: Int = 0
 
     private var datesInstance = TicketDates()
 
@@ -67,14 +65,27 @@ class EventScreenActivity : AppCompatActivity() {
             actionBar.setDisplayHomeAsUpEnabled(true)
         }
 
+        // Establecer la pantalla de tickets en función de si hay entradas disponibles o no
         val ticketsDisponibility = intent.getStringExtra("EXTRA_AVAILABILITY")
         setTheLayout(ticketsDisponibility)
+
+        // Obtener el valor de ticketPrice dentro de onCreate()
+        ticketPrice = intent.getFloatExtra("EXTRA_PRICE", 0.00f)
 
         val eventScreenMyName = "${FirebaseRepository.userName.uppercase()} ${FirebaseRepository.userSurnames.uppercase()} (YO)"
         if (FirebaseManager().checkIfUserIsSignedIn()) eventScreen_ticketName.text = eventScreenMyName
 
-        eventScreen_plus.setOnClickListener { changeTicketCount("Plus") }
-        eventScreen_minus.setOnClickListener { changeTicketCount("Minus") }
+        // Acciones para los botnes de + y -
+        if (FirebaseManager().checkIfUserIsSignedIn()) {
+            eventScreen_plus.setOnClickListener { changeTicketCount("Plus") }
+            eventScreen_minus.setOnClickListener { changeTicketCount("Minus") }
+        } else {
+            eventScreen_plus.setOnClickListener { Toast.makeText(this@EventScreenActivity, "¡Para añadir entradas debes iniciar sesión primero!", Toast.LENGTH_SHORT).show() }
+            eventScreen_minus.setOnClickListener { Toast.makeText(this@EventScreenActivity, "¡Para añadir entradas debes iniciar sesión primero!", Toast.LENGTH_SHORT).show() }
+        }
+
+        eventScreen_totalPrice.text = "$ticketPrice €"
+        eventScreen_ticketPrice.text = "$ticketPrice €"
 
         extraTicketsLayout = findViewById(R.id.eventScreen_extraTicketsLayout)
         extraTicketsInflater = LayoutInflater.from(this)
@@ -85,12 +96,13 @@ class EventScreenActivity : AppCompatActivity() {
             // Si no está loggeado, debe hacerlo primero.
             if (!FirebaseManager().checkIfUserIsSignedIn()) {
                 Toast.makeText(this@EventScreenActivity, "¡Para comprar entradas debes iniciar sesión primero!", Toast.LENGTH_SHORT).show()
-                // Si está loggeado, se guardan las entradas en Firebase
+            // Si está loggeado, se guardan las entradas en Firebase
             } else {
                 // Retrieve user input
-                val name: String  = "${FirebaseRepository.userName} ${FirebaseRepository.userSurnames}"
+                val name = "${FirebaseRepository.userName} ${FirebaseRepository.userSurnames}"
                 val email: String = FirebaseRepository.userEmail
-                val discoName: String = intent.getStringExtra("EXTRA_DISCONAME").toString()
+                val discoName: String = intent.getStringExtra("EXTRA_DISCO_NAME").toString()
+                val eventName: String = intent.getStringExtra("EXTRA_NAME").toString()
                 // Dates collection --> Mes y año actual
                 val dateCollection: String = datesInstance.getCurrentMonthAndYear()
                 // Instanciar la colección de Firebase ordenada por Discotecas
@@ -104,11 +116,11 @@ class EventScreenActivity : AppCompatActivity() {
                 // Hay que crear una corrutina para poder llamar a algunas funciones de firebase
                 lifecycleScope.launch {
                     // Get the tickets number
-                    val ticketNumberByDisco = getTicketNumberByDisco(firestoreInstanceByDiscoName)
+                    val ticketNumber = getTicketNumberByDisco(discoName,firestoreInstanceByDiscoName)
                     val date: String = intent.getStringExtra("EXTRA_DATE").toString()
                     val creationTimestamp = datesInstance.getCurrentTimestamp()
                     // Create the Ticket
-                    val ticketData = TicketData(name,email,discoName,ticketNumberByDisco,date,creationTimestamp)
+                    val ticketData = TicketData(name,email,discoName,eventName,ticketNumber,date,creationTimestamp)
                     // Guardar la información en Firestore
                     saveTicketByDiscoName(ticketData, firestoreInstanceByDiscoName)
                     saveTicketByEmail(ticketData, firestoreInstanceByEmail)
@@ -141,7 +153,7 @@ class EventScreenActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    fun setTheLayout(ticketsDisponibility: String?) {
+    private fun setTheLayout(ticketsDisponibility: String?) {
         when (ticketsDisponibility){
             "DISPONIBLES" -> {
                 eventScreen_yesLayout.visibility = View.VISIBLE
@@ -164,7 +176,7 @@ class EventScreenActivity : AppCompatActivity() {
         }
     }
 
-    fun changeTicketCount(countType: String) {
+    private fun changeTicketCount(countType: String) {
         when (countType){
             "Plus" -> {
                 if (ticketCount < 9){
@@ -172,7 +184,7 @@ class EventScreenActivity : AppCompatActivity() {
                     moneyCount = ticketPrice * ticketCount
 
                     eventScreen_number.text = ticketCount.toString()
-                    eventScreen_price.text = "$moneyCount,00 €"
+                    eventScreen_totalPrice.text = "$moneyCount €"
 
                     extraTicketLayoutToAdd = extraTicketsInflater.inflate(R.layout.item_ticket_info_name_no, null)
                     extraTicketsLayout.addView(extraTicketLayoutToAdd)
@@ -191,7 +203,7 @@ class EventScreenActivity : AppCompatActivity() {
                     moneyCount = ticketPrice * ticketCount
 
                     eventScreen_number.text = ticketCount.toString()
-                    eventScreen_price.text = "$moneyCount,00 €"
+                    eventScreen_totalPrice.text = "$moneyCount €"
 
                     extraTicketLayoutToAdd = extraTicketsInflater.inflate(R.layout.item_ticket_info_name_no, null)
                     extraTicketsLayout.removeViewAt(extraTicketsLayout.size - 1)
@@ -239,7 +251,8 @@ class EventScreenActivity : AppCompatActivity() {
         }
     }
 
-    private val friendsSearchLauncherV2: ActivityResultLauncher<Intent> = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+    private val friendsSearchLauncherV2: ActivityResultLauncher<Intent> =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
             val receivedData = result.data?.getStringExtra("receivedData")
 
@@ -260,12 +273,16 @@ class EventScreenActivity : AppCompatActivity() {
     }
 
     // Función para obtener el número de ticket que hay en la colección
-    private suspend fun getTicketNumberByDisco(firestoreInstanceByDiscoName: Query) :String {
+    private suspend fun getTicketNumberByDisco(discoName: String, firestoreInstanceByDiscoName: Query) :String {
         val countQuery = firestoreInstanceByDiscoName.count()
         return try {
-            countQuery.get(AggregateSource.SERVER).await().count.plus(1).toString()
+            val count = countQuery.get(AggregateSource.SERVER).await().count.plus(1).toString()
+            val padCount = count.padStart(6, '0')
+            val preCount = TicketNumberMapRepository.returnTicketNumber(discoName)
+            val ticketNumber = "$preCount$padCount"
+            ticketNumber
         } catch (e: Exception) {
-            Random.nextInt(10000, 100000001).toString() // Default value if retrieval fails
+            Random.nextInt(10000, 100001).toString() // Default value if retrieval fails
         }
     }
 
@@ -283,7 +300,7 @@ class EventScreenActivity : AppCompatActivity() {
     private fun saveTicketByEmail(ticketData: TicketData, firestoreInstanceByEmail: CollectionReference)
             = CoroutineScope(Dispatchers.IO).launch {
         try {
-            firestoreInstanceByEmail.document().set(ticketData).await()
+            firestoreInstanceByEmail.document(ticketData.ticketNumber).set(ticketData).await()
         } catch (e: Exception) {
             throw  e
         }

@@ -5,24 +5,20 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.nq.firebase.FirebaseFriendsRepository
+import com.example.nq.firebase.FirebaseUserData
 import com.example.nq.recyclerViewFriends.FriendsAdapter
 import com.example.nq.recyclerViewFriends.FriendsInterface
-import com.example.nq.recyclerViewFriends.FriendsRepository
-import com.example.nq.recyclerViewFriends.UsersData
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.activity_event_screen_search.*
-import kotlinx.coroutines.launch
 
 class EventScreenActivitySearch : AppCompatActivity(), FriendsInterface {
 
-    val friendsAdapter = FriendsAdapter(FriendsRepository.friends, this)
+    private val friendsAdapter = FriendsAdapter(FirebaseFriendsRepository.userFriends, this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,7 +51,7 @@ class EventScreenActivitySearch : AppCompatActivity(), FriendsInterface {
         return super.onCreateOptionsMenu(menu)
     }
 
-    fun showInfoAlertDialog() {
+    private fun showInfoAlertDialog() {
         val builder = MaterialAlertDialogBuilder(this, R.style.NQ_AlertDialog_TicketCard)
 
         val title = TextView(this)
@@ -64,20 +60,17 @@ class EventScreenActivitySearch : AppCompatActivity(), FriendsInterface {
         title.setPadding(64, 48, 0, 0)
 
         builder.setCustomTitle(title)
-        builder.setMessage("Tu amigo recibirá una notificación con la entrada que le has comprado a su applicación NQ.")
-        builder.setPositiveButton("ENTENDIDO") { dialog, which ->
-
+        builder.setMessage("Tu amigo recibirá una notificación con la entrada que le has comprado en su aplicación NQ.")
+        builder.setPositiveButton("ENTENDIDO") { _, _ ->
         }
-
         builder.show()
     }
 
-    fun updateFriendsList() {
-        if (FriendsRepository.friends.isNullOrEmpty()){
+    private fun updateFriendsList() {
+        if (FirebaseFriendsRepository.userFriends.isNullOrEmpty()){
             eventScreenSearch_noFriendsLayout.visibility = View.VISIBLE
             eventScreenSearch_yesFriendsLayout.visibility = View.GONE
         } else {
-
             eventScreenSearch_firstRecyclerView.adapter = friendsAdapter
             eventScreenSearch_firstRecyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -86,10 +79,11 @@ class EventScreenActivitySearch : AppCompatActivity(), FriendsInterface {
         }
     }
 
-    override fun onItemClick(usersData: UsersData) {
+    override fun onItemClick(usersData: FirebaseUserData) {
         val intent = Intent()
         intent.putExtra("receivedData", usersData.name)
         setResult(Activity.RESULT_OK, intent)
         finish()
     }
+
 }
