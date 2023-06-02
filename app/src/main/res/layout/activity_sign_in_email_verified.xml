@@ -2,24 +2,18 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/profileLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clickable="true"
-    android:focusable="true"
-    android:focusableInTouchMode="true"
-    android:orientation="vertical"
-    tools:context=".profileActivities.ProfileActivityProfile">
+    tools:context=".SignInEmailVerifiedActivity">
 
-    <!--PROFILE layout-->
+    <!--VERIFIED layout-->
     <LinearLayout
-        android:id="@+id/profileProfile_profileLayout"
+        android:id="@+id/signInEmailVerified_verifiedLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        android:gravity="top"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        android:gravity="center"
         android:orientation="vertical"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -28,77 +22,127 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:layout_width="207dp"
+            android:layout_height="139dp"
+            android:alpha="1"
+            android:src="@drawable/ic_verified_01"
+            app:tint="@color/dark_blue" />
+
         <TextView
-            style="@style/NQ.TextBlack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Modificar perfil:" />
+            android:text="¡Correo verificado!"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:textSize="14sp"
+            android:textColor="@color/dark_blue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/profileProfile_firstNameLayout"
+            android:id="@+id/signInEmailVerified_firstNameLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
-            android:hint=""
+            android:hint="Nombre"
             app:boxStrokeColor="@color/dark_blue"
             app:boxStrokeErrorColor="@color/red_01"
             app:endIconMode="clear_text"
-            app:endIconTint="@color/grey_default">
+            app:endIconTint="@color/grey_default" >
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/profileProfile_firstNameText"
+                android:id="@+id/signInEmailVerified_firstNameText"
                 style="@style/NQ.TextInput"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Nombre" />
+                android:layout_height="wrap_content" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/profileProfile_lastNameLayout"
+            android:id="@+id/signInEmailVerified_lastNameLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
-            android:hint=""
+            android:hint="Apellido(s)"
             app:boxStrokeColor="@color/dark_blue"
             app:boxStrokeErrorColor="@color/red_01"
             app:endIconMode="clear_text"
-            app:endIconTint="@color/grey_default">
+            app:endIconTint="@color/grey_default"
+            app:helperText="Podrás modificar tu nombre y apellidos más adelante desde 'Mi perfil'"
+            app:helperTextEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/profileProfile_lastNameText"
+                android:id="@+id/signInEmailVerified_lastNameText"
                 style="@style/NQ.TextInput"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Apellido(s)" />
+                android:layout_height="wrap_content" />
 
         </com.google.android.material.textfield.TextInputLayout>
-
-        <ImageView
-            android:id="@+id/profileProfile_image"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="24dp"
-            android:alpha="1"
-            android:src="@drawable/jpg_cat_01" />
 
         <Button
-            android:id="@+id/profileProfile_saveChangesButton"
+            android:id="@+id/signInEmailVerified_mainActivityButton"
             style="@style/NQ.Button.Full"
+            android:layout_marginTop="16dp"
+            android:padding="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:text="ENTRAR EN NQ"
+            android:textSize="16dp"/>
+
+    </LinearLayout>
+
+    <!--NOT VERIFIED layout-->
+    <LinearLayout
+        android:id="@+id/signInEmailVerified_notVerifiedLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="207dp"
+            android:layout_height="139dp"
+            android:alpha="1"
+            android:src="@drawable/ic_error_01"
+            app:tint="@color/dark_blue" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No se pudo verificasr el correo..."
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:textSize="14sp"
+            android:textColor="@color/dark_blue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/signInEmailVerified_signInButton"
+            style="@style/NQ.Button.Full"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="12dp"
             android:padding="16dp"
-            android:text="GUARDAR CAMBIOS"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="INICIAR SESIÓN DE NUEVO"
+            android:textSize="16dp"/>
 
     </LinearLayout>
 
     <!--LOADING layout-->
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/profileProfile_loadingLayout"
+        android:id="@+id/signInEmailVerified_loadingLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clickable="true"

@@ -17,10 +17,12 @@
         android:theme="@style/Theme.NQ"
         tools:targetApi="31">
 
+        <!-- SIGN IN -->
         <activity
-            android:name=".StartActivity"
+            android:name=".SignInActivity"
             android:exported="true"
-            android:theme="@style/NQ.SplashScreen">
+            android:theme="@style/NQ.SplashScreen"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,50 +30,70 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SignInActivity"
-            android:exported="false"
-            android:parentActivityName=".StartActivity"
-            android:theme="@style/Theme.NQ.ActionBar" />
-        <activity
-            android:name=".SignInForgetActivity"
+            android:name=".SignInEmailActivity"
             android:exported="false"
             android:parentActivityName=".SignInActivity"
-            android:theme="@style/Theme.NQ.ActionBar" />
+            android:theme="@style/Theme.NQ.ActionBar"
+            android:screenOrientation="portrait"/>
         <activity
-            android:name=".SignUpActivity"
+            android:name=".SignInEmailSentActivity"
             android:exported="false"
-            android:parentActivityName=".StartActivity"
-            android:theme="@style/Theme.NQ.ActionBar" />
+            android:theme="@style/Theme.NQ.NoActionBar"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".SignInEmailVerifiedActivity"
+            android:exported="true"
+            android:theme="@style/Theme.NQ.NoActionBar"
+            android:screenOrientation="portrait">
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="nqnoqueues.page.link"
+                    android:scheme="https" />
+            </intent-filter>
+        </activity>
+        <!-- MAIN -->
         <activity
             android:name=".MainActivity"
             android:exported="false"
             android:theme="@style/Theme.NQ.ActionBar"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".DiscoScreenActivity"
             android:exported="false"
-            android:theme="@style/Theme.NQ.ActionBar" />
+            android:theme="@style/Theme.NQ.ActionBar"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".EventScreenActivity"
             android:exported="false"
             android:theme="@style/Theme.NQ.ActionBar"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".EventScreenActivitySearch"
             android:exported="false"
-            android:theme="@style/Theme.NQ.ActionBar"/>
+            android:theme="@style/Theme.NQ.ActionBar"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".profileActivities.ProfileActivityProfile"
             android:exported="false"
-            android:theme="@style/Theme.NQ.ActionBar" />
+            android:theme="@style/Theme.NQ.ActionBar"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".profileActivities.ProfileActivityFriends"
             android:exported="false"
-            android:theme="@style/Theme.NQ.ActionBar" />
+            android:theme="@style/Theme.NQ.ActionBar"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".profileActivities.ProfileActivityHistory"
             android:exported="false"
-            android:theme="@style/Theme.NQ.ActionBar" />
+            android:theme="@style/Theme.NQ.ActionBar"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

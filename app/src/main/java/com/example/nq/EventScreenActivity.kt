@@ -50,7 +50,7 @@ class EventScreenActivity : AppCompatActivity() {
         extraTicketsInflater = LayoutInflater.from(this)
         extraTicketLayoutToAdd = extraTicketsInflater.inflate(R.layout.item_ticket_info_name_no, null)
 
-        eventScreen_ticketName.text = FirebaseRepository.userName
+//        eventScreen_ticketName.text = FirebaseRepository.userName
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

@@ -21,7 +21,7 @@
     </style>
 
     <style name="Theme.NQ.Progressbar">
-        <item name="colorAccent">@color/dark_grey_01</item>
+        <item name="colorAccent">@color/dark_blue</item>
     </style>
 
     <style name="Theme.NQ.ProgressbarProfile">

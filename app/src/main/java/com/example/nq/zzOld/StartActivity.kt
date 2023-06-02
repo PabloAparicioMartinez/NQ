@@ -1,9 +1,12 @@
-package com.example.nq
+package com.example.nq.zzOld
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.example.nq.MainActivity
+import com.example.nq.R
+import com.example.nq.SignInActivity
 import com.example.nq.firebase.FirebaseManager
 import kotlinx.android.synthetic.main.activity_start.*
 
@@ -19,7 +22,7 @@ class StartActivity : AppCompatActivity() {
 
         //BUTTONS
         startActivity_signInButton.setOnClickListener(){
-            Intent(this,SignInActivity::class.java).also{
+            Intent(this, SignInActivity::class.java).also{
                 startActivity(it)
             }
         }

@@ -1,4 +1,4 @@
-package com.example.nq
+package com.example.nq.zzOld
 
 import android.app.Activity
 import android.content.Intent
@@ -10,6 +10,8 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.RadioButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.nq.MainActivity
+import com.example.nq.R
 import com.example.nq.firebase.FirebaseRepository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
@@ -152,9 +154,9 @@ class SignUpActivity : AppCompatActivity() {
                 try {
                     user.updateProfile(createProfile).await()
                     withContext(Dispatchers.Main) {
-                        FirebaseRepository.userName = name
-                        FirebaseRepository.userImage = photoURI
-                        FirebaseRepository.userGmail = email
+//                        FirebaseRepository.userName = name
+//                        FirebaseRepository.userImage = photoURI
+//                        FirebaseRepository.userGmail = email
                         Toast.makeText(this@SignUpActivity, "¡Cuenta creada!", Toast.LENGTH_SHORT).show()
                     }
                 } catch (error: Exception) {

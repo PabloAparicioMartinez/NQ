@@ -8,17 +8,26 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.example.nq.firebase.FirebaseManager
-import com.example.nq.firebase.FirebaseRepository
+import com.example.nq.firebaseAuth.FirebaseAuthManager
+import com.example.nq.firebaseAuth.UserData
 import com.example.nq.profileActivities.ProfileActivityFriends
 import com.example.nq.profileActivities.ProfileActivityHistory
 import com.example.nq.profileActivities.ProfileActivityProfile
+import com.google.android.gms.auth.api.identity.Identity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_my_profile.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class FragmentMyProfile : Fragment(R.layout.fragment_my_profile) {
+
+    private val firebaseAuthManager by lazy {
+        FirebaseAuthManager(
+            context = requireContext(),
+            oneTapClient = Identity.getSignInClient(requireContext())
+        )
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -26,14 +35,15 @@ class FragmentMyProfile : Fragment(R.layout.fragment_my_profile) {
         (activity as AppCompatActivity).supportActionBar?.title = "PERFIL"
 
         //SET LAYOUT DEPENDING ON USER LOGGED IN STATE
-        if (!FirebaseManager().checkIfUserIsSignedIn()) {
-            setLayoutVisibilities(listOf(View.GONE, View.VISIBLE, View.GONE))
-        } else {
+        if (firebaseAuthManager.getSignedInUser() != null) {
             setLayoutVisibilities(listOf(View.VISIBLE, View.GONE, View.GONE))
 
-            fragMyProfile_name.text = FirebaseRepository.userName
-            fragMyProfile_image.setImageURI(FirebaseRepository.userImage)
-            fragMyProfile_mail.text = FirebaseRepository.userGmail
+            val userData: UserData? = firebaseAuthManager.getSignedInUser()
+            fragMyProfile_name.text = userData?.name ?: "Name"
+            fragMyProfile_mail.text = userData?.mail ?: "Mail"
+            Picasso.get().load(userData?.profilePictureURL).into(fragMyProfile_image)
+        } else {
+            setLayoutVisibilities(listOf(View.GONE, View.VISIBLE, View.GONE))
         }
 
         //BUTTONS
@@ -98,9 +108,9 @@ class FragmentMyProfile : Fragment(R.layout.fragment_my_profile) {
     private suspend fun signOutUser() {
 
         setLayoutVisibilities(listOf(View.VISIBLE, View.GONE, View.VISIBLE))
-        FirebaseManager().signOutUser()
+        firebaseAuthManager.signOut()
 
-        delay(2000)
+        delay(500)
 
         setLayoutVisibilities(listOf(View.GONE, View.VISIBLE, View.GONE))
         Toast.makeText(activity, "Sesión cerrada", Toast.LENGTH_SHORT).show()

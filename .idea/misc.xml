@@ -25,6 +25,7 @@
         <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/drawable/shape_border_image.xml" value="0.174" />
         <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout-v31/fragment_my_profile.xml" value="0.25" />
         <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout-v31/fragment_my_profile_signed_in.xml" value="0.25" />
+        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/activity_deep_link.xml" value="0.20521590423257802" />
         <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/activity_disco_screen.xml" value="0.20521590423257802" />
         <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/activity_event_screen.xml" value="0.22101167315175096" />
         <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/activity_event_screen_available.xml" value="0.20521590423257802" />
@@ -33,13 +34,17 @@
         <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/activity_main.xml" value="0.20521590423257802" />
         <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/activity_profile_friends.xml" value="0.20521590423257802" />
         <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/activity_profile_payments.xml" value="0.1936725096194955" />
-        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/activity_profile_profile.xml" value="0.20521590423257802" />
-        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/activity_sign_in.xml" value="0.20521590423257802" />
+        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/activity_profile_profile.xml" value="0.2" />
+        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/activity_sign_in.xml" value="0.2" />
+        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/activity_sign_in_email.xml" value="0.20521590423257802" />
+        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/activity_sign_in_email_sent.xml" value="0.20521590423257802" />
+        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/activity_sign_in_email_verified.xml" value="0.2" />
+        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/activity_sign_in_email_verified_activiy.xml" value="0.20521590423257802" />
         <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/activity_sign_in_forget.xml" value="0.20521590423257802" />
         <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/activity_sign_up.xml" value="0.20521590423257802" />
         <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/activity_start.xml" value="0.20521590423257802" />
         <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/fragment_buy_tickets.xml" value="0.18541666666666667" />
-        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/fragment_my_profile.xml" value="0.264" />
+        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/fragment_my_profile.xml" value="0.20261713803292528" />
         <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/fragment_my_profile_signed_in.xml" value="0.264" />
         <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/fragment_my_profile_unsigned_in.xml" value="0.20521590423257802" />
         <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/fragment_my_tickets.xml" value="0.20521590423257802" />

@@ -12,7 +12,7 @@
     android:focusableInTouchMode="true"
     android:clickable="true"
     android:focusable="true"
-    tools:context=".SignUpActivity">
+    tools:context=".zzOld.SignUpActivity">
 
     <TextView
         android:id="@+id/textView2"
