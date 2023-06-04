@@ -5,21 +5,61 @@
     android:id="@+id/signInLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginStart="24dp"
-    android:layout_marginTop="16dp"
-    android:layout_marginEnd="24dp"
-    android:layout_marginBottom="16dp"
     android:clickable="true"
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:orientation="vertical"
     tools:context=".SignInActivity">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/ic_back_03"
+        android:backgroundTint="@color/dark_blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView"
+            style="@style/NQ.TextBlack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:text="¡Bienvenido a NQ!"
+            android:textColor="@color/white"
+            android:textSize="32sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="64dp"
+            android:layout_marginTop="12dp"
+            android:maxLines="2"
+            android:text="Una manera más sencilla de comparar entradas de discotecas"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <!--SIGN IN layout-->
     <LinearLayout
         android:id="@+id/signIn_signInLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,13 +79,13 @@
             style="@style/NQ.Button.Full"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
             android:drawableLeft="@drawable/ic_mail_02"
             android:drawableTint="@color/white"
-            android:layout_marginTop="12dp"
-            android:paddingTop="14dp"
-            android:paddingBottom="14dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
             android:text="INICIAR SESIÓN CON CORREO"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textStyle="bold" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -102,10 +142,10 @@
             android:layout_marginTop="6dp"
             android:drawableLeft="@drawable/google_black_01"
             android:drawableTint="@color/dark_blue"
-            android:paddingTop="14dp"
-            android:paddingBottom="14dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
             android:text="INICIAR SESIÓN CON GOOGLE"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textStyle="bold" />
 
     </LinearLayout>
@@ -119,7 +159,6 @@
         android:layout_weight="1"
         android:gravity="bottom"
         android:orientation="vertical"
-        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -130,11 +169,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
-            android:paddingStart="12dp"
-            android:paddingTop="6dp"
-            android:paddingEnd="12dp"
-            android:paddingBottom="6dp"
-            android:text="Entrar sin iniciar sesión"
+            android:padding="32dp"
+            android:text="@string/entrar_sin_iniciar_sesión"
             android:textAlignment="center"
             android:textSize="14sp" />
 

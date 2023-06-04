@@ -43,7 +43,6 @@ class DiscoScreenActivity : AppCompatActivity(), DatesInterface, EventsInterface
         discoScreen_DiscoName.text = discoName
         discoScreen_discoImage.setImageResource(intent.getIntExtra("EXTRA_IMAGE", -1))
         discoScreen_discoLocation.text = intent.getStringExtra("EXTRA_LOCATION")
-        discoScreen_discoDistance.text = intent.getStringExtra("EXTRA_DISTANCE")
 
         screenDisco_datesRecyclerView.adapter = datesAdapter
         screenDisco_datesRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
@@ -99,7 +98,7 @@ class DiscoScreenActivity : AppCompatActivity(), DatesInterface, EventsInterface
 
         setLayoutsVisibilities(listOf(View.VISIBLE, View.GONE, View.GONE))
 
-        delay(1000)
+        delay(500)
 
         val filteredEvents: List<EventsData>
         if (datesList.isEmpty()) filteredEvents = EventsRepository.ReturnEvents(discoName, DatesRepository.dates)

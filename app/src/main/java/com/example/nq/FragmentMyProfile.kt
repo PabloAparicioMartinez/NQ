@@ -2,20 +2,20 @@ package com.example.nq
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.nq.firebaseAuth.FirebaseAuthManager
 import com.example.nq.firebaseAuth.UserData
 import com.example.nq.profileActivities.ProfileActivityFriends
 import com.example.nq.profileActivities.ProfileActivityHistory
-import com.example.nq.profileActivities.ProfileActivityProfile
+import com.example.nq.profileActivities.ProfileProfile
 import com.google.android.gms.auth.api.identity.Identity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_my_profile.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -32,23 +32,16 @@ class FragmentMyProfile : Fragment(R.layout.fragment_my_profile) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        (activity as AppCompatActivity).supportActionBar?.title = "PERFIL"
-
         //SET LAYOUT DEPENDING ON USER LOGGED IN STATE
         if (firebaseAuthManager.getSignedInUser() != null) {
-            setLayoutVisibilities(listOf(View.VISIBLE, View.GONE, View.GONE))
-
-            val userData: UserData? = firebaseAuthManager.getSignedInUser()
-            fragMyProfile_name.text = userData?.name ?: "Name"
-            fragMyProfile_mail.text = userData?.mail ?: "Mail"
-            Picasso.get().load(userData?.profilePictureURL).into(fragMyProfile_image)
+            setUserInfoUI()
         } else {
             setLayoutVisibilities(listOf(View.GONE, View.VISIBLE, View.GONE))
         }
 
         //BUTTONS
         fragMyProfile_profileButton.setOnClickListener() {
-            Intent(activity, ProfileActivityProfile::class.java).also {
+            Intent(activity, ProfileProfile::class.java).also {
                 startActivity(it)
             }
         }
@@ -74,6 +67,30 @@ class FragmentMyProfile : Fragment(R.layout.fragment_my_profile) {
                 startActivity(it)
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        //SET LAYOUT DEPENDING ON USER LOGGED IN STATE
+        if (firebaseAuthManager.getSignedInUser() != null) {
+            setUserInfoUI()
+        } else {
+            setLayoutVisibilities(listOf(View.GONE, View.VISIBLE, View.GONE))
+        }
+    }
+
+    private fun setUserInfoUI() {
+        setLayoutVisibilities(listOf(View.VISIBLE, View.GONE, View.GONE))
+
+        val userData: UserData? = firebaseAuthManager.getSignedInUser()
+        fragMyProfile_name.text = userData?.name ?: "Name"
+        fragMyProfile_mail.text = userData?.mail ?: "Mail"
+
+        val pictureURI = userData?.profilePictureURL
+        val pictureName = pictureURI?.substringAfterLast(".") ?: ""
+        val pictureID = resources.getIdentifier(pictureName, "drawable", activity?.packageName)
+        fragMyProfile_image.setImageResource(pictureID)
     }
 
     private fun setLayoutVisibilities(listOfVisibilities: List<Int>) {

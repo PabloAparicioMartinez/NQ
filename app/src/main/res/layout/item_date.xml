@@ -30,7 +30,7 @@
             android:id="@+id/itemDate_week"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="VIERNES"
+            android:text="SEMANA"
             android:textSize="11sp"
             android:textColor="@color/black_01"
             android:textStyle="bold" />
@@ -39,7 +39,7 @@
             android:id="@+id/itemDate_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="5"
+            android:text="0"
             android:textSize="26sp"
             android:textColor="@color/black_01"
             android:textStyle="bold"/>
@@ -48,7 +48,7 @@
             android:id="@+id/itemDate_month"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mayo"
+            android:text="MES"
             android:textSize="10sp"
             android:textColor="@color/black_01"
             android:textStyle="bold"/>

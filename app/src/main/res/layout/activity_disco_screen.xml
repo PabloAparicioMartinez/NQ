@@ -30,8 +30,8 @@
         app:layout_constraintTop_toTopOf="@+id/materialDivider2">
 
         <FrameLayout
-            android:layout_width="75dp"
-            android:layout_height="75dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:layout_gravity="center"
             android:layout_marginStart="0dp"
             android:layout_weight="0">
@@ -70,14 +70,14 @@
                 android:textSize="22sp"
                 android:textStyle="" />
 
-            <TextView
-                android:id="@+id/discoScreen_discoLocation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="0dp"
-                android:text="Ubicación"
-                android:textColor="@color/dark_grey_01"
-                android:textSize="12sp" />
+<!--            <TextView-->
+<!--                android:id="@+id/discoScreen_discoLocation"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="0dp"-->
+<!--                android:text="Ubicación"-->
+<!--                android:textColor="@color/dark_grey_01"-->
+<!--                android:textSize="12sp" />-->
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -93,7 +93,7 @@
                     app:tint="@color/dark_grey_01" />
 
                 <TextView
-                    android:id="@+id/discoScreen_discoDistance"
+                    android:id="@+id/discoScreen_discoLocation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -190,18 +190,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/screenDisco_constraintLayout02">
 
-        <TextView
-            android:id="@+id/textView14"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cargando..."
-            android:textColor="@color/dark_grey_02"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
@@ -236,8 +224,8 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:src="@drawable/ic_loupe_nofull_01"
                 app:tint="@color/dark_grey_02" />
 
@@ -249,6 +237,7 @@
                 android:text="No hay fiestas en las fechas seleccionadas"
                 android:textColor="@color/dark_grey_02"
                 android:textSize="12sp"
+                android:layout_gravity="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"

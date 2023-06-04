@@ -36,7 +36,6 @@ class DiscosAdapter(
             itemDiscoInfo_image.setImageResource(discos[position].discoImage)
             itemDiscoInfo_name.text = discos[position].discoName
             itemDiscoInfo_location.text = discos[position].discoLocation
-            itemDiscoEvent_price.text = discos[position].discoDistance
             itemDiscoInfo_music.text = discos[position].discoMusic
         }
     }

@@ -3,14 +3,13 @@ package com.example.nq.firebaseAuth
 import android.content.Context
 import android.content.Intent
 import android.content.IntentSender
+import android.net.Uri
 import com.example.nq.R
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.SignInClient
 import com.google.firebase.auth.*
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
 import java.util.concurrent.CancellationException
@@ -113,10 +112,27 @@ class FirebaseAuthManager(private val context: Context, private val oneTapClient
     }
 
     // UPDATEA el NOMBRE del USUARIO
-    suspend fun updateUser(newUserName: String) : Boolean {
+    suspend fun updateUserName(newUserName: String) : Boolean {
 
         val profileUpdates = UserProfileChangeRequest.Builder()
             .setDisplayName(newUserName)
+            .build()
+
+        return try {
+            auth.currentUser?.updateProfile(profileUpdates)?.await()
+            true
+        } catch (e: Exception) {
+            e.printStackTrace()
+            if (e is CancellationException) throw e
+            false
+        }
+    }
+
+    // UPDATEA la IMAGEN del USUARIO
+    suspend fun updateUserImage(newUserImage: Uri) : Boolean {
+
+        val profileUpdates = UserProfileChangeRequest.Builder()
+            .setPhotoUri(newUserImage)
             .build()
 
         return try {

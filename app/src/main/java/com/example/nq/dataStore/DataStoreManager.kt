@@ -24,4 +24,15 @@ class DataStoreManager(private val context: Context) {
         val preferences = context.dataStore.data.first()
         return preferences[key] ?: defaultValue
     }
+
+    suspend fun saveIntToDataStore(key: Preferences.Key<Int>, value: Int) {
+        context.dataStore.edit { preferences ->
+            preferences[key] = value
+        }
+    }
+
+    suspend fun getIntFromDataStore(key: Preferences.Key<Int>, defaultValue: Int): Int {
+        val preferences = context.dataStore.data.first()
+        return preferences[key] ?: defaultValue
+    }
 }

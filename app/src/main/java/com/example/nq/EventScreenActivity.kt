@@ -157,7 +157,7 @@ class EventScreenActivity : AppCompatActivity() {
                 friendsSearchLauncherV2.launch(intent)
             }
         } else {
-            // If (result.resultCode == Activity.RESULT_CANCELED)
+            //
         }
     }
 
@@ -177,7 +177,7 @@ class EventScreenActivity : AppCompatActivity() {
                 friendsSearchLauncherV1.launch(intent)
             }
         } else {
-            // If (result.resultCode == Activity.RESULT_CANCELED)
+            //
         }
     }
 }

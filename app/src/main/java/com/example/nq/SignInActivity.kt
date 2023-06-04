@@ -82,8 +82,8 @@ class SignInActivity() : AppCompatActivity() {
 
                 if (viewModel.state.value.isSignInSuccessful) {
                     Toast.makeText(applicationContext, "¡Sesión iniciada!", Toast.LENGTH_SHORT).show()
-                    goToMainActivity()
                     viewModel.resetState()
+                    goToMainActivity()
                 }
             }
         }

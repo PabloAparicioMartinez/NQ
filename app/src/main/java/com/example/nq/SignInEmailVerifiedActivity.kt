@@ -12,9 +12,7 @@ import com.example.nq.dataStore.DataStoreManager
 import com.example.nq.firebaseAuth.FirebaseAuthManager
 import com.example.nq.firebaseAuth.SignInViewModel
 import com.google.android.gms.auth.api.identity.Identity
-import com.google.firebase.auth.UserProfileChangeRequest
 import kotlinx.android.synthetic.main.activity_sign_in_email_verified.*
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class SignInEmailVerifiedActivity : AppCompatActivity() {
@@ -88,7 +86,7 @@ class SignInEmailVerifiedActivity : AppCompatActivity() {
             lifecycleScope.launch {
                 val newUserName = "$firstName $lastName"
 
-                if (firebaseAuthManager.updateUser(newUserName)) {
+                if (firebaseAuthManager.updateUserName(newUserName)) {
 
                     val firstNameKey = stringPreferencesKey("userFirstName")
                     dataStoreManager.saveStringToDataStore(firstNameKey, firstName)

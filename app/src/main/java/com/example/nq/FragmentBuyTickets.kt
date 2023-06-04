@@ -33,8 +33,6 @@ class FragmentBuyTickets : Fragment(R.layout.fragment_buy_tickets), MenuProvider
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        (activity as AppCompatActivity).supportActionBar?.title = "COMPRAR"
-
         fragmentBuyTicketsBasic_recyclerView.adapter = discosAdapter
         fragmentBuyTicketsBasic_recyclerView.layoutManager = LinearLayoutManager(activity)
     }
@@ -53,7 +51,6 @@ class FragmentBuyTickets : Fragment(R.layout.fragment_buy_tickets), MenuProvider
             it.putExtra("EXTRA_IMAGE", discoData.discoImage)
             it.putExtra("EXTRA_NAME", discoData.discoName)
             it.putExtra("EXTRA_LOCATION", discoData.discoLocation)
-            it.putExtra("EXTRA_DISTANCE", discoData.discoDistance)
             it.putExtra("EXTRA_MUSIC", discoData.discoMusic)
             startActivity(it)
         }

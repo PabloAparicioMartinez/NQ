@@ -15,11 +15,14 @@
         android:id="@+id/signInEmail_emailLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
         android:orientation="vertical"
-        android:visibility="visible">
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="24dp">
 
         <TextView
             style="@style/NQ.TextBlack"
@@ -58,55 +61,55 @@
             android:layout_marginTop="12dp"
             android:padding="16dp"
             android:text="ENVIAR CORREO DE VERIFICACIÓN"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textStyle="bold" />
 
     </LinearLayout>
 
-<!--    &lt;!&ndash;EMAIL SENT layout&ndash;&gt;-->
-<!--    <LinearLayout-->
-<!--        android:id="@+id/signInEmail_sentLayout"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="48dp"-->
-<!--        android:layout_marginEnd="48dp"-->
-<!--        android:gravity="center"-->
-<!--        android:orientation="vertical"-->
-<!--        android:visibility="gone"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.5"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent">-->
+    <!--    &lt;!&ndash;EMAIL SENT layout&ndash;&gt;-->
+    <!--    <LinearLayout-->
+    <!--        android:id="@+id/signInEmail_sentLayout"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="48dp"-->
+    <!--        android:layout_marginEnd="48dp"-->
+    <!--        android:gravity="center"-->
+    <!--        android:orientation="vertical"-->
+    <!--        android:visibility="gone"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.5"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent">-->
 
-<!--        <ImageView-->
-<!--            android:id="@+id/fragMyProfileUnsignedIn_image"-->
-<!--            android:layout_width="207dp"-->
-<!--            android:layout_height="139dp"-->
-<!--            android:alpha="1"-->
-<!--            android:src="@drawable/ic_mail_02"-->
-<!--            app:tint="@color/dark_blue" />-->
+    <!--        <ImageView-->
+    <!--            android:id="@+id/fragMyProfileUnsignedIn_image"-->
+    <!--            android:layout_width="207dp"-->
+    <!--            android:layout_height="139dp"-->
+    <!--            android:alpha="1"-->
+    <!--            android:src="@drawable/ic_mail_02"-->
+    <!--            app:tint="@color/dark_blue" />-->
 
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="¡Correo enviado!"-->
-<!--            android:textStyle="bold"-->
-<!--            android:textSize="14sp"-->
-<!--            android:textColor="@color/dark_blue"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
+    <!--        <TextView-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:text="¡Correo enviado!"-->
+    <!--            android:textStyle="bold"-->
+    <!--            android:textSize="14sp"-->
+    <!--            android:textColor="@color/dark_blue"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintTop_toTopOf="parent" />-->
 
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:textAlignment="center"-->
-<!--            android:layout_marginTop="12dp"-->
-<!--            android:text="Comprueba tu bandeja de entrada y haz click en el enlace que te hemos enviado para inciar sesión"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
+    <!--        <TextView-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:textAlignment="center"-->
+    <!--            android:layout_marginTop="12dp"-->
+    <!--            android:text="Comprueba tu bandeja de entrada y haz click en el enlace que te hemos enviado para inciar sesión"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintTop_toTopOf="parent" />-->
 
-<!--    </LinearLayout>-->
+    <!--    </LinearLayout>-->
 
     <!--LOADING layout-->
     <androidx.constraintlayout.widget.ConstraintLayout

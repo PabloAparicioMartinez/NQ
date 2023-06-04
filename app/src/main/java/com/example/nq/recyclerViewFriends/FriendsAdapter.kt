@@ -31,7 +31,7 @@ class FriendsAdapter(
         return FriendsViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: FriendsViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: FriendsAdapter.FriendsViewHolder, position: Int) {
         holder.itemView.apply{
             itemFriend_image.setImageResource(friends[position].image)
             itemFriend_name.text = friends[position].name

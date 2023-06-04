@@ -11,8 +11,8 @@
         android:id="@+id/signInEmailSent_sentLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginEnd="48dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
         android:gravity="center"
         android:orientation="vertical"
         android:visibility="visible"
@@ -23,8 +23,8 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:layout_width="207dp"
-            android:layout_height="139dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             android:alpha="1"
             android:src="@drawable/ic_mail_02"
             app:tint="@color/dark_blue" />

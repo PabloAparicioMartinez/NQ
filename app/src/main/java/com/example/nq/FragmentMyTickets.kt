@@ -13,8 +13,6 @@ class FragmentMyTickets : Fragment(R.layout.fragment_my_tickets) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        (activity as AppCompatActivity).supportActionBar?.title = "ENTRADAS"
-
         //SET LAYOUT DEPENDING ON USER LOGGED IN STATE
         if (!FirebaseManager().checkIfUserIsSignedIn()) {
             setLayoutVisibilities(listOf(View.GONE, View.VISIBLE))

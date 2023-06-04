@@ -5,7 +5,7 @@
         <item name="colorPrimary">@color/dark_blue</item>
         <item name="colorPrimaryVariant">@color/dark_blue</item>
         <item name="colorOnPrimary">@color/white</item>
-        <item name="colorOnSurface">@color/dark_blue</item>
+        <item name="colorOnSurface">@color/black_01</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/light_blue</item>
         <item name="colorSecondaryVariant">@color/dark_blue</item>
@@ -39,13 +39,14 @@
     </style>
 
     <style name="NQ.ActionBar" parent="Widget.Material3.ActionBar.Solid">
-        <item name="background">@color/light_grey_01</item>
+<!--        <item name="background">@color/light_grey_01</item>-->
+        <item name="background">?android:colorBackground</item>
         <item name="titleTextStyle">@style/NQ.ActionBar.TitleTextStyle</item>
     </style>
 
     <style name="NQ.ActionBar.TitleTextStyle" parent="TextAppearance.Material3.ActionBar.Title">
-<!--        <item name="android:textStyle">bold</item>-->
         <item name="fontFamily">@font/roboto_black</item>
+        <item name="android:textColor">@color/black_01</item>
     </style>
 
     <style name="Theme.NQ.NoActionBar" parent="Theme.NQ">
@@ -76,6 +77,8 @@
         <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash_logo_04</item>
         <item name="windowSplashScreenBackground">@color/white</item>
         <item name="postSplashScreenTheme">@style/Theme.NQ.NoActionBar</item>
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryVariant">@color/white</item>
     </style>
 
     <style name="NQ.Toolbar" parent="Theme.Material3.Light">

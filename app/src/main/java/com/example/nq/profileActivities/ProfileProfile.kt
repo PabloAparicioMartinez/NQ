@@ -1,25 +1,33 @@
 package com.example.nq.profileActivities
 
 import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
+import android.provider.CalendarContract.CalendarCache.URI
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.lifecycle.lifecycleScope
 import com.example.nq.R
 import com.example.nq.dataStore.DataStoreManager
 import com.example.nq.firebaseAuth.FirebaseAuthManager
 import com.example.nq.firebaseAuth.UserData
+import com.example.nq.recyclerViewProfilePictures.ProfilePicturesRepository
 import com.google.android.gms.auth.api.identity.Identity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_profile_profile.*
+import kotlinx.android.synthetic.main.activity_profile_profile.profileProfile_profileLayout
+import kotlinx.android.synthetic.main.fragment_my_profile.*
 import kotlinx.coroutines.launch
 
-class ProfileActivityProfile : AppCompatActivity() {
+class ProfileProfile : AppCompatActivity() {
 
     private val firebaseAuthManager by lazy {
         FirebaseAuthManager(
@@ -30,6 +38,11 @@ class ProfileActivityProfile : AppCompatActivity() {
     private val dataStoreManager by lazy {
         DataStoreManager(context = applicationContext)
     }
+
+    lateinit var startName: String
+    lateinit var startImage: String
+    var imageChanged: Boolean = false
+    var pictureInt: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,13 +67,25 @@ class ProfileActivityProfile : AppCompatActivity() {
 
                 profileProfile_firstNameText.setText(userFirstName)
                 profileProfile_lastNameText.setText(userLastName)
-                Picasso.get().load(userData?.profilePictureURL).into(profileProfile_image)
 
+                val pictureURI = userData?.profilePictureURL
+                val pictureName = pictureURI?.substringAfterLast(".") ?: ""
+                val pictureID = resources.getIdentifier(pictureName, "drawable", packageName)
+                profileProfile_image.setImageResource(pictureID)
+
+                startName = "$userFirstName $userLastName"
+                startImage = userData?.profilePictureURL.toString()
                 setLayoutVisibilities(listOf(View.VISIBLE, View.GONE))
             }
         } else {
             // USUARIO NO CONECTADO
             setLayoutVisibilities(listOf(View.VISIBLE, View.GONE))
+        }
+
+        // CAMBIAR IMAGEN
+        profileProfile_clickableImage.setOnClickListener() {
+            val intent = Intent(this, ProfileProfileImages::class.java)
+            imagesLauncher.launch(intent)
         }
 
         // GUARDAR CAMBIOS
@@ -86,23 +111,53 @@ class ProfileActivityProfile : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            lifecycleScope.launch {
-                val newUserName = "$firstName $lastName"
+            val newUserName = "$firstName $lastName"
+            if (newUserName != startName || imageChanged) {
 
-                if (firebaseAuthManager.updateUser(newUserName)) {
+                lifecycleScope.launch {
 
-                    val firstNameKey = stringPreferencesKey("userFirstName")
-                    dataStoreManager.saveStringToDataStore(firstNameKey, firstName)
+                    setLayoutVisibilities(listOf(View.VISIBLE, View.VISIBLE))
 
-                    val lastNameKey = stringPreferencesKey("userLastName")
-                    dataStoreManager.saveStringToDataStore(lastNameKey, lastName)
+                    if (newUserName != startName) {
 
+                        if (firebaseAuthManager.updateUserName(newUserName)) {
+
+                            val firstNameKey = stringPreferencesKey("userFirstName")
+                            dataStoreManager.saveStringToDataStore(firstNameKey, firstName)
+
+                            val lastNameKey = stringPreferencesKey("userLastName")
+                            dataStoreManager.saveStringToDataStore(lastNameKey, lastName)
+
+                        } else {
+                            Toast.makeText(this@ProfileProfile, "Error actualizando el nombre...", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+
+                    if (imageChanged) {
+                        val newUserImageURI = Uri.parse(
+                            "android.resource://$packageName/${ProfilePicturesRepository.returnPictureString(pictureInt)}"
+                        )
+                        if (firebaseAuthManager.updateUserImage(newUserImageURI)) {
+                            //
+                        } else {
+                            Toast.makeText(this@ProfileProfile, "Error actualizando la imagen...", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+
+                    setLayoutVisibilities(listOf(View.VISIBLE, View.GONE))
                     finish()
-                } else {
-                    Toast.makeText(this@ProfileActivityProfile, "Ha ocurrido un error...", Toast.LENGTH_SHORT).show()
                 }
-            }
 
+            } else {
+                if (newUserName == startName) {
+                    Toast.makeText(this, "Mismo NOMBRE", Toast.LENGTH_SHORT).show()
+                }
+                if (!imageChanged) {
+                    Toast.makeText(this, "Misma IMAGEN", Toast.LENGTH_SHORT).show()
+                }
+
+                finish()
+            }
         }
 
         // ESCONDER TECLADO
@@ -121,6 +176,20 @@ class ProfileActivityProfile : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
+    private val imagesLauncher: ActivityResultLauncher<Intent> =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+
+                val receivedData = result.data?.getIntExtra("imageInt", 0)
+                profileProfile_image.setImageResource(ProfilePicturesRepository.profilePictures[receivedData!!].profileImage)
+                pictureInt = receivedData
+                imageChanged = true
+
+            } else {
+                //
+            }
+        }
 
     private fun setLayoutVisibilities(listOfVisibilities: List<Int>) {
         profileProfile_profileLayout.visibility = listOfVisibilities[0]

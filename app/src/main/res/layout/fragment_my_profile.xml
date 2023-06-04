@@ -42,17 +42,31 @@
                 android:paddingEnd="24dp"
                 android:paddingBottom="14dp">
 
-                <ImageView
-                    android:id="@+id/fragMyProfile_image"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:src="@drawable/png_boy_01" />
+                <FrameLayout
+                    android:layout_width="100dp"
+                    android:layout_height="100dp">
+
+                    <ImageView
+                        android:id="@+id/fragMyProfile_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:src="@drawable/png_bird_01" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:background="@drawable/shape_border_circle_02" />
+
+                </FrameLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="22dp"
+                    android:layout_marginEnd="6dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -63,12 +77,12 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="4dp"
                         android:ellipsize="end"
-                        android:maxLines="1"
+                        android:maxLines="2"
                         android:text="Nombre"
                         android:textAlignment="viewStart"
-                        android:textAllCaps="true"
+                        android:textAllCaps="false"
                         android:textColor="@color/black_01"
-                        android:textSize="24sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/fragMyProfile_mail"
@@ -76,6 +90,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="0dp"
                         android:text="Mail"
+                        android:ellipsize="end"
+                        android:maxLines="2"
                         android:textColor="@color/dark_grey_01"
                         android:textSize="12sp" />
 
@@ -462,8 +478,8 @@
         android:id="@+id/fragMyProfile_unsignedInLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="48dp"
-        android:layout_marginEnd="48dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="64dp"
         android:gravity="center"
         android:orientation="vertical"
         android:visibility="gone"
@@ -473,8 +489,8 @@
 
         <ImageView
             android:id="@+id/fragMyProfileUnsignedIn_image"
-            android:layout_width="207dp"
-            android:layout_height="139dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             android:alpha="0.5"
             android:src="@drawable/ic_unsignedin_01"
             app:tint="@color/dark_grey_02" />
@@ -483,7 +499,7 @@
             android:id="@+id/fragMyProfile_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="24dp"
             android:text="Todavía no has iniciado sesión"
             android:textAlignment="center"
             android:textColor="@color/dark_grey_02" />
@@ -493,12 +509,10 @@
             style="@style/NQ.Button.Full"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
             android:padding="16dp"
             android:text="INICIAR SESIÓN"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textStyle="bold" />
 
     </LinearLayout>
