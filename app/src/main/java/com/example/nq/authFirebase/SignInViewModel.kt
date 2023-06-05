@@ -1,4 +1,4 @@
-package com.example.nq.firebaseAuth
+package com.example.nq.authFirebase
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

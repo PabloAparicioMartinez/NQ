@@ -6,7 +6,7 @@
 //import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 //import com.example.nq.MainActivity
 //import com.example.nq.R
-//import com.example.nq.SignInActivity
+//import com.example.nq.authSignIn.SignInActivity
 //import com.example.nq.firebase.FirebaseManager
 //import kotlinx.android.synthetic.main.activity_start.*
 //

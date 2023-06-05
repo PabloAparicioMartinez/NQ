@@ -16,7 +16,7 @@ import com.example.nq.recyclerViewProfilePictures.ProfilePicturesInterface
 import com.example.nq.recyclerViewProfilePictures.ProfilePicturesRepository
 import kotlinx.android.synthetic.main.activity_profile_profile_images.*
 
-class ProfileProfileImages : AppCompatActivity(), ProfilePicturesInterface {
+class ProfileActivityProfileImages : AppCompatActivity(), ProfilePicturesInterface {
 
     private val profilePictues = ProfilePicturesAdapter(ProfilePicturesRepository.profilePictures, this)
 
@@ -48,7 +48,7 @@ class ProfileProfileImages : AppCompatActivity(), ProfilePicturesInterface {
     override fun onItemClick(profilePicturesData: ProfilePicturesData, pictureInt: Int) {
 
         val intent = Intent()
-            intent.putExtra("imageInt", pictureInt)
+            intent.putExtra("EXTRA_pictureInt", pictureInt)
             setResult(Activity.RESULT_OK, intent)
             finish()
     }

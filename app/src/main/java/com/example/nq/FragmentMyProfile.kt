@@ -2,18 +2,15 @@ package com.example.nq
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import com.example.nq.firebaseAuth.FirebaseAuthManager
-import com.example.nq.firebaseAuth.UserData
-import com.example.nq.profileActivities.ProfileActivityFriends
-import com.example.nq.profileActivities.ProfileActivityHistory
-import com.example.nq.profileActivities.ProfileProfile
+import com.example.nq.authSignIn.SignInActivity
+import com.example.nq.authFirebase.FirebaseAuthManager
+import com.example.nq.authFirebase.UserData
+import com.example.nq.profileActivities.*
 import com.google.android.gms.auth.api.identity.Identity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.fragment_my_profile.*
@@ -41,7 +38,7 @@ class FragmentMyProfile : Fragment(R.layout.fragment_my_profile) {
 
         //BUTTONS
         fragMyProfile_profileButton.setOnClickListener() {
-            Intent(activity, ProfileProfile::class.java).also {
+            Intent(activity, ProfileActivityProfile::class.java).also {
                 startActivity(it)
             }
         }
@@ -53,7 +50,25 @@ class FragmentMyProfile : Fragment(R.layout.fragment_my_profile) {
         }
 
         fragMyProfile_paymentsButton.setOnClickListener() {
+            Intent(activity, ProfileActivityPayments::class.java).also {
+                startActivity(it)
+            }
+        }
+
+        fragMyProfile_historyButton.setOnClickListener() {
             Intent(activity, ProfileActivityHistory::class.java).also {
+                startActivity(it)
+            }
+        }
+
+        fragMyProfile_problemButton.setOnClickListener() {
+            Intent(activity, ProfileActivityProblem::class.java).also {
+                startActivity(it)
+            }
+        }
+
+        fragMyProfile_helpButton.setOnClickListener() {
+            Intent(activity, ProfileActivityHelp::class.java).also {
                 startActivity(it)
             }
         }
@@ -64,6 +79,7 @@ class FragmentMyProfile : Fragment(R.layout.fragment_my_profile) {
 
         fragMyProfile_signInButton.setOnClickListener() {
             Intent(activity, SignInActivity::class.java).also {
+                it.putExtra("EXTRA_SignInClicked", true)
                 startActivity(it)
             }
         }

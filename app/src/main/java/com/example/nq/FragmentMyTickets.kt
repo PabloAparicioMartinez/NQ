@@ -4,8 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
-import com.example.nq.firebase.FirebaseManager
+import com.example.nq.authSignIn.SignInActivity
+import com.example.nq.zzOldFirebase.FirebaseManager
 import kotlinx.android.synthetic.main.fragment_my_tickets.*
 
 class FragmentMyTickets : Fragment(R.layout.fragment_my_tickets) {
@@ -27,6 +27,7 @@ class FragmentMyTickets : Fragment(R.layout.fragment_my_tickets) {
 
         fragMyTickets_signInButton.setOnClickListener() {
             Intent(activity, SignInActivity::class.java).also {
+                it.putExtra("EXTRA_SignInClicked", true)
                 startActivity(it)
             }
         }

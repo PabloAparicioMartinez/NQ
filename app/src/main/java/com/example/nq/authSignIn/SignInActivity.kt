@@ -1,4 +1,4 @@
-package com.example.nq
+package com.example.nq.authSignIn
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -9,12 +9,12 @@ import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
-import com.example.nq.firebaseAuth.FirebaseAuthManager
-import com.example.nq.firebaseAuth.SignInViewModel
+import com.example.nq.MainActivity
+import com.example.nq.R
+import com.example.nq.authFirebase.FirebaseAuthManager
+import com.example.nq.authFirebase.SignInViewModel
 import com.google.android.gms.auth.api.identity.Identity
 import kotlinx.android.synthetic.main.activity_sign_in.*
-import kotlinx.android.synthetic.main.activity_sign_in_email.*
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class SignInActivity() : AppCompatActivity() {
@@ -31,7 +31,7 @@ class SignInActivity() : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         installSplashScreen()
-        Thread.sleep(1000)
+        //Thread.sleep(1000)
 
         setContentView(R.layout.activity_sign_in)
 
@@ -41,6 +41,13 @@ class SignInActivity() : AppCompatActivity() {
             if (firebaseAuthManager.getSignedInUser() != null) {
                 Toast.makeText(applicationContext, "¡Sesión iniciada!", Toast.LENGTH_SHORT).show()
                 goToMainActivity()
+            } else {
+                val checkIfSignInClicked = intent?.getBooleanExtra("EXTRA_SignInClicked", false)
+                if (checkIfSignInClicked == true) {
+                    setLayoutVisibility(View.GONE)
+                } else {
+                    setLayoutVisibility(View.VISIBLE)
+                }
             }
         }
 
@@ -102,7 +109,10 @@ class SignInActivity() : AppCompatActivity() {
     private fun goToSignInEmailActivity() {
         Intent(this, SignInEmailActivity::class.java).also {
             startActivity(it)
-            finish()
         }
+    }
+
+    private fun setLayoutVisibility(visibilities: Int) {
+        signIn_introLayout.visibility = visibilities
     }
 }

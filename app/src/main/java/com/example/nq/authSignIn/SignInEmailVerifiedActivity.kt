@@ -1,4 +1,4 @@
-package com.example.nq
+package com.example.nq.authSignIn
 
 import android.content.Intent
 import android.net.Uri
@@ -8,9 +8,13 @@ import android.view.View
 import android.widget.Toast
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.lifecycle.lifecycleScope
+import com.example.nq.MainActivity
+import com.example.nq.R
 import com.example.nq.dataStore.DataStoreManager
-import com.example.nq.firebaseAuth.FirebaseAuthManager
-import com.example.nq.firebaseAuth.SignInViewModel
+import com.example.nq.authFirebase.FirebaseAuthManager
+import com.example.nq.authFirebase.SignInViewModel
+import com.example.nq.authFirebase.UserData
+import com.example.nq.recyclerViewProfilePictures.ProfilePicturesRepository
 import com.google.android.gms.auth.api.identity.Identity
 import kotlinx.android.synthetic.main.activity_sign_in_email_verified.*
 import kotlinx.coroutines.launch
@@ -27,6 +31,7 @@ class SignInEmailVerifiedActivity : AppCompatActivity() {
     private val dataStoreManager by lazy {
         DataStoreManager(context = applicationContext)
     }
+    var userExists = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +53,16 @@ class SignInEmailVerifiedActivity : AppCompatActivity() {
                 viewModel.onSignInResult(signInResultMail)
 
                 if (viewModel.state.value.isSignInSuccessful) {
+
+                    val userData: UserData? = firebaseAuthManager.getSignedInUser()
+                    val userFirstName = dataStoreManager.getStringFromDataStore(stringPreferencesKey("userFirstName"), "Nombre")
+                    val userLastName = dataStoreManager.getStringFromDataStore(stringPreferencesKey("userLastName"), "Apellido(s)")
+
+                    signInEmailVerified_firstNameText.setText(userFirstName)
+                    signInEmailVerified_lastNameText.setText(userLastName)
+
+                    if (userFirstName != "Nombre") userExists = true
+
                     setLayoutVisibilities(listOf(View.VISIBLE, View.GONE, View.GONE))
                     viewModel.resetState()
                 } else {
@@ -96,8 +111,21 @@ class SignInEmailVerifiedActivity : AppCompatActivity() {
 
                     goToMainActivity()
                 } else {
-                    Toast.makeText(this@SignInEmailVerifiedActivity, "Ha ocurrido un error...", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@SignInEmailVerifiedActivity, "No se pudo actualizar el nombre...", Toast.LENGTH_SHORT).show()
                 }
+
+                if (!userExists) {
+                    val newUserImageURI = Uri.parse(
+                        "android.resource://$packageName/${ProfilePicturesRepository.returnPictureString(0)}"
+                    )
+                    if (firebaseAuthManager.updateUserImage(newUserImageURI)) {
+                        //
+                    } else {
+                        Toast.makeText(this@SignInEmailVerifiedActivity, "No se pudo actualizar la imagen...", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                goToMainActivity()
             }
         }
 

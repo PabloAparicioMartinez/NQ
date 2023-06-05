@@ -9,9 +9,10 @@
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:orientation="vertical"
-    tools:context=".SignInActivity">
+    tools:context=".authSignIn.SignInActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/signIn_introLayout"
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:layout_marginEnd="32dp"
@@ -39,10 +40,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginEnd="64dp"
+            android:layout_marginEnd="84dp"
             android:layout_marginTop="12dp"
             android:maxLines="2"
-            android:text="Una manera más sencilla de comparar entradas de discotecas"
+            android:text="Una manera sencilla de comprrar entradas de discotecas"
             android:textColor="@color/white"
             android:textSize="14sp"
             android:textStyle="bold"
@@ -85,8 +86,7 @@
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
             android:text="INICIAR SESIÓN CON CORREO"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textSize="14sp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/signIn_constraintLayout"

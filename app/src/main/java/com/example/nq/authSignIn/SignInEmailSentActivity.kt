@@ -1,7 +1,8 @@
-package com.example.nq
+package com.example.nq.authSignIn
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.nq.R
 
 class SignInEmailSentActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

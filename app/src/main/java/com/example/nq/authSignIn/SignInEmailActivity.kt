@@ -1,4 +1,4 @@
-package com.example.nq
+package com.example.nq.authSignIn
 
 import android.app.Activity
 import android.content.Intent
@@ -10,13 +10,12 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.lifecycle.lifecycleScope
+import com.example.nq.R
 import com.example.nq.dataStore.DataStoreManager
-import com.example.nq.firebaseAuth.FirebaseAuthManager
-import com.example.nq.firebaseAuth.SignInViewModel
+import com.example.nq.authFirebase.FirebaseAuthManager
 import com.google.android.gms.auth.api.identity.Identity
 import com.google.firebase.auth.ktx.actionCodeSettings
 import kotlinx.android.synthetic.main.activity_sign_in_email.*
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class SignInEmailActivity : AppCompatActivity() {

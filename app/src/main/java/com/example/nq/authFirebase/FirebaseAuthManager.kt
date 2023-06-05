@@ -1,4 +1,4 @@
-package com.example.nq.firebaseAuth
+package com.example.nq.authFirebase
 
 import android.content.Context
 import android.content.Intent
@@ -10,7 +10,6 @@ import com.google.android.gms.auth.api.identity.SignInClient
 import com.google.firebase.auth.*
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
 import java.util.concurrent.CancellationException
 
@@ -156,4 +155,17 @@ class FirebaseAuthManager(private val context: Context, private val oneTapClient
             if (e is CancellationException) throw e
         }
     }
+
+//    suspend fun checkIfEmailExists(email: String) : Boolean {
+//        return try {
+//
+//            auth.fetchSignInMethodsForEmail(email).await()
+//            true
+//
+//        } catch (e: Exception) {
+//            e.printStackTrace()
+//            if (e is CancellationException) throw e
+//            false
+//        }
+//    }
 }

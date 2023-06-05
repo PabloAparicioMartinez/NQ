@@ -5,8 +5,6 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.CalendarContract.CalendarCache.URI
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -17,17 +15,15 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.lifecycle.lifecycleScope
 import com.example.nq.R
 import com.example.nq.dataStore.DataStoreManager
-import com.example.nq.firebaseAuth.FirebaseAuthManager
-import com.example.nq.firebaseAuth.UserData
+import com.example.nq.authFirebase.FirebaseAuthManager
+import com.example.nq.authFirebase.UserData
 import com.example.nq.recyclerViewProfilePictures.ProfilePicturesRepository
 import com.google.android.gms.auth.api.identity.Identity
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_profile_profile.*
 import kotlinx.android.synthetic.main.activity_profile_profile.profileProfile_profileLayout
-import kotlinx.android.synthetic.main.fragment_my_profile.*
 import kotlinx.coroutines.launch
 
-class ProfileProfile : AppCompatActivity() {
+class ProfileActivityProfile : AppCompatActivity() {
 
     private val firebaseAuthManager by lazy {
         FirebaseAuthManager(
@@ -84,7 +80,7 @@ class ProfileProfile : AppCompatActivity() {
 
         // CAMBIAR IMAGEN
         profileProfile_clickableImage.setOnClickListener() {
-            val intent = Intent(this, ProfileProfileImages::class.java)
+            val intent = Intent(this, ProfileActivityProfileImages::class.java)
             imagesLauncher.launch(intent)
         }
 
@@ -129,7 +125,7 @@ class ProfileProfile : AppCompatActivity() {
                             dataStoreManager.saveStringToDataStore(lastNameKey, lastName)
 
                         } else {
-                            Toast.makeText(this@ProfileProfile, "Error actualizando el nombre...", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@ProfileActivityProfile, "No se pudo actualizar el nombre...", Toast.LENGTH_SHORT).show()
                         }
                     }
 
@@ -140,7 +136,7 @@ class ProfileProfile : AppCompatActivity() {
                         if (firebaseAuthManager.updateUserImage(newUserImageURI)) {
                             //
                         } else {
-                            Toast.makeText(this@ProfileProfile, "Error actualizando la imagen...", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@ProfileActivityProfile, "No se pudo actualizar la imagen...", Toast.LENGTH_SHORT).show()
                         }
                     }
 
@@ -181,7 +177,7 @@ class ProfileProfile : AppCompatActivity() {
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
 
-                val receivedData = result.data?.getIntExtra("imageInt", 0)
+                val receivedData = result.data?.getIntExtra("EXTRA_pictureInt", 0)
                 profileProfile_image.setImageResource(ProfilePicturesRepository.profilePictures[receivedData!!].profileImage)
                 pictureInt = receivedData
                 imageChanged = true

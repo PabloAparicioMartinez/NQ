@@ -1,6 +1,5 @@
-package com.example.nq.firebase
+package com.example.nq.zzOldFirebase
 
-import android.net.Uri
 import com.example.nq.R
 
 object FirebaseRepository {

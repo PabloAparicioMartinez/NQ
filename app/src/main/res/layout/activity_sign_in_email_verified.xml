@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignInEmailVerifiedActivity">
+    tools:context=".authSignIn.SignInEmailVerifiedActivity">
 
     <!--VERIFIED layout-->
     <LinearLayout
@@ -15,7 +15,7 @@
         android:layout_marginEnd="32dp"
         android:gravity="center"
         android:orientation="vertical"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -101,7 +101,7 @@
         android:layout_marginEnd="48dp"
         android:gravity="center"
         android:orientation="vertical"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -118,7 +118,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="No se pudo verificasr el correo..."
+            android:text="No se pudo verificar el correo..."
             android:textStyle="bold"
             android:layout_marginTop="16dp"
             android:textSize="14sp"

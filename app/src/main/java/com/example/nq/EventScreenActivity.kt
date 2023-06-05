@@ -5,7 +5,6 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -13,7 +12,6 @@ import android.widget.LinearLayout
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.size
-import com.example.nq.firebase.FirebaseRepository
 import kotlinx.android.synthetic.main.activity_event_screen.*
 import kotlinx.android.synthetic.main.item_ticket_info_name_yes.view.*
 import kotlinx.android.synthetic.main.item_ticket_info_name_no.view.*

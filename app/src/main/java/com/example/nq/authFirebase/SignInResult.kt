@@ -1,4 +1,4 @@
-package com.example.nq.firebaseAuth
+package com.example.nq.authFirebase
 
 data class SignInResult(
     val data: UserData?,
