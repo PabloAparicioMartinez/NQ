@@ -7,14 +7,14 @@ import com.example.nq.recyclerViewDates.DatesData
 object EventsRepository {
 
     val backStageEvents = mutableListOf(
-        EventsData(4, "Mayo",
-            "JUEVES, 4 de Mayo", R.drawable.png_event_01,
+        EventsData(9, "Junio",
+            "VIERNES, 9 de Junio de 2023", R.drawable.png_event_01,
             "SAFARI  +18", "Reggeaton & Latina",
             "14 €  |  Incluye 2 cubatas", "DISPONIBLES",
         ),
         EventsData(
-            5, "Mayo",
-            "VIERNES, 5 de Mayo", R.drawable.png_event_02,
+            10, "Junio",
+            "SÁBADO, 10 de Junio de 2023", R.drawable.png_event_02,
             "EUPHORIA  +24", "Comercial & Reggeaton",
             "14 €  |  Incluye 1 cubata", "AGOTADAS",
         )

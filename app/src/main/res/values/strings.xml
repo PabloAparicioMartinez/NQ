@@ -15,6 +15,7 @@
 
     <string name="elige_una_imagen_de_la_galería"><u>Elige una imagen de la galería</u></string>
     <string name="entrar_sin_iniciar_sesión"><u>Entrar sin iniciar sesión</u></string>
+    <string name="borrar_filtro"><u>Mostrar todas las fiestas</u></string>
     <!--    <string name="error_login_password_is_weak">La contraseña es demasiado débil</string>-->
 
     <!--    <string name="error_login_default_error">Ha ocurrido un error inesperado</string>-->

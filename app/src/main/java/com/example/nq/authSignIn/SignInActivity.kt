@@ -1,18 +1,21 @@
 package com.example.nq.authSignIn
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.lifecycle.lifecycleScope
 import com.example.nq.MainActivity
 import com.example.nq.R
 import com.example.nq.authFirebase.FirebaseAuthManager
 import com.example.nq.authFirebase.SignInViewModel
+import com.example.nq.authFirebase.UserData
+import com.example.nq.dataStore.DataStoreManager
 import com.google.android.gms.auth.api.identity.Identity
 import kotlinx.android.synthetic.main.activity_sign_in.*
 import kotlinx.coroutines.launch
@@ -26,6 +29,9 @@ class SignInActivity() : AppCompatActivity() {
         )
     }
     private val viewModel = SignInViewModel()
+    private val dataStoreManager by lazy {
+        DataStoreManager(context = applicationContext)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -88,6 +94,24 @@ class SignInActivity() : AppCompatActivity() {
                 viewModel.onSignInResult(signInResultGoogle)
 
                 if (viewModel.state.value.isSignInSuccessful) {
+
+                    val userData: UserData? = firebaseAuthManager.getSignedInUser()
+                    val originalName = userData?.name ?: "Nombre"
+                    val words = originalName.split(" ")
+
+                    val firstWord = words[0]
+                    val restOfText = originalName.substring(firstWord.length).trim()
+
+                    val firstName = firstWord
+                    var lastName = "Apellido(s)"
+                    if (restOfText != "") lastName = restOfText
+
+                    val firstNameKey = stringPreferencesKey("userFirstName")
+                    dataStoreManager.saveStringToDataStore(firstNameKey, firstName)
+
+                    val lastNameKey = stringPreferencesKey("userLastName")
+                    dataStoreManager.saveStringToDataStore(lastNameKey, lastName)
+
                     Toast.makeText(applicationContext, "¡Sesión iniciada!", Toast.LENGTH_SHORT).show()
                     viewModel.resetState()
                     goToMainActivity()

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ThemeOverlay.App.DatePicker" parent="@style/ThemeOverlay.MaterialComponents.MaterialCalendar">
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+        <item name="materialCalendarHeaderLayout">@style/DatePicker.HeaderColor</item>
+        <item name="materialCalendarHeaderToggleButton">@style/DatePicker.HeaderToggle</item>
+        <item name="materialCalendarStyle">@style/DatePicker.DatesStyle</item>
+
+        <item name="shapeAppearanceSmallComponent">@style/DatePicker.App.SmallComponent</item>
+        <item name="shapeAppearanceMediumComponent">@style/DatePicker.App.MediumComponent</item>
+
+        <item name="buttonBarPositiveButtonStyle">@style/DatePicker.TextButton</item>
+        <item name="buttonBarNegativeButtonStyle">@style/DatePicker.TextButton</item>
+
+    </style>
+
+    <style name="DatePicker.HeaderColor" parent="Widget.MaterialComponents.MaterialCalendar.HeaderLayout">
+        <item name="android:background">@color/dark_blue</item>
+    </style>
+    <style name="DatePicker.HeaderToggle" parent="Widget.MaterialComponents.MaterialCalendar.HeaderToggleButton">
+        <item name="android:visibility">gone</item>
+    </style>
+    <style name="DatePicker.DatesStyle" parent="Widget.MaterialComponents.MaterialCalendar">
+        <item name="dayTodayStyle">@style/DatePicker.DayTodayStyle</item>
+        <item name="daySelectedStyle">@style/DatePicker.DaySelectedStyle</item>
+    </style>
+    <style name="DatePicker.DayTodayStyle" parent="Widget.Material3.MaterialCalendar.Day.Today">
+        <item name="itemFillColor">@color/white</item>
+        <item name="itemTextColor">@color/dark_blue</item>
+    </style>
+    <style name="DatePicker.DaySelectedStyle" parent="Widget.Material3.MaterialCalendar.Day.Selected">
+        <item name="itemFillColor">@color/dark_blue</item>
+        <item name="itemTextColor">@color/white</item>
+        <item name="android:textSize">32dp</item>
+    </style>
+
+    <style name="DatePicker.App.SmallComponent" parent="ShapeAppearance.Material3.SmallComponent">
+        <item name="android:textSize">32sp</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+    <style name="DatePicker.App.MediumComponent" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+
+    <style name="DatePicker.TextButton" parent="Theme.NQ">
+        <item name="android:textColor">@color/dark_blue</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_marginStart">0dp</item>
+    </style>
+
+</resources>

@@ -68,6 +68,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.NQ.ActionBar" />
         <activity
+            android:name=".DiscoScreenActivityCalendar"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.NQ.ActionBar"/>
+        <activity
             android:name=".EventScreenActivity"
             android:exported="false"
             android:screenOrientation="portrait"
@@ -97,7 +102,7 @@
             android:name=".profileActivities.ProfileActivityPayments"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.NQ.ActionBar"/>
+            android:theme="@style/Theme.NQ.ActionBar" />
         <activity
             android:name=".profileActivities.ProfileActivityHistory"
             android:exported="false"
@@ -107,12 +112,12 @@
             android:name=".profileActivities.ProfileActivityProblem"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.NQ.ActionBar"/>
+            android:theme="@style/Theme.NQ.ActionBar" />
         <activity
             android:name=".profileActivities.ProfileActivityHelp"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.NQ.ActionBar"/>
+            android:theme="@style/Theme.NQ.ActionBar" />
     </application>
 
 </manifest>

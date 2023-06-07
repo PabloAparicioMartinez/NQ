@@ -74,7 +74,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:background="@drawable/shape_border_rectangle" />
+                                android:background="@drawable/shape_border_rectangle_01" />
 
                         </FrameLayout>
 
@@ -498,7 +498,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:background="@drawable/shape_border_rectangle" />
+                            android:background="@drawable/shape_border_rectangle_01" />
 
                     </FrameLayout>
 
@@ -609,15 +609,12 @@
                     android:orientation="vertical">
 
                     <TextView
-                        style="@style/NQ.TextBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="14dp"
                         android:paddingBottom="14dp"
                         android:text="No quedan entradas para esta fiesta..."
-                        android:textColor="@color/black_01"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
+                        android:textSize="15dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 

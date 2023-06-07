@@ -43,7 +43,7 @@
             android:layout_marginEnd="84dp"
             android:layout_marginTop="12dp"
             android:maxLines="2"
-            android:text="Una manera sencilla de comprrar entradas de discotecas"
+            android:text="Una manera sencilla de comprar entradas de discotecas"
             android:textColor="@color/white"
             android:textSize="14sp"
             android:textStyle="bold"

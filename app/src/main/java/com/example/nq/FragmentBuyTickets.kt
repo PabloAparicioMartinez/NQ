@@ -47,7 +47,8 @@ class FragmentBuyTickets : Fragment(R.layout.fragment_buy_tickets), MenuProvider
     }
 
     override fun onItemClick(discoData: DiscosData) {
-        Intent(activity, DiscoScreenActivity::class.java).also {
+
+        Intent(activity, DiscoScreenActivityCalendar::class.java).also {
             it.putExtra("EXTRA_IMAGE", discoData.discoImage)
             it.putExtra("EXTRA_NAME", discoData.discoName)
             it.putExtra("EXTRA_LOCATION", discoData.discoLocation)

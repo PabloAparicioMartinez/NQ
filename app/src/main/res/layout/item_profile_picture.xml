@@ -9,7 +9,7 @@
     android:clickable="true"
     app:cardCornerRadius="75dp"
     app:cardElevation="8dp"
-    android:layout_margin="16dp">
+    android:layout_margin="16dp" >
 
     <FrameLayout
         android:layout_width="150dp"
@@ -22,11 +22,11 @@
             android:layout_gravity="center"
             tools:srcCompat="null" />
 
-        <View
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_gravity="center"
-            android:background="@drawable/shape_border_circle_02" />
+<!--        <View-->
+<!--            android:layout_width="150dp"-->
+<!--            android:layout_height="150dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:background="@drawable/shape_border_circle_02" />-->
 
     </FrameLayout>
 

@@ -21,9 +21,9 @@ class FragmentMyTickets : Fragment(R.layout.fragment_my_tickets) {
         }
 
         //BUTTONS
-        fragMyTickets_buyTicketsSignedInButton.setOnClickListener {
-            (activity as MainActivity).clickOnBuyTicketsMenuIcon()
-        }
+//        fragMyTickets_buyTicketsSignedInButton.setOnClickListener {
+//            (activity as MainActivity).clickOnBuyTicketsMenuIcon()
+//        }
 
         fragMyTickets_signInButton.setOnClickListener() {
             Intent(activity, SignInActivity::class.java).also {

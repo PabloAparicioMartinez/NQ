@@ -12,38 +12,40 @@
         android:id="@+id/fragMyTickets_signedInLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="64dp"
-        android:layout_marginEnd="64dp"
-        android:visibility="gone"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:visibility="visible"
         android:orientation="vertical"
         android:gravity="center">
 
-        <ImageView
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:src="@drawable/ic_ticket_no_01"
-            app:tint="@color/dark_grey_02"
-            android:alpha="0.75" />
+        <include layout="@layout/item_ticket" />
 
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Todavía no tienes ninguna entrada"
-            android:textAlignment="center"
-            android:textColor="@color/dark_grey_02" />
+<!--        <ImageView-->
+<!--            android:layout_width="120dp"-->
+<!--            android:layout_height="120dp"-->
+<!--            android:src="@drawable/ic_ticket_no_01"-->
+<!--            app:tint="@color/dark_grey_02"-->
+<!--            android:alpha="0.75" />-->
 
-        <Button
-            android:id="@+id/fragMyTickets_buyTicketsSignedInButton"
-            style="@style/NQ.Button.Full"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:padding="16dp"
-            android:text="COMPRAR ENTRADAS"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+<!--        <TextView-->
+<!--            android:id="@+id/textView6"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="24dp"-->
+<!--            android:text="Todavía no tienes ninguna entrada"-->
+<!--            android:textAlignment="center"-->
+<!--            android:textColor="@color/dark_grey_02" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/fragMyTickets_buyTicketsSignedInButton"-->
+<!--            style="@style/NQ.Button.Full"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:padding="16dp"-->
+<!--            android:text="COMPRAR ENTRADAS"-->
+<!--            android:textSize="14sp"-->
+<!--            android:textStyle="bold" />-->
 
     </LinearLayout>
 
@@ -55,7 +57,7 @@
         android:layout_marginStart="64dp"
         android:layout_marginEnd="64dp"
         android:orientation="vertical"
-        android:visibility="visible"
+        android:visibility="gone"
         android:gravity="center" >
 
         <ImageView
