@@ -3,36 +3,33 @@ package com.example.nq
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
-import androidx.core.content.ContextCompat
+import android.widget.ImageView
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.nq.recyclerViewDates.DatesAdapter
 import com.example.nq.recyclerViewDates.DatesData
-import com.example.nq.recyclerViewDates.DatesInterface
 import com.example.nq.recyclerViewDates.DatesRepository
 import com.example.nq.recyclerViewEvents.EventsAdapter
 import com.example.nq.recyclerViewEvents.EventsData
 import com.example.nq.recyclerViewEvents.EventsInterface
 import com.example.nq.recyclerViewEvents.EventsRepository
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.activity_disco_screen_calendar.*
+import kotlinx.android.synthetic.main.activity_disco_screen_calendar.discoScreen_DiscoName
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.util.*
 
-class DiscoScreenActivityCalendar : AppCompatActivity(), DatesInterface, EventsInterface {
+class DiscoScreenActivityCalendar : AppCompatActivity(), EventsInterface {
 
-    val datesAdapter = DatesAdapter(DatesRepository.dates, this)
     lateinit var eventsAdapter : EventsAdapter
     var selectedDatesList = mutableListOf<DatesData>()
     lateinit var discoName: String
 
+    var selectedDate: Long? = null
     var selectedDay = 0
     var selectedMonth = 0
     var selectedYear = 0
@@ -55,15 +52,19 @@ class DiscoScreenActivityCalendar : AppCompatActivity(), DatesInterface, EventsI
         // BUTTON FECHA
         discoScreenCalendar_calendar.setOnClickListener() {
 
+            if (selectedDate == null) selectedDate = MaterialDatePicker.todayInUtcMilliseconds()
+
             val datePicker =
                 MaterialDatePicker.Builder
                     .datePicker()
                     .setTitleText("Elige una fecha")
-                    .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
-                    .setTheme(R.style.ThemeOverlay_App_DatePicker)
+                    .setSelection(selectedDate)
                     .build()
 
             datePicker.addOnPositiveButtonClickListener { selection ->
+
+                selectedDate = selection
+
                 val calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
                 calendar.timeInMillis = selection
 
@@ -80,10 +81,6 @@ class DiscoScreenActivityCalendar : AppCompatActivity(), DatesInterface, EventsI
                 }
             }
 
-            datePicker.addOnNegativeButtonClickListener {
-                // Respond to negative button click.
-            }
-
             datePicker.show(supportFragmentManager, "Tag")
         }
 
@@ -98,9 +95,6 @@ class DiscoScreenActivityCalendar : AppCompatActivity(), DatesInterface, EventsI
             }
         }
 
-//        screenDiscoCalendar_datesRecyclerView.adapter = datesAdapter
-//        screenDiscoCalendar_datesRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-
         when (intent.getStringExtra("EXTRA_NAME")) {
             "BACK&STAGE" -> eventsAdapter = EventsAdapter(EventsRepository.backStageEvents, this)
             "FEVER" -> eventsAdapter = EventsAdapter(EventsRepository.feverEvents, this)
@@ -113,6 +107,10 @@ class DiscoScreenActivityCalendar : AppCompatActivity(), DatesInterface, EventsI
         lifecycleScope.launch {
             loadEventsInDateCalendar(selectedDatesList, true)
         }
+
+        discoScreenCalendar_linearLayout01.setOnClickListener() {
+            showLargeImage()
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -123,46 +121,6 @@ class DiscoScreenActivityCalendar : AppCompatActivity(), DatesInterface, EventsI
             }
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    override fun onItemClick(datesData: DatesData, linearLayout: LinearLayout, textViews: List<TextView>) {
-
-        if (datesData.clicked) {
-            linearLayout.setBackgroundResource(R.color.dark_blue)
-            for (i in textViews.indices) {
-                textViews[i].setTextColor(ContextCompat.getColor(this, R.color.white))
-            }
-        }
-        else {
-            linearLayout.setBackgroundResource(R.color.white)
-            for (i in textViews.indices) {
-                textViews[i].setTextColor(ContextCompat.getColor(this, R.color.black_01))
-            }
-        }
-
-        selectedDatesList = DatesRepository.ReturnSelectedDates()
-        lifecycleScope.launch {
-            loadEventsInDate(selectedDatesList)
-        }
-    }
-
-    private suspend fun loadEventsInDate(datesList: List<DatesData>) {
-
-        datesAdapter.EnableClicking(false)
-
-        setLayoutsVisibilities(listOf(View.VISIBLE, View.GONE, View.GONE))
-
-        delay(500)
-
-        val filteredEvents: List<EventsData>
-        if (datesList.isEmpty()) filteredEvents = EventsRepository.ReturnEvents(discoName, DatesRepository.dates)
-        else filteredEvents = EventsRepository.ReturnEvents(discoName, datesList)
-        eventsAdapter.setFilteredList(filteredEvents)
-
-        if (filteredEvents.isNotEmpty()) setLayoutsVisibilities(listOf(View.GONE, View.VISIBLE, View.GONE))
-        else setLayoutsVisibilities(listOf(View.GONE, View.VISIBLE, View.VISIBLE))
-
-        datesAdapter.EnableClicking(true)
     }
 
     private suspend fun loadEventsInDateCalendar(datesList: List<DatesData>, isAllDates: Boolean) {
@@ -201,5 +159,18 @@ class DiscoScreenActivityCalendar : AppCompatActivity(), DatesInterface, EventsI
             it.putExtra("EXTRA_AVAILABILITY", eventData.eventAvailability)
             startActivity(it)
         }
+    }
+
+    fun showLargeImage() {
+
+        val builder = MaterialAlertDialogBuilder(this, R.style.NQ_AlertDialogs)
+        val customLayout = LayoutInflater.from(this).inflate(R.layout.item_image_disco, null)
+
+        val discoImage = customLayout.findViewById<ImageView>((R.id.itemImageDisco_image))
+        discoImage.setImageResource(intent.getIntExtra("EXTRA_IMAGE", -1))
+
+        builder.setView(customLayout)
+        val alertDialog = builder.create()
+        alertDialog.show()
     }
 }

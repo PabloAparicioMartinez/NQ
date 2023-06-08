@@ -8,10 +8,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
+import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.size
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.activity_event_screen.*
 import kotlinx.android.synthetic.main.item_ticket_info_name_yes.view.*
 import kotlinx.android.synthetic.main.item_ticket_info_name_no.view.*
@@ -48,7 +50,10 @@ class EventScreenActivity : AppCompatActivity() {
         extraTicketsInflater = LayoutInflater.from(this)
         extraTicketLayoutToAdd = extraTicketsInflater.inflate(R.layout.item_ticket_info_name_no, null)
 
-//        eventScreen_ticketName.text = FirebaseRepository.userName
+        // BUTTON large image
+        eventScreen_discoLayout.setOnClickListener() {
+            showLargeImage()
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -177,5 +182,18 @@ class EventScreenActivity : AppCompatActivity() {
         } else {
             //
         }
+    }
+
+    fun showLargeImage() {
+
+        val builder = MaterialAlertDialogBuilder(this, R.style.NQ_AlertDialogs)
+        val customLayout = LayoutInflater.from(this).inflate(R.layout.item_image_event, null)
+
+        val eventImage = customLayout.findViewById<ImageView>((R.id.itemImageEvent_image))
+        eventImage.setImageResource(intent.getIntExtra("EXTRA_IMAGE", -1))
+
+        builder.setView(customLayout)
+        val alertDialog = builder.create()
+        alertDialog.show()
     }
 }

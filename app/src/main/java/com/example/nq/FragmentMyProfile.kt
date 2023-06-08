@@ -117,7 +117,7 @@ class FragmentMyProfile : Fragment(R.layout.fragment_my_profile) {
 
     fun showSignOutAlertDialong() {
 
-        val builder = MaterialAlertDialogBuilder(requireContext(), R.style.NQ_AlertDialog_TicketCard)
+        val builder = MaterialAlertDialogBuilder(requireContext(), R.style.NQ_AlertDialogs)
 
         val title = TextView(requireContext())
         title.text = "Cerrar sesión"

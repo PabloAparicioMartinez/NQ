@@ -16,7 +16,7 @@ object EventsRepository {
             10, "Junio",
             "SÁBADO, 10 de Junio de 2023", R.drawable.png_event_02,
             "EUPHORIA  +24", "Comercial & Reggeaton",
-            "14 €  |  Incluye 1 cubata", "AGOTADAS",
+            "14 €  |  Incluye 1 cubata", "DISPONIBLES",
         )
     )
 

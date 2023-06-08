@@ -3,10 +3,13 @@ package com.example.nq
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,6 +21,7 @@ import com.example.nq.recyclerViewEvents.EventsAdapter
 import com.example.nq.recyclerViewEvents.EventsData
 import com.example.nq.recyclerViewEvents.EventsInterface
 import com.example.nq.recyclerViewEvents.EventsRepository
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.activity_disco_screen.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

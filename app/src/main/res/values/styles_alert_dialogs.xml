@@ -5,7 +5,7 @@
         <item name="android:textSize">24sp</item>
     </style>
 
-    <style name="NQ.AlertDialog.TicketCard" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+    <style name="NQ.AlertDialogs" parent="ThemeOverlay.Material3.MaterialAlertDialog">
         <item name="colorPrimary">@color/white</item>
         <item name="colorSecondary">@color/white</item>
         <item name="colorSurface">@color/white</item>

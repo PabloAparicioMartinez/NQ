@@ -20,6 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:clickable="true"
         android:paddingStart="24dp"
         android:paddingTop="14dp"
         android:paddingEnd="24dp"
@@ -69,15 +70,6 @@
                 android:textColor="@color/black_01"
                 android:textSize="22sp"
                 android:textStyle="" />
-
-            <!--            <TextView-->
-            <!--                android:id="@+id/discoScreen_discoLocation"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginTop="0dp"-->
-            <!--                android:text="Ubicación"-->
-            <!--                android:textColor="@color/dark_grey_01"-->
-            <!--                android:textSize="12sp" />-->
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -137,7 +129,7 @@
             android:layout_marginStart="12dp"
             android:paddingTop="12dp"
             android:paddingBottom="0dp"
-            android:text="Elige una fecha:"
+            android:text="Fiestas disponibles:"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -198,14 +190,6 @@
                 android:gravity="center"
                 android:layout_gravity="center">
 
-                <!--                        <ImageView-->
-                <!--                            android:layout_width="18dp"-->
-                <!--                            android:layout_height="18dp"-->
-                <!--                            android:layout_gravity="center"-->
-                <!--                            android:layout_marginStart="6dp"-->
-                <!--                            android:src="@drawable/ic_error_01"-->
-                <!--                            app:tint="@color/dark_grey_01" />-->
-
                 <TextView
                     android:id="@+id/discoScreenCancer_showAll"
                     android:layout_width="wrap_content"
@@ -217,7 +201,7 @@
                     android:layout_marginEnd="6dp"
                     android:fontFamily="@font/roboto_black"
                     android:text="@string/borrar_filtro"
-                    android:textSize="14sp" />
+                    android:textSize="13sp" />
 
             </LinearLayout>
 

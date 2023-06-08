@@ -12,9 +12,8 @@
         <item name="shapeAppearanceSmallComponent">@style/DatePicker.App.SmallComponent</item>
         <item name="shapeAppearanceMediumComponent">@style/DatePicker.App.MediumComponent</item>
 
-        <item name="buttonBarPositiveButtonStyle">@style/DatePicker.TextButton</item>
-        <item name="buttonBarNegativeButtonStyle">@style/DatePicker.TextButton</item>
-
+        <item name="buttonBarPositiveButtonStyle">@style/DatePicker.PositiveButton</item>
+        <item name="buttonBarNegativeButtonStyle">@style/DatePicker.NegativeButton</item>
     </style>
 
     <style name="DatePicker.HeaderColor" parent="Widget.MaterialComponents.MaterialCalendar.HeaderLayout">
@@ -34,7 +33,6 @@
     <style name="DatePicker.DaySelectedStyle" parent="Widget.Material3.MaterialCalendar.Day.Selected">
         <item name="itemFillColor">@color/dark_blue</item>
         <item name="itemTextColor">@color/white</item>
-        <item name="android:textSize">32dp</item>
     </style>
 
     <style name="DatePicker.App.SmallComponent" parent="ShapeAppearance.Material3.SmallComponent">
@@ -46,12 +44,22 @@
         <item name="cornerSize">8dp</item>
     </style>
 
-    <style name="DatePicker.TextButton" parent="Theme.NQ">
-        <item name="android:textColor">@color/dark_blue</item>
-        <item name="android:fontFamily">@font/roboto_regular</item>
-        <item name="android:textStyle">bold</item>
+    <style name="DatePicker.PositiveButton" parent="Theme.NQ">
+        <item name="android:backgroundTint">@color/dark_blue</item>
+        <item name="cornerRadius">6dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">@font/roboto_black</item>
         <item name="android:textSize">16sp</item>
-        <item name="android:layout_marginStart">0dp</item>
+        <item name="android:paddingStart">14dp</item>
+        <item name="android:paddingEnd">14dp</item>
+        <item name="android:paddingTop">6dp</item>
+        <item name="android:paddingBottom">6dp</item>
+        <item name="android:layout_marginBottom">6dp</item>
+        <item name="android:layout_marginEnd">6dp</item>
+    </style>
+
+    <style name="DatePicker.NegativeButton" parent="Theme.NQ">
+        <item name="android:visibility">gone</item>
     </style>
 
 </resources>

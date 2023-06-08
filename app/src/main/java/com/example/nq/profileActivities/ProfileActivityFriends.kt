@@ -72,7 +72,7 @@ class ProfileActivityFriends : AppCompatActivity(), FriendsInterface {
 
     fun showAddFriendAlertDialong() {
 
-        val builder = MaterialAlertDialogBuilder(this, R.style.NQ_AlertDialog_TicketCard)
+        val builder = MaterialAlertDialogBuilder(this, R.style.NQ_AlertDialogs)
         val customLayout = LayoutInflater.from(this).inflate(R.layout.item_add_friend, null)
 
         val title = TextView(this)
