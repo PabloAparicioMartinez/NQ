@@ -3,93 +3,112 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@color/white">
+        android:clickable="true"
+        android:background="@drawable/ripple_button_grey"
+        android:id="@+id/itemTicketNoInfo_button">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="1">
+            android:orientation="horizontal"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_weight="1"
                 android:orientation="vertical"
-                android:paddingStart="24dp"
-                android:paddingTop="12dp"
-                android:paddingEnd="24dp"
-                android:paddingBottom="12dp">
-
-                <TextView
-                    android:id="@+id/itemTicketNoInfo_text"
-                    style="@style/NQ.TextBlack"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:text="Entrada X"
-                    android:textColor="@color/black_01"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <com.google.android.material.divider.MaterialDivider
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                android:layout_weight="1">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_marginEnd="6dp"
+                    android:paddingEnd="32dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/itemTicketNoInfo_text"
+                        style="@style/NQ.TextBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="Para: "
-                        android:textSize="14sp" />
+                        android:layout_marginBottom="4dp"
+                        android:text="Entrada X"
+                        android:textColor="@color/black_01"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/itemTicketNoInfo_name"
+                    <com.google.android.material.divider.MaterialDivider
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:ellipsize="end"
-                        android:maxLines="1"
-                        android:text="Sin definir..."
-                        android:textAllCaps="true"
-                        android:textColor="@color/light_grey"
-                        android:textSize="14sp"
-                        android:textStyle="italic"/>
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Para: "
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/itemTicketNoInfo_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text=""
+                            android:textAllCaps="true"
+                            android:textColor="@color/light_grey"
+                            android:textSize="14sp"
+                            android:textStyle="italic"/>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
             </LinearLayout>
 
-        </LinearLayout>
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"
+                android:layout_marginEnd="0dp"
+                android:src="@drawable/ic_arrow_android"
+                app:tint="@color/dark_blue" />
 
-        <Button
-            android:id="@+id/itemTicketNoInfo_button"
-            style="@style/NQ.Button.Square"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="0"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
-            android:text="COMPRAR PARA&#10;UN AMIGO"
-            android:lines="2"
-            android:ellipsize="end"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="12sp" />
+            <!--        <Button-->
+            <!--            android:id="@+id/itemTicketNoInfo_button"-->
+            <!--            style="@style/NQ.Button.Square"-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_height="match_parent"-->
+            <!--            android:layout_weight="0"-->
+            <!--            android:paddingStart="12dp"-->
+            <!--            android:paddingEnd="12dp"-->
+            <!--            android:text="COMPRAR PARA&#10;UN AMIGO"-->
+            <!--            android:lines="2"-->
+            <!--            android:ellipsize="end"-->
+            <!--            android:textAlignment="center"-->
+            <!--            android:textColor="@color/white"-->
+            <!--            android:textSize="12sp" />-->
+
+        </LinearLayout>
 
     </LinearLayout>
 

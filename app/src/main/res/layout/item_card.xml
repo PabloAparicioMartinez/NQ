@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_border_rectangle_04"
+    android:layout_marginBottom="6dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingStart="24dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="16dp">
+
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_wallet_02"
+            android:alpha="0.75" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="22dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/itemCard_cardNumber"
+                style="@style/NQ.TextBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="0123 4567 8987 6543"
+                android:textAllCaps="true"
+                android:layout_marginBottom="2dp"
+                android:textAlignment="viewStart"
+                android:textColor="@color/black_01"
+                android:textSize="15sp"
+                android:textStyle="" />
+
+            <TextView
+                android:id="@+id/itemCard_cardExpiration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:text="Expira el 12/24"
+                android:textColor="@color/dark_grey_01"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/itemCard_cardName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:textAllCaps="true"
+                android:text="CARL CHIFFIN CHIFFS"
+                android:textColor="@color/black_01"
+                android:textStyle="bold"
+                android:textSize="11sp" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/itemCard_removeButton"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:clickable="true"
+            android:src="@drawable/ic_error_01"
+            app:tint="@color/grey_default" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -19,11 +19,11 @@
             android:scaleType="centerInside"
             app:srcCompat="@drawable/png_event_01" />
 
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@drawable/shape_border_rectangle_01" />
+<!--        <View-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:background="@drawable/shape_border_rectangle_01" />-->
 
     </FrameLayout>
 

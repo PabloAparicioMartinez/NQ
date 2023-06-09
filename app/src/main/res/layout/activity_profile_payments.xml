@@ -2,8 +2,306 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/paymentsLayout"
+    android:clickable="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     tools:context=".profileActivities.ProfileActivityPayments">
+
+<!--INTRO layout-->
+    <LinearLayout
+        android:id="@+id/profilePayments_introLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="64dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:alpha="0.75"
+            android:src="@drawable/ic_wallet_02"
+            app:tint="@color/dark_grey_02" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:text="Guarda los datos de tu tarjeta para realizar la compra de tus entradas más fácilmente"
+            android:textAlignment="center"
+            android:textColor="@color/dark_grey_02" />
+
+        <Button
+            android:id="@+id/profilePayments_introButton"
+            style="@style/NQ.Button.Full"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:padding="16dp"
+            android:text="GUARDAR UNA TARJETA"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+<!--ADD CARD layout-->
+    <LinearLayout
+        android:id="@+id/profilePayments_addCardLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:gravity="top"
+        android:orientation="vertical"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    <TextView
+        style="@style/NQ.TextBlack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Guardar tarjeta:" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/profilePayments_cardNumberLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:hint="Número de tarjeta"
+            app:boxStrokeColor="@color/dark_blue"
+            app:boxStrokeErrorColor="@color/red_01"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/grey_default">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/profilePayments_cardNumberText"
+                style="@style/NQ.TextInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLength="16"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/profilePayments_cardMonthLayout"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="6dp"
+                android:hint="MM"
+                app:boxStrokeColor="@color/dark_blue"
+                app:boxStrokeErrorColor="@color/red_01"
+                app:endIconMode="clear_text"
+                app:endIconTint="@color/grey_default">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/profilePayments_cardMonthText"
+                    style="@style/NQ.TextInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:maxLength="2"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="/"
+                android:textSize="28dp"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/grey_default"
+                android:layout_gravity="center"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/profilePayments_cardYearLayout"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="6dp"
+                android:layout_marginStart="6dp"
+                android:hint="AA"
+                app:boxStrokeColor="@color/dark_blue"
+                app:boxStrokeErrorColor="@color/red_01"
+                app:endIconMode="clear_text"
+                app:endIconTint="@color/grey_default">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/profilePayments_cardYearText"
+                    style="@style/NQ.TextInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:maxLength="2"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/profilePayments_cardCVVLayout"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:layout_marginStart="6dp"
+                android:hint="CVV"
+                app:boxStrokeColor="@color/dark_blue"
+                app:boxStrokeErrorColor="@color/red_01"
+                app:endIconMode="clear_text"
+                app:endIconTint="@color/grey_default">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/profilePayments_cardCVVText"
+                    style="@style/NQ.TextInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberPassword"
+                    android:maxLength="3"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/profilePayments_cardNameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:hint="Nombre del titular"
+            app:boxStrokeColor="@color/dark_blue"
+            app:boxStrokeErrorColor="@color/red_01"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/grey_default">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/profilePayments_cardNameText"
+                style="@style/NQ.TextInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/profilePayments_addCardButton"
+            style="@style/NQ.Button.Full"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:padding="16dp"
+            android:text="GUARDAR"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+<!--MY CARDS layout-->
+    <LinearLayout
+        android:id="@+id/profilePayments_myCardsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:gravity="top"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            style="@style/NQ.TextBlack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mis tarjetas:" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/profilePayments_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"/>
+
+        <Button
+            android:id="@+id/profilePayments_addOtherCardButton"
+            style="@style/NQ.Button.Full"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:padding="16dp"
+            android:text="GUARDAR OTRA TARJETA"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+<!--LOADING layout-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profilePayments_loadingLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:gravity="center"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.12"
+            android:background="#000000" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/view2"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:theme="@style/Theme.NQ.Progressbar"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -188,9 +188,8 @@ class EventScreenActivity : AppCompatActivity() {
 
         val builder = MaterialAlertDialogBuilder(this, R.style.NQ_AlertDialogs)
         val customLayout = LayoutInflater.from(this).inflate(R.layout.item_image_event, null)
-
         val eventImage = customLayout.findViewById<ImageView>((R.id.itemImageEvent_image))
-        eventImage.setImageResource(intent.getIntExtra("EXTRA_IMAGE", -1))
+        eventImage?.setImageResource(intent.getIntExtra("EXTRA_IMAGE", -1))
 
         builder.setView(customLayout)
         val alertDialog = builder.create()

@@ -200,7 +200,7 @@
                     android:layout_height="32dp"
                     android:layout_gravity="center"
                     android:layout_marginStart="6dp"
-                    android:src="@drawable/ic_wallet_01" />
+                    android:src="@drawable/ic_wallet_02" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -226,7 +226,7 @@
                         android:layout_height="25dp"
                         android:layout_marginTop="0dp"
                         android:paddingEnd="16dp"
-                        android:text="Configura el método de pago que utilizas para comprar las entradas"
+                        android:text="Guarda los datos de tu tarjeta para realizar la compra de las entradas más facilmente"
                         android:textColor="@color/dark_grey_01"
                         android:textSize="10sp" />
 
