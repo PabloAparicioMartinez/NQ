@@ -200,7 +200,7 @@
                     android:layout_height="32dp"
                     android:layout_gravity="center"
                     android:layout_marginStart="6dp"
-                    android:src="@drawable/ic_wallet_02" />
+                    android:src="@drawable/ic_wallet_01" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -314,65 +314,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-
-            <LinearLayout
-                android:id="@+id/fragMyProfile_problemButton"
-                style="@style/NQ.ProfileButtonStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="6dp"
-                    android:src="@drawable/ic_problem_01" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="24dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        style="@style/NQ.TextBlack"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="2dp"
-                        android:text="Reportar un problema"
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/black_01"
-                        android:textSize="18sp"
-                        android:textStyle="" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="25dp"
-                        android:layout_marginTop="0dp"
-                        android:paddingEnd="16dp"
-                        android:text="¿Tienes algún problema? ¡Nosotros te ayudamos!"
-                        android:textColor="@color/dark_grey_01"
-                        android:textSize="10sp" />
-
-                </LinearLayout>
-
-                <ImageView
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="0dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_arrow_android"
-                    app:tint="@color/dark_blue" />
-
-            </LinearLayout>
-
-            <com.google.android.material.divider.MaterialDivider
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
             <LinearLayout
                 android:id="@+id/fragMyProfile_helpButton"
                 style="@style/NQ.ProfileButtonStyle"
@@ -411,6 +352,64 @@
                         android:layout_marginTop="0dp"
                         android:paddingEnd="16dp"
                         android:text="¿Tienes alguna pregunta? Aquí intentamos respondértela"
+                        android:textColor="@color/dark_grey_01"
+                        android:textSize="10sp" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="0dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_arrow_android"
+                    app:tint="@color/dark_blue" />
+
+            </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:id="@+id/fragMyProfile_problemButton"
+                style="@style/NQ.ProfileButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="6dp"
+                    android:src="@drawable/ic_document_01" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="24dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/NQ.TextBlack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="2dp"
+                        android:text="Documentos legales"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black_01"
+                        android:textSize="18sp"
+                        android:textStyle="" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="0dp"
+                        android:paddingEnd="16dp"
+                        android:text="Consulta los documentos legales de la aplicación relativos a la confidencialidad y otros"
                         android:textColor="@color/dark_grey_01"
                         android:textSize="10sp" />
 

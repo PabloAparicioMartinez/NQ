@@ -44,32 +44,32 @@ class ProfileActivityPayments : AppCompatActivity() {
         // BUTTON save card
         profilePayments_addCardButton.setOnClickListener() {
 
-            val cardNumber = profilePayments_cardNumberText.text.toString().toLong()
-            val cardMonth = profilePayments_cardMonthText.text.toString().toInt()
-            val cardYear = profilePayments_cardYearText.text.toString().toInt()
-            val cardCVV = profilePayments_cardCVVText.text.toString().toInt()
-            val cardName = profilePayments_cardNameText.text.toString()
-
-            if (profilePayments_cardNumberText.text?.isEmpty() == true) {
-                profilePayments_cardNumberLayout.error = "Introduce el número"
+            if (profilePayments_cardNumberText.text?.isEmpty() == true || profilePayments_cardNumberText.text?.length != 16) {
+                profilePayments_cardNumberLayout.error = "Introduce el número de la tarjeta"
                 return@setOnClickListener
             }
-            if (profilePayments_cardMonthText.text?.isEmpty() == true) {
-                profilePayments_cardMonthLayout.error = "Introduce la fecha de expiración"
+            if (profilePayments_cardMonthText.text?.isEmpty() == true  || profilePayments_cardMonthText.text?.length != 2) {
+                profilePayments_cardMonthLayout.error = "Formato incorrecto"
                 return@setOnClickListener
             }
-            if (profilePayments_cardYearText.text?.isEmpty() == true) {
-                profilePayments_cardYearLayout.error = "Introduce la fecha de expiración"
+            if (profilePayments_cardYearText.text?.isEmpty() == true  || profilePayments_cardYearText.text?.length != 2) {
+                profilePayments_cardYearLayout.error = "Formato incorrecto"
                 return@setOnClickListener
             }
-            if (profilePayments_cardCVVText.text?.isEmpty() == true) {
-                profilePayments_cardCVVLayout.error = "Introduce el número de seguridad"
+            if (profilePayments_cardCVVText.text?.isEmpty() == true   || profilePayments_cardYearText.text?.length != 2) {
+                profilePayments_cardCVVLayout.error = "Formato incorrecto"
                 return@setOnClickListener
             }
             if (profilePayments_cardNameText.text?.isEmpty() == true) {
                 profilePayments_cardNameLayout.error = "Introduce el nombre del titular"
                 return@setOnClickListener
             }
+
+            val cardNumber = profilePayments_cardNumberText.text.toString().toLong()
+            val cardMonth = profilePayments_cardMonthText.text.toString().toInt()
+            val cardYear = profilePayments_cardYearText.text.toString().toInt()
+            val cardCVV = profilePayments_cardCVVText.text.toString().toInt()
+            val cardName = profilePayments_cardNameText.text.toString()
 
             val cardData = CardsData(cardNumber, cardMonth, cardYear, cardCVV, cardName)
 

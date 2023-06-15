@@ -62,7 +62,7 @@ class FragmentMyProfile : Fragment(R.layout.fragment_my_profile) {
         }
 
         fragMyProfile_problemButton.setOnClickListener() {
-            Intent(activity, ProfileActivityProblem::class.java).also {
+            Intent(activity, ProfileActivityLegal::class.java).also {
                 startActivity(it)
             }
         }

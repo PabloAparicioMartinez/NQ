@@ -16,6 +16,7 @@
     <string name="elige_una_imagen_de_la_galería"><u>Elige una imagen de la galería</u></string>
     <string name="entrar_sin_iniciar_sesión"><u>Entrar sin iniciar sesión</u></string>
     <string name="borrar_filtro"><u>Mostrar todas las fiestas</u></string>
+    <string name="contacta_con_nosotros_en_nuestra_web"><u>Contacta con nosotros en nuestra web</u></string>
 
     <string name="mtrl_picker_confirm" description="Button text to indicate that the widget will save the user's selection [CHAR_LIMIT=16]">OK</string>
     <string name="mtrl_picker_cancel" description="Button text to indicate that the widget will ignore the user's selection [CHAR_LIMIT=16]" translatable="false">...</string>

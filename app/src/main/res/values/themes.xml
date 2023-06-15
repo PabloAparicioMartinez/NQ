@@ -74,7 +74,7 @@
     </style>
 
     <style name="NQ.SplashScreen" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash_logo_04</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash_logo_05</item>
         <item name="windowSplashScreenBackground">@color/white</item>
         <item name="postSplashScreenTheme">@style/Theme.NQ.NoActionBar</item>
     </style>
