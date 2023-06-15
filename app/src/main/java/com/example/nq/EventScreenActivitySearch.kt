@@ -8,21 +8,30 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.nq.firebase.FirebaseFriendsRepository
 import com.example.nq.firebase.FirebaseUserData
-import com.example.nq.recyclerViewFriends.FriendsAdapter
-import com.example.nq.recyclerViewFriends.FriendsInterface
+import com.example.nq.recyclerViewFriendsList.FriendsListAdapter
+import com.example.nq.recyclerViewFriendsList.FriendsListInterface
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.activity_event_screen_search.*
+import kotlinx.android.synthetic.main.item_ticket_for_friend.*
+import kotlinx.android.synthetic.main.item_ticket_for_friend.view.*
 
-class EventScreenActivitySearch : AppCompatActivity(), FriendsInterface {
+class EventScreenActivitySearch : AppCompatActivity(), FriendsListInterface{
 
-    private val friendsAdapter = FriendsAdapter(FirebaseFriendsRepository.userFriends, this)
+    private val friendsAdapter = FriendsListAdapter(FirebaseFriendsRepository.userFriends, this)
+
+    private var position = -1
+    private var friendsEmailsList: ArrayList<String> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_event_screen_search)
+
+        position = intent.getIntExtra("POSITION", -1)
+        friendsEmailsList = intent.getStringArrayListExtra("EMAIL_LIST") as ArrayList<String>
 
         val actionBar = supportActionBar
         if (actionBar != null) {
@@ -80,10 +89,22 @@ class EventScreenActivitySearch : AppCompatActivity(), FriendsInterface {
     }
 
     override fun onItemClick(usersData: FirebaseUserData) {
-        val intent = Intent()
-        intent.putExtra("receivedData", usersData.name)
-        setResult(Activity.RESULT_OK, intent)
-        finish()
+
+        if (friendsEmailsList != null) {
+            val isInList = friendsEmailsList.contains(usersData.email)
+            // Si la lista de emails ya lo contiene, no te deja añadir el amigo
+            if (isInList) {
+                Toast.makeText(this@EventScreenActivitySearch, "¡Este amigo ya está en tu lista!\nSelecciona a otro amigo", Toast.LENGTH_SHORT).show()
+            } else {
+                val intent = Intent()
+                intent.putExtra("POSITION_BACK", position)
+                intent.putExtra("USER_NAME", usersData.name)
+                intent.putExtra("USER_SURNAMES", usersData.surnames)
+                intent.putExtra("USER_EMAIL", usersData.email)
+                setResult(Activity.RESULT_OK, intent)
+                finish()
+            }
+        }
     }
 
 }

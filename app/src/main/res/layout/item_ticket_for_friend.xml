@@ -29,17 +29,18 @@
                 android:paddingBottom="12dp">
 
                 <TextView
-                    android:id="@+id/itemTicketNoInfo_text"
+                    android:id="@+id/itemTicketInfo_Number"
                     style="@style/NQ.TextBlack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
-                    android:text="Entrada X"
+                    android:text="Entrada"
                     android:textColor="@color/black_01"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:visibility="visible" />
 
                 <com.google.android.material.divider.MaterialDivider
                     android:layout_width="match_parent"
@@ -58,7 +59,7 @@
                         android:textSize="14sp" />
 
                     <TextView
-                        android:id="@+id/itemTicketNoInfo_name"
+                        android:id="@+id/itemTicketNoInfo_Name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
@@ -68,7 +69,22 @@
                         android:textAllCaps="true"
                         android:textColor="@color/light_grey"
                         android:textSize="14sp"
-                        android:textStyle="italic"/>
+                        android:textStyle="italic"
+                        android:visibility="visible"/>
+
+                    <TextView
+                        android:id="@+id/itemTicketYesInfo_Name"
+                        style="@style/NQ.TextBlack"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="Nombre"
+                        android:textAllCaps="true"
+                        android:textColor="@color/dark_blue"
+                        android:textSize="14sp"
+                        android:visibility="gone"/>
 
                 </LinearLayout>
 
@@ -77,19 +93,36 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/itemTicketNoInfo_button"
-            style="@style/NQ.Button.Square"
+            android:id="@+id/itemTicketComprarParaUnAmigo_button"
+            style="@style/NQ.Button.Round"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="0"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
+            android:layout_marginEnd="8dp"
             android:text="COMPRAR PARA&#10;UN AMIGO"
             android:lines="2"
             android:ellipsize="end"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:visibility="visible"/>
+
+        <Button
+            android:id="@+id/itemTicketEliminate_button"
+            style="@style/NQ.Button.Round"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="0"
+            android:text="ELIMINAR"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:visibility="gone"/>
 
     </LinearLayout>
 

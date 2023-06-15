@@ -29,7 +29,7 @@
                 android:paddingBottom="12dp">
 
                 <TextView
-                    android:id="@+id/itemTicketYesInfo_text"
+                    android:id="@+id/itemTicketYesInfo_text_old"
                     style="@style/NQ.TextBlack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
                         android:textSize="14sp" />
 
                     <TextView
-                        android:id="@+id/itemTicketYesInfo_name"
+                        android:id="@+id/itemTicketYesInfo_name_old"
                         style="@style/NQ.TextBlack"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -77,14 +77,14 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/itemTicketYesInfo_button"
+            android:id="@+id/itemTicketEliminate_button_old"
             style="@style/NQ.Button.Square"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
             android:layout_weight="0"
-            android:text="CAMBIAR"
+            android:text="ELIMINAR"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="12sp" />

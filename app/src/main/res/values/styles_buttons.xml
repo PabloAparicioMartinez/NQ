@@ -37,4 +37,10 @@
         <item name="cornerRadius">0dp</item>
     </style>
 
+    <style name="NQ.Button.Round" parent="Widget.Material3.Button.Icon">
+        <item name="fontFamily">@font/roboto_black</item>
+        <item name="cornerFamily">cut</item>
+        <item name="cornerRadius">16dp</item>
+    </style>
+
 </resources>

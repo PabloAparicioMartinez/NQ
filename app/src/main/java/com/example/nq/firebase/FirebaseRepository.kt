@@ -7,7 +7,7 @@ object FirebaseRepository {
 
     var userName = "NOMBRE"
     var userSurnames = "APELLIDOS"
-    var userImage = Uri.parse("android.resource://com.example.nq/${R.drawable.png_boy_01}")
+    var userImage: Uri = Uri.parse("android.resource://com.example.nq/${R.drawable.png_boy_01}")
     var userEmail = "EMAIL"
     var userFriendEmails = mutableListOf<String>()
 

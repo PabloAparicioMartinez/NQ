@@ -16,7 +16,8 @@ import com.example.nq.R
 import com.example.nq.firebase.FirebaseFriendsRepository
 import com.example.nq.firebase.FirebaseRepository
 import com.example.nq.firebase.FirebaseUserData
-import com.example.nq.recyclerViewFriends.*
+import com.example.nq.recyclerViewFriendsList.*
+import com.example.nq.recyclerViewFriendsTickets.FriendsTicketsData
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -29,10 +30,12 @@ import kotlinx.android.synthetic.main.activity_profile_friends.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import java.text.FieldPosition
 
-class ProfileActivityFriends : AppCompatActivity(), FriendsInterface {
+class ProfileActivityFriends : AppCompatActivity(), FriendsListProfileInterface {
 
-    private val friendsAdapter = FriendsAdapter(FirebaseFriendsRepository.userFriends, this)
+    private val friendsListProfileAdapter = FirebaseFriendsRepository.userFriends
+    private val friendsProfileAdapter = FriendsListProfileAdapter(friendsListProfileAdapter, this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,7 +74,7 @@ class ProfileActivityFriends : AppCompatActivity(), FriendsInterface {
             profileFriends_yesFriendsLayout.visibility = View.GONE
 
         } else {
-            profileFriends_recyclerView.adapter = friendsAdapter
+            profileFriends_recyclerView.adapter = friendsProfileAdapter
             profileFriends_recyclerView.layoutManager = LinearLayoutManager(this)
 
             profileFriends_noFriendsLayout.visibility = View.GONE
@@ -167,6 +170,7 @@ class ProfileActivityFriends : AppCompatActivity(), FriendsInterface {
 
         val userEmail = FirebaseRepository.userEmail
 
+        // Actualizar Firebase
         Firebase.firestore
         .collection("UserData").document(userEmail)
         .collection("UserInfo").document("Data")
@@ -182,8 +186,48 @@ class ProfileActivityFriends : AppCompatActivity(), FriendsInterface {
             ?.friendEmails
 
         if (emailList != null) {
+
+            // Actualizar el repositorio
             FirebaseFriendsRepository.fetchFriendsData(emailList)
+
+            // Actualizar la vista
+            friendsProfileAdapter.notifyDataSetChanged()
+
             Toast.makeText(this, "¡Amigo agregado a tu lista con éxito!", Toast.LENGTH_SHORT).show()
+        }
+
+        else Toast.makeText(this, "¡Algo ha salido mal! Por favor, vuelve a intentarlo", Toast.LENGTH_SHORT).show()
+
+    }
+
+    private suspend fun deleteFriend(deleteEmail: String) {
+
+        val userEmail = FirebaseRepository.userEmail
+
+        // Actualizar Firebase
+        Firebase.firestore
+            .collection("UserData").document(userEmail)
+            .collection("UserInfo").document("Data")
+            .update("friendEmails", FieldValue.arrayRemove(deleteEmail))
+            .await()
+
+        val emailList = Firebase.firestore
+            .collection("UserData").document(userEmail)
+            .collection("UserInfo").document("Data")
+            .get()
+            .await()
+            .toObject<FirebaseUserData>()
+            ?.friendEmails
+
+        if (emailList != null) {
+
+            // Actualizar el repositorio
+            FirebaseFriendsRepository.fetchFriendsData(emailList)
+
+            // Actualizar la vista
+            friendsProfileAdapter.notifyDataSetChanged()
+
+            Toast.makeText(this, "¡Amigo eliminado!", Toast.LENGTH_SHORT).show()
         }
 
         else Toast.makeText(this, "¡Algo ha salido mal! Por favor, vuelve a intentarlo", Toast.LENGTH_SHORT).show()
@@ -199,7 +243,42 @@ class ProfileActivityFriends : AppCompatActivity(), FriendsInterface {
         return email.matches(Regex(pattern))
     }
 
-    override fun onItemClick(usersData: FirebaseUserData) {
-        Toast.makeText(this, "¡Clicked!", Toast.LENGTH_SHORT).show()
+    override fun onDeleteClick(position: Int) {
+
+        val clickedFriend = friendsListProfileAdapter[position]
+        val deleteEmail = clickedFriend.email
+
+        val builder = MaterialAlertDialogBuilder(this, R.style.NQ_AlertDialog_TicketCard)
+
+        val title = TextView(this)
+        title.text = "Eliminar amigo"
+        title.setTextAppearance(R.style.NQ_AlertDialog_Title)
+        title.setPadding(64, 48, 0, 0)
+        builder.setCustomTitle(title)
+        builder.setMessage("¿Estás seguro de que deseas eliminar a esta persona de tu lista de amigos?")
+
+        val alertDialog = builder.create()
+
+        alertDialog.setOnShowListener { dialog ->
+            val positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+
+            positiveButton.setOnClickListener {
+                lifecycleScope.launch{
+                    deleteFriend(deleteEmail)
+
+                    dialog.dismiss()
+                }
+            }
+        }
+
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Eliminar") { _, _ ->
+            // This block will not be executed as the positive button click listener is overridden
+        }
+
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancelar") { dialog, _ ->
+            dialog.dismiss()
+        }
+
+        alertDialog.show()
     }
 }

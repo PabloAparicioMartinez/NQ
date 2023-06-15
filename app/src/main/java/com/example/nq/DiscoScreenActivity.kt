@@ -24,7 +24,7 @@ import kotlinx.coroutines.launch
 
 class DiscoScreenActivity : AppCompatActivity(), DatesInterface, EventsInterface {
 
-    val datesAdapter = DatesAdapter(DatesRepository.dates, this)
+    private val datesAdapter = DatesAdapter(DatesRepository.dates, this)
     lateinit var eventsAdapter : EventsAdapter
     var selectedDatesList = mutableListOf<DatesData>()
     lateinit var discoName: String
