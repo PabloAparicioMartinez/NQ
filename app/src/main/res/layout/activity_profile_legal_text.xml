@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".profileActivities.ProfileActivityLegalText">
+
+    <LinearLayout
+        android:id="@+id/profileLegalText_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <TextView
+            android:id="@+id/profileLegalText_title"
+            style="@style/NQ.TextBlack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="24dp"
+            android:text="Título:" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="12dp"
+            android:scrollbars="none">
+
+            <TextView
+                android:id="@+id/profileLegalText_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Contenido"
+                android:elegantTextHeight="true"
+                android:justificationMode="inter_word"/>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</LinearLayout>

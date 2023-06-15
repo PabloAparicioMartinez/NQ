@@ -17,12 +17,12 @@
         android:paddingEnd="24dp">
 
         <ImageView
-            android:layout_width="18dp"
-            android:layout_height="18dp"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
             android:layout_gravity="center"
             android:layout_marginStart="8dp"
             android:src="@drawable/ic_calendar_01"
-            app:tint="@color/dark_blue" />
+            app:tint="@color/black_01" />
 
         <TextView
             android:id="@+id/itemDiscoEvent_date"
@@ -34,7 +34,7 @@
             android:textColor="@color/dark_grey_01"
             android:textSize="13sp"
             android:textStyle="bold"
-            android:text="Viernes, 4 de Mayo" />
+            android:text="Fecha" />
 
     </LinearLayout>
 
@@ -64,7 +64,7 @@
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/shape_border_rectangle"
+                android:background="@drawable/shape_border_rectangle_01"
                 android:layout_gravity="center" />
 
         </FrameLayout>
@@ -133,7 +133,7 @@
                     android:layout_gravity="center"
                     android:layout_marginStart="6dp"
                     android:textColor="@color/dark_grey_02"
-                    android:textSize="12sp"
+                    android:textSize="11sp"
                     android:textStyle="bold"
                     android:text="Precio" />
 
@@ -151,6 +151,7 @@
                     android:layout_height="wrap_content"
                     android:text="Entradas "
                     android:textStyle="bold"
+                    android:layout_gravity="bottom"
                     android:textColor="@color/dark_grey_01"
                     android:textSize="12sp" />
 
@@ -160,7 +161,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="DISPONIBILIDAD"
-                    android:textColor="@android:color/holo_green_dark"
+                    android:layout_gravity="bottom"
+                    android:textColor="@color/black_01"
                     android:textSize="14sp"
                     android:textStyle="bold"/>
             </LinearLayout>

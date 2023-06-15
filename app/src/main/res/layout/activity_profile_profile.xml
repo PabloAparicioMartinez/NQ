@@ -1,163 +1,194 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/profileLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginStart="24dp"
-    android:layout_marginTop="16dp"
-    android:layout_marginEnd="24dp"
-    android:orientation="vertical"
-    android:focusableInTouchMode="true"
     android:clickable="true"
     android:focusable="true"
+    android:focusableInTouchMode="true"
     tools:context=".profileActivities.ProfileActivityProfile">
 
-    <TextView
-        android:id="@+id/textView2"
-        style="@style/NQ.TextBlack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Modificar perfil:" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/profileProfile_emailLayout"
+    <!--PROFILE layout-->
+    <LinearLayout
+        android:id="@+id/profileProfile_profileLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        app:boxStrokeColor="@color/mid_blue"
-        app:boxStrokeErrorColor="@color/red_01"
-        android:hint="Correo electrónico"
-        app:endIconMode="clear_text"
-        app:startIconDrawable="@drawable/ic_email_android"
-        app:startIconTint="@color/grey_default"
-        app:endIconTint="@color/grey_default">
+        android:layout_height="match_parent"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:gravity="top"
+        android:orientation="vertical"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/profileProfile_emailText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Correo electrónico"
-            android:textColor="@color/black_01"
-            android:scrollHorizontally="true"
-            android:singleLine="true"
-            android:inputType="textEmailAddress"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/profileProfile_passwordLayout"
-        style="?attr/textInputOutlinedStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        app:boxStrokeColor="@color/mid_blue"
-        app:boxStrokeErrorColor="@color/red_01"
-        android:hint="Constraseña"
-        app:endIconMode="password_toggle"
-        app:startIconDrawable="@drawable/ic_lock_android"
-        app:startIconTint="@color/grey_default"
-        app:endIconTint="@color/grey_default">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/profileProfile_passwordText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black_01"
-            android:text="123456"
-            android:scrollHorizontally="true"
-            android:singleLine="true"
-            android:inputType="textPassword" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/profileProfile_passwordConfirmLayout"
-        style="?attr/textInputOutlinedStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        app:boxStrokeColor="@color/mid_blue"
-        app:boxStrokeErrorColor="@color/red_01"
-        android:hint="Confirmar contraseña"
-        app:endIconMode="password_toggle"
-        app:startIconDrawable="@drawable/ic_lock_android"
-        app:startIconTint="@color/grey_default"
-        app:endIconTint="@color/grey_default">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/profileProfile_passwordConfirmText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black_01"
-            android:text="123456"
-            android:scrollHorizontally="true"
-            android:singleLine="true"
-            android:inputType="textPassword" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/profileProfile_nameLayout"
-        style="?attr/textInputOutlinedStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        app:boxStrokeColor="@color/mid_blue"
-        app:boxStrokeErrorColor="@color/red_01"
-        android:hint="Nombre"
-        app:endIconMode="clear_text"
-        app:startIconDrawable="@drawable/ic_profile_full_01"
-        app:startIconTint="@color/grey_default"
-        app:endIconTint="@color/grey_default">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/profileProfile_nameText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black_01"
-            android:text="Nombre"
-            android:scrollHorizontally="true"
-            android:singleLine="true"
-            android:inputType="text"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <RadioGroup
-        android:id="@+id/profileProfile_radioGroup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:checkedButton="@id/profileProfile_manButton"
-        android:layout_marginTop="6dp"
-        android:layout_marginStart="8dp"
-        android:gravity="start"
-        android:orientation="horizontal" >
-
-        <RadioButton
-            android:id="@+id/profileProfile_manButton"
+        <TextView
+            style="@style/NQ.TextBlack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hombre" />
+            android:text="Modificar perfil:" />
 
-        <RadioButton
-            android:id="@+id/profileProfile_womanButton"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/profileProfile_firstNameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:hint="Nombre"
+            app:boxStrokeColor="@color/dark_blue"
+            app:boxStrokeErrorColor="@color/red_01"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/grey_default">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/profileProfile_firstNameText"
+                style="@style/NQ.TextInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nombre" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/profileProfile_lastNameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:hint="Apellido(s)"
+            app:boxStrokeColor="@color/dark_blue"
+            app:boxStrokeErrorColor="@color/red_01"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/grey_default">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/profileProfile_lastNameText"
+                style="@style/NQ.TextInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Apellido(s)" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/profileProfile_clickableImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="Mujer" />
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:clickable="true">
 
-    </RadioGroup>
+            <FrameLayout
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:layout_weight="0"
+                android:alpha="1"
+                android:padding="6dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/profileProfile_saveChanges"
-        style="@style/NQ.Button.Full"
+                <ImageView
+                    android:id="@+id/profileProfile_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:srcCompat="@drawable/png_tiger_01" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/shape_border_circle_02" />
+
+            </FrameLayout>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="30dp"
+                app:cardElevation="4dp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_edit_01"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/dark_blue" />
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:id="@+id/profileProfile_saveChangesButton"
+            style="@style/NQ.Button.Full"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:padding="16dp"
+            android:text="GUARDAR CAMBIOS"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <!--LOADING layout-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profileProfile_loadingLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:paddingTop="14dp"
-        android:paddingBottom="14dp"
-        android:text="GUARDAR CAMBIOS"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:gravity="center"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-</LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.12"
+            android:background="#000000" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/view2"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:theme="@style/Theme.NQ.Progressbar"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

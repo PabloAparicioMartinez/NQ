@@ -10,16 +10,18 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_icon_03"
+        android:icon="@mipmap/ic_icon_04"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_icon_03_round"
+        android:roundIcon="@mipmap/ic_icon_04_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NQ"
         tools:targetApi="31">
 
+        <!-- SIGN IN -->
         <activity
-            android:name=".StartActivity"
+            android:name=".authSignIn.SignInActivity"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:theme="@style/NQ.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,49 +30,98 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SignInActivity"
+            android:name=".authSignIn.SignInEmailActivity"
             android:exported="false"
-            android:parentActivityName=".StartActivity"
+            android:parentActivityName=".authSignIn.SignInActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.NQ.ActionBar" />
         <activity
-            android:name=".SignInForgetActivity"
+            android:name=".authSignIn.SignInEmailSentActivity"
             android:exported="false"
-            android:parentActivityName=".SignInActivity"
-            android:theme="@style/Theme.NQ.ActionBar" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.NQ.NoActionBar" />
         <activity
-            android:name=".SignUpActivity"
-            android:exported="false"
-            android:parentActivityName=".StartActivity"
-            android:theme="@style/Theme.NQ.ActionBar" />
+            android:name=".authSignIn.SignInEmailVerifiedActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.NQ.NoActionBar">
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="nqnoqueues.page.link"
+                    android:scheme="https" />
+            </intent-filter>
+        </activity> <!-- MAIN -->
         <activity
             android:name=".MainActivity"
             android:exported="false"
-            android:theme="@style/Theme.NQ.ActionBar"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.NQ.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".DiscoScreenActivity"
             android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.NQ.ActionBar" />
+        <activity
+            android:name=".DiscoScreenActivityCalendar"
+            android:exported="false"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.NQ.ActionBar" />
         <activity
             android:name=".EventScreenActivity"
             android:exported="false"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.NQ.ActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".EventScreenActivitySearch"
             android:exported="false"
-            android:theme="@style/Theme.NQ.ActionBar"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.NQ.ActionBar" />
         <activity
             android:name=".profileActivities.ProfileActivityProfile"
             android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.NQ.ActionBar" />
+        <activity
+            android:name=".profileActivities.ProfileActivityProfileImages"
+            android:exported="false"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.NQ.ActionBar" />
         <activity
             android:name=".profileActivities.ProfileActivityFriends"
             android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.NQ.ActionBar" />
+        <activity
+            android:name=".profileActivities.ProfileActivityPayments"
+            android:exported="false"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.NQ.ActionBar" />
         <activity
             android:name=".profileActivities.ProfileActivityHistory"
             android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.NQ.ActionBar" />
+        <activity
+            android:name=".profileActivities.ProfileActivityLegal"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.NQ.ActionBar" />
+        <activity
+            android:name=".profileActivities.ProfileActivityLegalText"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.NQ.ActionBar"/>
+        <activity
+            android:name=".profileActivities.ProfileActivityHelp"
+            android:exported="false"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.NQ.ActionBar" />
     </application>
 

@@ -25,9 +25,7 @@
             app:boxStrokeErrorColor="@color/red_01"
             app:endIconMode="clear_text"
             android:visibility="visible"
-            app:startIconTint="@color/grey_default"
-            app:endIconTint="@color/grey_default"
-            app:startIconDrawable="@drawable/ic_email_android">
+            app:endIconTint="@color/grey_default">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/addFriend_emailText"

@@ -13,4 +13,9 @@
         <item name="android:textSize">26sp</item>
         <item name="android:textColor">@color/black_01</item>
     </style>
+
+    <style name="NQ.TextOneLine" parent="Theme.NQ">
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+    </style>
 </resources>

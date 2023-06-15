@@ -5,14 +5,20 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
+import android.widget.ImageView
+import android.widget.LinearLayout
+import androidx.activity.result.ActivityResultLauncher
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.view.size
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.nq.firebase.FirebaseFriendsRepository
@@ -81,6 +87,10 @@ class EventScreenActivity : AppCompatActivity(), FriendsTicketsInterface {
         val eventScreenMyName = "${FirebaseRepository.userName.uppercase()} ${FirebaseRepository.userSurnames.uppercase()} (YO)"
         if (FirebaseManager().checkIfUserIsSignedIn()) eventScreen_ticketName.text = eventScreenMyName
 
+        // BUTTON large image
+        eventScreen_discoLayout.setOnClickListener() {
+            showLargeImage()
+        }
         // Acciones para los botnes de + y -
         if (FirebaseManager().checkIfUserIsSignedIn()) {
             eventScreen_plus.setOnClickListener { changeTicketCount("Plus") }
@@ -438,5 +448,17 @@ class EventScreenActivity : AppCompatActivity(), FriendsTicketsInterface {
                 saveTicketByEmail(ticketData, firestoreInstanceByEmail)
             }
         }
+    }
+
+    fun showLargeImage() {
+
+        val builder = MaterialAlertDialogBuilder(this, R.style.NQ_AlertDialogs)
+        val customLayout = LayoutInflater.from(this).inflate(R.layout.item_image_event, null)
+        val eventImage = customLayout.findViewById<ImageView>((R.id.itemImageEvent_image))
+        eventImage?.setImageResource(intent.getIntExtra("EXTRA_IMAGE", -1))
+
+        builder.setView(customLayout)
+        val alertDialog = builder.create()
+        alertDialog.show()
     }
 }

@@ -5,7 +5,7 @@
         <item name="colorPrimary">@color/dark_blue</item>
         <item name="colorPrimaryVariant">@color/dark_blue</item>
         <item name="colorOnPrimary">@color/white</item>
-        <item name="colorOnSurface">@color/dark_blue</item>
+        <item name="colorOnSurface">@color/black_01</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/light_blue</item>
         <item name="colorSecondaryVariant">@color/dark_blue</item>
@@ -14,14 +14,14 @@
         <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="android:textColor">@color/dark_grey_01</item>
-<!--        <item name="android:textSize">12sp</item>-->
         <item name="fontFamily">@font/roboto_regular</item>
 
         <item name="actionBarStyle">@style/NQ.ActionBar</item>
+        <item name="materialCalendarTheme">@style/ThemeOverlay.App.DatePicker</item>
     </style>
 
     <style name="Theme.NQ.Progressbar">
-        <item name="colorAccent">@color/dark_grey_01</item>
+        <item name="colorAccent">@color/dark_blue</item>
     </style>
 
     <style name="Theme.NQ.ProgressbarProfile">
@@ -39,13 +39,14 @@
     </style>
 
     <style name="NQ.ActionBar" parent="Widget.Material3.ActionBar.Solid">
-        <item name="background">@color/light_grey_01</item>
+<!--        <item name="background">@color/light_grey_01</item>-->
+        <item name="background">?android:colorBackground</item>
         <item name="titleTextStyle">@style/NQ.ActionBar.TitleTextStyle</item>
     </style>
 
     <style name="NQ.ActionBar.TitleTextStyle" parent="TextAppearance.Material3.ActionBar.Title">
-<!--        <item name="android:textStyle">bold</item>-->
         <item name="fontFamily">@font/roboto_black</item>
+        <item name="android:textColor">@color/black_01</item>
     </style>
 
     <style name="Theme.NQ.NoActionBar" parent="Theme.NQ">
@@ -73,7 +74,7 @@
     </style>
 
     <style name="NQ.SplashScreen" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash_logo_04</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash_logo_05</item>
         <item name="windowSplashScreenBackground">@color/white</item>
         <item name="postSplashScreenTheme">@style/Theme.NQ.NoActionBar</item>
     </style>
