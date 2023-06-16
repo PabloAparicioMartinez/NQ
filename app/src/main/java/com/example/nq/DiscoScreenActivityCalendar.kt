@@ -131,11 +131,11 @@ class DiscoScreenActivityCalendar : AppCompatActivity(), EventsInterface {
 
         val filteredEvents: List<EventsData>
         if (!isAllDates){
-            filteredEvents = EventsRepository.ReturnEvents(discoName, datesList)
+            filteredEvents = EventsRepository.returnEvents(discoName, datesList)
             eventsAdapter.setFilteredList(filteredEvents)
         } else {
-            if (datesList.isEmpty()) filteredEvents = EventsRepository.ReturnEvents(discoName, DatesRepository.dates)
-            else filteredEvents = EventsRepository.ReturnEvents(discoName, datesList)
+            if (datesList.isEmpty()) filteredEvents = EventsRepository.returnEvents(discoName, DatesRepository.dates)
+            else filteredEvents = EventsRepository.returnEvents(discoName, datesList)
             eventsAdapter.setFilteredList(filteredEvents)
         }
 
@@ -157,6 +157,8 @@ class DiscoScreenActivityCalendar : AppCompatActivity(), EventsInterface {
             it.putExtra("EXTRA_MUSIC", eventData.eventMusic)
             it.putExtra("EXTRA_DATE", eventData.eventDate)
             it.putExtra("EXTRA_AVAILABILITY", eventData.eventAvailability)
+            it.putExtra("EXTRA_PRICE", eventData.eventPrice)
+            it.putExtra("EXTRA_INCLUDE", eventData.eventIncludedWithTicket)
             startActivity(it)
         }
     }

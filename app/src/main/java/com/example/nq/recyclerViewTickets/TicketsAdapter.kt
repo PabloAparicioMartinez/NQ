@@ -53,7 +53,7 @@ class TicketsAdapter(
 
         private fun showSellTicketCard() {
 
-            val builder = MaterialAlertDialogBuilder(binding.root.context, R.style.NQ_AlertDialog_TicketCard)
+            val builder = MaterialAlertDialogBuilder(binding.root.context, R.style.NQ_AlertDialogs)
 
             val title = TextView(binding.root.context)
             title.text = "Vender tu entrada"

@@ -5,9 +5,17 @@ import android.util.Log
 object DatesRepository {
 
     val dates = mutableListOf(
-        DatesData("JUEVES", 8, "Junio", false),
-        DatesData("VIERNES", 9, "Junio", false),
-        DatesData("SÁBADO", 10, "Junio", false),
+        DatesData("JUEVES", 4, "Mayo", false),
+        DatesData("VIERNES", 5, "Mayo", false),
+        DatesData("SÁBADO", 6, "Mayo", false),
+
+        DatesData("JUEVES", 11, "Mayo", false),
+        DatesData("VIERNES", 12, "Mayo", false),
+        DatesData("SÁBADO", 13, "Mayo", false),
+
+        DatesData("JUEVES", 18, "Mayo", false),
+        DatesData("VIERNES", 19, "Mayo", false),
+        DatesData("SÁBADO", 20, "Mayo", false),
     )
 
     fun ReturnSelectedDates() : MutableList<DatesData> {

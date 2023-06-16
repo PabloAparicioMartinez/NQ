@@ -61,7 +61,7 @@ class EventScreenActivitySearch : AppCompatActivity(), FriendsListInterface{
     }
 
     private fun showInfoAlertDialog() {
-        val builder = MaterialAlertDialogBuilder(this, R.style.NQ_AlertDialog_TicketCard)
+        val builder = MaterialAlertDialogBuilder(this, R.style.NQ_AlertDialogs)
 
         val title = TextView(this)
         title.text = "Comprar entrada para un amigo"

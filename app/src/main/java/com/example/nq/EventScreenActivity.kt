@@ -88,7 +88,7 @@ class EventScreenActivity : AppCompatActivity(), FriendsTicketsInterface {
         if (FirebaseManager().checkIfUserIsSignedIn()) eventScreen_ticketName.text = eventScreenMyName
 
         // BUTTON large image
-        eventScreen_discoLayout.setOnClickListener() {
+        eventScreen_yesLayout.setOnClickListener() {
             showLargeImage()
         }
         // Acciones para los botnes de + y -

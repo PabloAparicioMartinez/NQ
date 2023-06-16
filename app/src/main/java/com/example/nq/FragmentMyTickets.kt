@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.example.nq.authSignIn.SignInActivity
 import com.example.nq.firebase.FirebaseManager
 import com.example.nq.recyclerViewTickets.TicketData
 import com.example.nq.recyclerViewTickets.TicketsAdapter
@@ -78,7 +79,7 @@ class FragmentMyTickets : Fragment(R.layout.fragment_my_tickets) {
         fragMyTickets_signedInLayout_NoTickets.visibility = View.VISIBLE
 
         // Botón para volver a la pantalla de comprar tickets
-        fragMyTickets_buyTicketsSignedInButton.setOnClickListener {
+        fragMyTickets_buyTicketsUnsignedInButton.setOnClickListener {
             val fragmentBuyTickets = FragmentBuyTickets()
             SetFragment.setCurrentFragment(requireActivity().supportFragmentManager, fragmentBuyTickets, mainActivityBotMenu)
             requireActivity().invalidateOptionsMenu()

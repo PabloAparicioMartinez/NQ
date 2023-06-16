@@ -248,7 +248,7 @@ class ProfileActivityFriends : AppCompatActivity(), FriendsListProfileInterface 
         val clickedFriend = friendsListProfileAdapter[position]
         val deleteEmail = clickedFriend.email
 
-        val builder = MaterialAlertDialogBuilder(this, R.style.NQ_AlertDialog_TicketCard)
+        val builder = MaterialAlertDialogBuilder(this, R.style.NQ_AlertDialogs)
 
         val title = TextView(this)
         title.text = "Eliminar amigo"

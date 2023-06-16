@@ -32,6 +32,7 @@ object EventsRepository {
             22.00f,"Incluye 1 copa", "DISPONIBLES",
         )
     )
+
     val sonoraEvents = mutableListOf<EventsData>()
 
     fun returnEvents(discoName: String, datesList: List<DatesData>): List<EventsData> {

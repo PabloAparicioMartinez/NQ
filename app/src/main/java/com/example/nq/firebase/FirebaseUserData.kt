@@ -1,4 +1,4 @@
-package com.example.nq.zzOldFirebase
+package com.example.nq.firebase
 
 import com.example.nq.R
 

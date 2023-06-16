@@ -13,7 +13,6 @@ import com.example.nq.R
 import com.example.nq.recyclerViewCards.CardsAdapter
 import com.example.nq.recyclerViewCards.CardsData
 import com.example.nq.recyclerViewCards.CardsRepository
-import com.example.nq.recyclerViewFriends.FriendsRepository
 import kotlinx.android.synthetic.main.activity_profile_friends.*
 import kotlinx.android.synthetic.main.activity_profile_payments.*
 import kotlinx.android.synthetic.main.activity_profile_profile.*

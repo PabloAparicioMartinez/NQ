@@ -50,7 +50,7 @@ class FragmentBuyTickets : Fragment(R.layout.fragment_buy_tickets), MenuProvider
 
         Intent(activity, DiscoScreenActivityCalendar::class.java).also {
             it.putExtra("EXTRA_IMAGE", discoData.discoImage)
-            it.putExtra("EXTRA_DISCO_NAME", discoData.discoName)
+            it.putExtra("EXTRA_NAME", discoData.discoName)
             it.putExtra("EXTRA_LOCATION", discoData.discoLocation)
             it.putExtra("EXTRA_MUSIC", discoData.discoMusic)
             startActivity(it)
