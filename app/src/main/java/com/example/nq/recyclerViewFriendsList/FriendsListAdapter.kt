@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nq.R
-import com.example.nq.firebase.FirebaseUserData
+import com.example.nq.authFirebase.FirebaseUserData
 import kotlinx.android.synthetic.main.item_friend.view.*
 
 class FriendsListAdapter(

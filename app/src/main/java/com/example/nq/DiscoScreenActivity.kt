@@ -90,7 +90,7 @@ class DiscoScreenActivity : AppCompatActivity(), DatesInterface, EventsInterface
             }
         }
 
-        selectedDatesList = DatesRepository.ReturnSelectedDates()
+        selectedDatesList = DatesRepository.returnSelectedDates()
         lifecycleScope.launch {
             loadEventsInDate(selectedDatesList)
         }
@@ -98,7 +98,7 @@ class DiscoScreenActivity : AppCompatActivity(), DatesInterface, EventsInterface
 
     private suspend fun loadEventsInDate(datesList: List<DatesData>) {
 
-        datesAdapter.EnableClicking(false)
+        datesAdapter.enableClicking(false)
 
         setLayoutsVisibilities(listOf(View.VISIBLE, View.GONE, View.GONE))
 
@@ -112,7 +112,7 @@ class DiscoScreenActivity : AppCompatActivity(), DatesInterface, EventsInterface
         if (filteredEvents.isNotEmpty()) setLayoutsVisibilities(listOf(View.GONE, View.VISIBLE, View.GONE))
         else setLayoutsVisibilities(listOf(View.GONE, View.VISIBLE, View.VISIBLE))
 
-        datesAdapter.EnableClicking(true)
+        datesAdapter.enableClicking(true)
     }
 
     private fun setLayoutsVisibilities (layoutVisibility: List<Int>){

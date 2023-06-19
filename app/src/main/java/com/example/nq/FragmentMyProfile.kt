@@ -7,8 +7,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import com.example.nq.authSignIn.SignInActivity
 import com.example.nq.authFirebase.FirebaseAuthManager
+import com.example.nq.authSignIn.SignInActivity
 import com.example.nq.authFirebase.UserData
 import com.example.nq.profileActivities.*
 import com.google.android.gms.auth.api.identity.Identity

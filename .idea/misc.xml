@@ -3,7 +3,77 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/drawable/ic_arrow_android.xml" value="0.2225" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/ic_calendar_01.xml" value="0.349" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/ic_delete.xml" value="0.349" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/ic_disco_01.xml" value="0.349" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/ic_disco_back_stage.xml" value="0.349" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/ic_disco_fever.xml" value="0.26" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/ic_disco_sonora.xml" value="0.26" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/ic_icon_01.xml" value="0.349" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/ic_icon_02_background.xml" value="0.349" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/ic_loupe_nofull_01.xml" value="0.26" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/ic_splash_logo_02.xml" value="0.26" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/ic_ticket_full_01.xml" value="0.26" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/ic_ubication_01.xml" value="0.26" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/ic_ubication_02.xml" value="0.26" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/ic_ubication_03.xml" value="0.26" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/ic_wallet_01.xml" value="0.349" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/ripple_button_date.xml" value="0.26" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/ripple_button_grey.xml" value="0.26" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/shape_background_blue.xml" value="0.26" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/shape_background_grey.xml" value="0.26" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/shape_background_light_blue_black_border.xml" value="0.26" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/shape_background_loading.xml" value="0.258" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/shape_border_circle.xml" value="0.258" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/shape_border_image.xml" value="0.26" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/shape_border_rectangle.xml" value="0.258" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/shape_border_rectangle_01.xml" value="0.18" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/shape_border_rectangle_02.xml" value="0.18" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/shape_border_rectangle_03.xml" value="0.18" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/shape_border_rectangle_04.xml" value="0.18" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/shape_circleindicator3.xml" value="0.26" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/activity_disco_screen.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/activity_event_screen.xml" value="0.2" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/activity_event_screen_available.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/activity_event_screen_not_available.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/activity_event_screen_search.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/activity_profile_friends.xml" value="0.20018115942028986" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/activity_profile_history.xml" value="0.20018115942028986" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/activity_profile_profile.xml" value="0.20018115942028986" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/activity_sign_in.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/activity_sign_in_forget.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/activity_sign_up.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/activity_start.xml" value="0.20018115942028986" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/fragment_buy_tickets.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/fragment_my_profile.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/fragment_my_profile_signed_in.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/fragment_my_profile_unsigned_in.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/fragment_my_tickets.xml" value="0.2" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/fragment_my_tickets_signed_in.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/fragment_my_tickets_signed_in_data.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/fragment_my_tickets_signed_in_empty_tickets.xml" value="0.21467391304347827" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/fragment_my_tickets_signed_in_viewpager.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/fragment_my_tickets_unsigned_in.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/fragment_my_tickets_viewpager.xml" value="0.2" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/item_add_friend.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/item_date.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/item_disco.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/item_event.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/item_friend.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/item_friend_profile.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/item_profile_picture.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/item_ticket_for_friend.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/item_ticket_info.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/item_ticket_info_name_no.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/item_ticket_info_name_yes.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/zz_old_activity_event_screen.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/zz_old_fragment_my_profile.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/zz_old_fragment_my_tickets.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/zz_old_fragment_my_tickets_signed_in_data.xml" value="0.24139492753623187" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/zz_old_item_ticket_info_name_yes.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/menu/bot_nav_menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/menu/top_nav_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/drawable/ic_disco_01.xml" value="0.259" />
         <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/drawable/ic_google_01.xml" value="0.259" />
         <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/drawable/ic_icon_01.xml" value="0.174" />
@@ -18,47 +88,26 @@
         <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/drawable/ic_unsignedin_01.xml" value="0.259" />
         <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/drawable/ripple_button_date.xml" value="0.174" />
         <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/drawable/ripple_button_grey.xml" value="0.174" />
-        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/drawable/shape_alert_dialog.xml" value="0.179" />
-        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/drawable/shape_background_blue.xml" value="0.178" />
         <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/drawable/shape_background_grey.xml" value="0.174" />
-        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/drawable/shape_border_circle.xml" value="0.2225" />
         <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/drawable/shape_border_image.xml" value="0.174" />
-        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout-v31/fragment_my_profile.xml" value="0.25" />
-        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout-v31/fragment_my_profile_signed_in.xml" value="0.25" />
         <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/activity_disco_screen.xml" value="0.20521590423257802" />
-        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/activity_event_screen.xml" value="0.22101167315175096" />
-        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/activity_event_screen_available.xml" value="0.20521590423257802" />
+        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/activity_event_screen.xml" value="0.264" />
+        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/activity_event_screen_available.xml" value="0.20512820512820512" />
         <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/activity_event_screen_not_available.xml" value="0.20521590423257802" />
-        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/activity_event_screen_search.xml" value="0.20521590423257802" />
         <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/activity_main.xml" value="0.20521590423257802" />
-        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/activity_profile_friends.xml" value="0.20521590423257802" />
-        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/activity_profile_payments.xml" value="0.1936725096194955" />
-        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/activity_profile_profile.xml" value="0.20521590423257802" />
-        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/activity_sign_in.xml" value="0.20521590423257802" />
-        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/activity_sign_in_forget.xml" value="0.20521590423257802" />
-        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/activity_sign_up.xml" value="0.20521590423257802" />
+        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/activity_sign_in.xml" value="0.264" />
+        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/activity_sign_up.xml" value="0.3625" />
         <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/activity_start.xml" value="0.20521590423257802" />
         <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/fragment_buy_tickets.xml" value="0.18541666666666667" />
-        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/fragment_my_profile.xml" value="0.264" />
-        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/fragment_my_profile_signed_in.xml" value="0.264" />
-        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/fragment_my_profile_unsigned_in.xml" value="0.20521590423257802" />
-        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/fragment_my_tickets.xml" value="0.20521590423257802" />
+        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/fragment_my_profile_signed_in.xml" value="0.25" />
+        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/fragment_my_profile_unsigned_in.xml" value="0.264" />
         <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/fragment_my_tickets_signed_in.xml" value="0.25" />
-        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/fragment_my_tickets_unsigned_in.xml" value="0.20521590423257802" />
-        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/item_add_friend.xml" value="0.20521590423257802" />
-        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/item_add_friend_loading.xml" value="0.20436083796494228" />
+        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/fragment_my_tickets_unsigned_in.xml" value="0.25" />
         <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/item_date.xml" value="0.2" />
-        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/item_disco.xml" value="0.20521590423257802" />
-        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/item_event.xml" value="0.2" />
-        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/item_friend.xml" value="0.2" />
-        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/item_text.xml" value="0.20436083796494228" />
+        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/item_disco.xml" value="0.4" />
+        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/item_event.xml" value="0.264" />
         <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/item_ticket_info.xml" value="0.264" />
-        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/item_ticket_info_name_no.xml" value="0.264" />
-        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/layout/item_ticket_info_name_yes.xml" value="0.264" />
         <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/menu/bot_nav_menu.xml" value="0.20521590423257802" />
-        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/menu/top_menu_buytickets.xml" value="0.20521590423257802" />
-        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/menu/top_menu_event_info.xml" value="0.20261713803292528" />
-        <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/menu/top_menu_profile_friends.xml" value="0.20436083796494228" />
         <entry key="..\:/Users/Erazer/Desktop/AndroidStudio/NQ/app/src/main/res/menu/top_nav_menu.xml" value="0.1875" />
       </map>
     </option>

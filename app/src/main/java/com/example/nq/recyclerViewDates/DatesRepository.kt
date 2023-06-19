@@ -18,7 +18,7 @@ object DatesRepository {
         DatesData("SÁBADO", 20, "Mayo", false),
     )
 
-    fun ReturnSelectedDates() : MutableList<DatesData> {
+    fun returnSelectedDates() : MutableList<DatesData> {
 
         val datesListToReturn = mutableListOf<DatesData>()
 
@@ -29,7 +29,7 @@ object DatesRepository {
         return datesListToReturn
     }
 
-    fun ReturnSelectedDateCalender(date: Int) : MutableList<DatesData> {
+    fun returnSelectedDateCalender(date: Int) : MutableList<DatesData> {
 
         val datesListToReturn = mutableListOf<DatesData>()
         for (i in dates.indices) {

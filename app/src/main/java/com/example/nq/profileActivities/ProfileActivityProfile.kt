@@ -14,8 +14,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.lifecycle.lifecycleScope
 import com.example.nq.R
-import com.example.nq.dataStore.DataStoreManager
 import com.example.nq.authFirebase.FirebaseAuthManager
+import com.example.nq.dataStore.DataStoreManager
 import com.example.nq.authFirebase.UserData
 import com.example.nq.recyclerViewProfilePictures.ProfilePicturesRepository
 import com.google.android.gms.auth.api.identity.Identity

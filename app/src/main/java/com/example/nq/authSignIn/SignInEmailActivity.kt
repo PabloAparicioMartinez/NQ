@@ -11,8 +11,8 @@ import android.widget.Toast
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.lifecycle.lifecycleScope
 import com.example.nq.R
-import com.example.nq.dataStore.DataStoreManager
 import com.example.nq.authFirebase.FirebaseAuthManager
+import com.example.nq.dataStore.DataStoreManager
 import com.google.android.gms.auth.api.identity.Identity
 import com.google.firebase.auth.ktx.actionCodeSettings
 import kotlinx.android.synthetic.main.activity_sign_in_email.*
@@ -43,7 +43,7 @@ class SignInEmailActivity : AppCompatActivity() {
         setLayoutVisibilities(listOf(View.VISIBLE, View.GONE))
 
         // INCIAR SESIÓN con MAIL
-        signInEmail_button.setOnClickListener() {
+        signInEmail_button.setOnClickListener {
 
             val theEmail = signInEmail_emailText.text.toString()
 

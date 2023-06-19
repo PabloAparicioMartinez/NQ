@@ -5,8 +5,8 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.example.nq.authFirebase.FirebaseManager
 import com.example.nq.authSignIn.SignInActivity
-import com.example.nq.firebase.FirebaseManager
 import com.example.nq.recyclerViewTickets.TicketData
 import com.example.nq.recyclerViewTickets.TicketsAdapter
 import com.example.nq.recyclerViewTickets.TicketsRepository

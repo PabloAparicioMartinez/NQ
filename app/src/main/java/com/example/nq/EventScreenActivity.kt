@@ -5,26 +5,18 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
-import android.widget.LinearLayout
-import androidx.activity.result.ActivityResultLauncher
-import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.view.size
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.nq.firebase.FirebaseFriendsRepository
-import com.example.nq.firebase.FirebaseManager
-import com.example.nq.firebase.FirebaseRepository
-import com.example.nq.firebase.FirebaseUserData
+import com.example.nq.authFirebase.FirebaseManager
+import com.example.nq.authFirebase.FirebaseUserData
 import com.example.nq.recyclerViewFriendsTickets.FriendsTicketsAdapter
 import com.example.nq.recyclerViewFriendsTickets.FriendsTicketsData
 import com.example.nq.recyclerViewFriendsTickets.FriendsTicketsInterface
@@ -32,6 +24,8 @@ import com.example.nq.recyclerViewTickets.TicketData
 import com.example.nq.recyclerViewTickets.TicketDates
 import com.example.nq.recyclerViewTickets.TicketNumberMapRepository
 import com.example.nq.recyclerViewTickets.TicketsRepository
+import com.example.nq.storageFirebase.FirebaseFriendsRepository
+import com.example.nq.storageFirebase.FirebaseRepository
 import com.google.firebase.firestore.AggregateSource
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.Query
@@ -450,7 +444,7 @@ class EventScreenActivity : AppCompatActivity(), FriendsTicketsInterface {
         }
     }
 
-    fun showLargeImage() {
+    private fun showLargeImage() {
 
         val builder = MaterialAlertDialogBuilder(this, R.style.NQ_AlertDialogs)
         val customLayout = LayoutInflater.from(this).inflate(R.layout.item_image_event, null)

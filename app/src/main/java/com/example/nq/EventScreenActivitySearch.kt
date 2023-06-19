@@ -10,14 +10,12 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.nq.firebase.FirebaseFriendsRepository
-import com.example.nq.firebase.FirebaseUserData
+import com.example.nq.authFirebase.FirebaseUserData
 import com.example.nq.recyclerViewFriendsList.FriendsListAdapter
 import com.example.nq.recyclerViewFriendsList.FriendsListInterface
+import com.example.nq.storageFirebase.FirebaseFriendsRepository
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.activity_event_screen_search.*
-import kotlinx.android.synthetic.main.item_ticket_for_friend.*
-import kotlinx.android.synthetic.main.item_ticket_for_friend.view.*
 
 class EventScreenActivitySearch : AppCompatActivity(), FriendsListInterface{
 

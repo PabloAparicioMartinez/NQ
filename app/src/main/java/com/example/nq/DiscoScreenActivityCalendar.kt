@@ -75,7 +75,7 @@ class DiscoScreenActivityCalendar : AppCompatActivity(), EventsInterface {
                 discoScreenCalendar_date.text = "Jun $selectedDay, 2023"
                 discoScreenCancer_showAll.visibility = View.VISIBLE
 
-                selectedDatesList = DatesRepository.ReturnSelectedDateCalender(selectedDay)
+                selectedDatesList = DatesRepository.returnSelectedDateCalender(selectedDay)
                 lifecycleScope.launch {
                     loadEventsInDateCalendar(selectedDatesList, false)
                 }
@@ -89,7 +89,7 @@ class DiscoScreenActivityCalendar : AppCompatActivity(), EventsInterface {
             discoScreenCalendar_date.text = "Todas las fechas"
             discoScreenCancer_showAll.visibility = View.GONE
 
-            selectedDatesList = DatesRepository.ReturnSelectedDateCalender(0)
+            selectedDatesList = DatesRepository.returnSelectedDateCalender(0)
             lifecycleScope.launch {
                 loadEventsInDateCalendar(selectedDatesList, true)
             }
@@ -143,7 +143,7 @@ class DiscoScreenActivityCalendar : AppCompatActivity(), EventsInterface {
         else setLayoutsVisibilities(listOf(View.GONE, View.VISIBLE, View.VISIBLE))
     }
 
-    fun setLayoutsVisibilities (layoutVisibility: List<Int>){
+    private fun setLayoutsVisibilities (layoutVisibility: List<Int>){
         discoScreenCalendar_loadingLayout.visibility = layoutVisibility[0]
         discoScreenCalendar_eventsRecyclerView.visibility = layoutVisibility[1]
         discoScreenCalendar_noResultsLayout.visibility = layoutVisibility[2]
@@ -163,7 +163,7 @@ class DiscoScreenActivityCalendar : AppCompatActivity(), EventsInterface {
         }
     }
 
-    fun showLargeImage() {
+    private fun showLargeImage() {
 
         val builder = MaterialAlertDialogBuilder(this, R.style.NQ_AlertDialogs)
         val customLayout = LayoutInflater.from(this).inflate(R.layout.item_image_disco, null)

@@ -6,12 +6,9 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
-import androidx.core.view.get
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nq.R
 import kotlinx.android.synthetic.main.item_date.view.*
-import kotlinx.coroutines.launch
 
 class DatesAdapter(
     private var dates: List<DatesData>,
@@ -20,15 +17,15 @@ class DatesAdapter(
 
     // Cambio Master & Commander
 
-    val dateCardViews = mutableListOf<CardView>()
+    private val dateCardViews = mutableListOf<CardView>()
 
     inner class DatesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) , View.OnClickListener {
 
         val linearLayout: LinearLayout = itemView.findViewById(R.id.itemDate_layout)
-        val textViewWeek: TextView = itemView.findViewById(R.id.itemDate_week)
-        val textViewNumber: TextView = itemView.findViewById(R.id.itemDate_number)
-        val textViewMonth: TextView = itemView.findViewById(R.id.itemDate_month)
-        val textViews = listOf(textViewWeek, textViewNumber, textViewMonth)
+        private val textViewWeek: TextView = itemView.findViewById(R.id.itemDate_week)
+        private val textViewNumber: TextView = itemView.findViewById(R.id.itemDate_number)
+        private val textViewMonth: TextView = itemView.findViewById(R.id.itemDate_month)
+        private val textViews = listOf(textViewWeek, textViewNumber, textViewMonth)
 
         init {
             itemView.setOnClickListener(this)
@@ -62,7 +59,7 @@ class DatesAdapter(
         return dates.size
     }
 
-    fun EnableClicking (shouldEnable: Boolean) {
+    fun enableClicking (shouldEnable: Boolean) {
         for (i in dateCardViews.indices){
             dateCardViews[i].isClickable = shouldEnable
         }

@@ -16,6 +16,7 @@ import com.example.nq.authFirebase.FirebaseAuthManager
 import com.example.nq.authFirebase.SignInViewModel
 import com.example.nq.authFirebase.UserData
 import com.example.nq.dataStore.DataStoreManager
+import com.example.nq.storageFirebase.FirebaseRepository
 import com.google.android.gms.auth.api.identity.Identity
 import kotlinx.android.synthetic.main.activity_sign_in.*
 import kotlinx.coroutines.launch
@@ -45,6 +46,10 @@ class SignInActivity() : AppCompatActivity() {
         lifecycleScope.launch {
 
             if (firebaseAuthManager.getSignedInUser() != null) {
+
+
+
+
                 Toast.makeText(applicationContext, "¡Sesión iniciada!", Toast.LENGTH_SHORT).show()
                 goToMainActivity()
             } else {
@@ -111,6 +116,21 @@ class SignInActivity() : AppCompatActivity() {
 
                     val lastNameKey = stringPreferencesKey("userLastName")
                     dataStoreManager.saveStringToDataStore(lastNameKey, lastName)
+
+
+                    /*try {
+                        user.updateProfile(createProfile).await()
+                        withContext(Dispatchers.Main) {
+                            FirebaseRepository.userName = firstName
+                            FirebaseRepository.userSurnames = firstName
+                            FirebaseRepository.userImage = photoURI
+                            FirebaseRepository.userGmail = email
+                        }
+                    } catch (error: Exception) {
+                        throw e
+                        }
+                    }*/
+
 
                     Toast.makeText(applicationContext, "¡Sesión iniciada!", Toast.LENGTH_SHORT).show()
                     viewModel.resetState()

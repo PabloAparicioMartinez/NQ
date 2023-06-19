@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nq.R
-import com.example.nq.firebase.FirebaseUserData
+import com.example.nq.authFirebase.FirebaseUserData
 import kotlinx.android.synthetic.main.item_friend.view.itemFriend_image
 import kotlinx.android.synthetic.main.item_friend.view.itemFriend_mail
 import kotlinx.android.synthetic.main.item_friend.view.itemFriend_name

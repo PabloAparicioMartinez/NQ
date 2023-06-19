@@ -13,11 +13,10 @@ import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.nq.R
-import com.example.nq.firebase.FirebaseFriendsRepository
-import com.example.nq.firebase.FirebaseRepository
-import com.example.nq.firebase.FirebaseUserData
+import com.example.nq.authFirebase.FirebaseUserData
 import com.example.nq.recyclerViewFriendsList.*
-import com.example.nq.recyclerViewFriendsTickets.FriendsTicketsData
+import com.example.nq.storageFirebase.FirebaseFriendsRepository
+import com.example.nq.storageFirebase.FirebaseRepository
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -116,6 +115,8 @@ class ProfileActivityFriends : AppCompatActivity(), FriendsListProfileInterface 
                                 customLayout.findViewById<LinearLayout>(R.id.addFriend_addLayout)
                             val addFriendLoading =
                                 customLayout.findViewById<LinearLayout>(R.id.addFriend_loadingLayout)
+
+
                             addFriendLayout.visibility = View.GONE
                             addFriendLoading.visibility = View.VISIBLE
 
@@ -131,6 +132,13 @@ class ProfileActivityFriends : AppCompatActivity(), FriendsListProfileInterface 
 
                                     addFriendLoading.visibility = View.GONE
                                     addFriendLayout.visibility = View.VISIBLE
+
+                                    val noFriendsLayoutVisibility = profileFriends_noFriendsLayout.visibility
+                                    val isNoFriendsLayoutVisible = noFriendsLayoutVisibility == View.VISIBLE
+                                    if (isNoFriendsLayoutVisible){
+                                        profileFriends_noFriendsLayout.visibility = View.GONE
+                                        profileFriends_yesFriendsLayout.visibility = View.VISIBLE
+                                    }
 
                                     dialog.dismiss()
                                 }

@@ -10,9 +10,9 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.lifecycle.lifecycleScope
 import com.example.nq.MainActivity
 import com.example.nq.R
-import com.example.nq.dataStore.DataStoreManager
 import com.example.nq.authFirebase.FirebaseAuthManager
 import com.example.nq.authFirebase.SignInViewModel
+import com.example.nq.dataStore.DataStoreManager
 import com.example.nq.authFirebase.UserData
 import com.example.nq.recyclerViewProfilePictures.ProfilePicturesRepository
 import com.google.android.gms.auth.api.identity.Identity
@@ -141,7 +141,7 @@ class SignInEmailVerifiedActivity : AppCompatActivity() {
         signInEmailVerified_loadingLayout.visibility = listOfVisibilities[2]
     }
 
-    fun String.isOnlyLetters() : Boolean {
+    private fun String.isOnlyLetters() : Boolean {
         return all { it.isLetter() || it.isWhitespace() }
     }
 
