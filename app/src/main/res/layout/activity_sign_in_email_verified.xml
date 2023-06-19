@@ -6,9 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".authSignIn.SignInEmailVerifiedActivity">
 
-    <!--VERIFIED layout-->
+    <!--VERIFIED 1st time layout-->
     <LinearLayout
-        android:id="@+id/signInEmailVerified_verifiedLayout"
+        android:id="@+id/signInEmailVerified_verifiedFirstLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -81,7 +81,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/signInEmailVerified_mainActivityButton"
+            android:id="@+id/signInEmailVerified_firstMainActivityButton"
             style="@style/NQ.Button.Full"
             android:layout_marginTop="16dp"
             android:padding="16dp"
@@ -92,9 +92,9 @@
 
     </LinearLayout>
 
-    <!--NOT VERIFIED layout-->
+    <!--VERIFIED NOT 1st time layout-->
     <LinearLayout
-        android:id="@+id/signInEmailVerified_notVerifiedLayout"
+        android:id="@+id/signInEmailVerified_verifiedNotFirstLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
@@ -109,8 +109,56 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:layout_width="207dp"
-            android:layout_height="139dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:alpha="1"
+            android:src="@drawable/ic_verified_01"
+            app:tint="@color/dark_blue" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¡Correo verificado!"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:textSize="14sp"
+            android:textColor="@color/dark_blue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/signInEmailVerified_notFirstMainActivityButton"
+            style="@style/NQ.Button.Full"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="12dp"
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ENTRAR EN NQ"
+            android:textSize="16dp"/>
+
+    </LinearLayout>
+
+    <!--NOT VERIFIED layout-->
+    <LinearLayout
+        android:id="@+id/signInEmailVerified_notVerifiedLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             android:alpha="1"
             android:src="@drawable/ic_error_01"
             app:tint="@color/dark_blue" />

@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentSender
 import android.net.Uri
+import android.util.Log
 import com.example.nq.R
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.SignInClient
@@ -153,6 +154,30 @@ class FirebaseAuthManager(private val context: Context, private val oneTapClient
         } catch (e: Exception) {
             e.printStackTrace()
             if (e is CancellationException) throw e
+        }
+    }
+
+    suspend fun signUpWithEmailAndPassword(email: String, password: String) : Boolean {
+
+        return try {
+            auth.createUserWithEmailAndPassword(email, password).await()
+            true
+        } catch (e: Exception) {
+            e.printStackTrace()
+            if (e is CancellationException) throw e
+            false
+        }
+    }
+
+    suspend fun signInWithEmailAndPassword(email: String, password: String) : Boolean {
+
+        return try {
+            auth.signInWithEmailAndPassword(email, password).await()
+            true
+        } catch (e: Exception) {
+            e.printStackTrace()
+            if (e is CancellationException) throw e
+            false
         }
     }
 
