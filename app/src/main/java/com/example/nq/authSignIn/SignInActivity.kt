@@ -16,6 +16,7 @@ import com.example.nq.authFirebase.FirebaseAuthManager
 import com.example.nq.authFirebase.SignInViewModel
 import com.example.nq.authFirebase.UserData
 import com.example.nq.dataStore.DataStoreManager
+import com.example.nq.zzOld.SignUpActivity
 import com.google.android.gms.auth.api.identity.Identity
 import kotlinx.android.synthetic.main.activity_sign_in.*
 import kotlinx.coroutines.launch
@@ -85,6 +86,12 @@ class SignInActivity() : AppCompatActivity() {
         // ENTRAR SIN INICIAR SESIÓN
         signIn_noSignInButton.setOnClickListener() {
             goToMainActivity()
+        }
+
+        signIn_nijaButton.setOnClickListener() {
+            Intent(this, SignUpActivity::class.java).also {
+                startActivity(it)
+            }
         }
     }
 
