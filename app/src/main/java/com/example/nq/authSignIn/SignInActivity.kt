@@ -46,6 +46,9 @@ class SignInActivity() : AppCompatActivity() {
 
             if (firebaseAuthManager.getSignedInUser() != null) {
                 Toast.makeText(applicationContext, "¡Sesión iniciada!", Toast.LENGTH_SHORT).show()
+
+                //
+
                 goToMainActivity()
             } else {
                 val checkIfSignInClicked = intent?.getBooleanExtra("EXTRA_SignInClicked", false)
@@ -114,6 +117,9 @@ class SignInActivity() : AppCompatActivity() {
 
                     Toast.makeText(applicationContext, "¡Sesión iniciada!", Toast.LENGTH_SHORT).show()
                     viewModel.resetState()
+
+                    //
+
                     goToMainActivity()
                 }
             }

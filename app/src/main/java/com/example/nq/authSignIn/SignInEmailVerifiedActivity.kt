@@ -31,7 +31,7 @@ class SignInEmailVerifiedActivity : AppCompatActivity() {
     private val dataStoreManager by lazy {
         DataStoreManager(context = applicationContext)
     }
-    var userExists = false
+//    var userExists = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +39,7 @@ class SignInEmailVerifiedActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
 
-            setLayoutVisibilities(listOf(View.GONE, View.GONE, View.VISIBLE))
+            setLayoutVisibilities(listOf(View.GONE, View.GONE, View.GONE, View.VISIBLE))
 
             val introducedEmail = dataStoreManager.getStringFromDataStore(
                 stringPreferencesKey("introducedEmail"),
@@ -58,25 +58,29 @@ class SignInEmailVerifiedActivity : AppCompatActivity() {
                     val userFirstName = dataStoreManager.getStringFromDataStore(stringPreferencesKey("userFirstName"), "Nombre")
                     val userLastName = dataStoreManager.getStringFromDataStore(stringPreferencesKey("userLastName"), "Apellido(s)")
 
-                    signInEmailVerified_firstNameText.setText(userFirstName)
-                    signInEmailVerified_lastNameText.setText(userLastName)
+                    if (userFirstName != "Nombre") {
+                        setLayoutVisibilities(listOf(View.GONE, View.VISIBLE, View.GONE, View.GONE))
+                    }
+                    else {
+                        signInEmailVerified_firstNameText.setText(userFirstName)
+                        signInEmailVerified_lastNameText.setText(userLastName)
 
-                    if (userFirstName != "Nombre") userExists = true
+                        setLayoutVisibilities(listOf(View.VISIBLE, View.GONE, View.GONE, View.GONE))
+                    }
 
-                    setLayoutVisibilities(listOf(View.VISIBLE, View.GONE, View.GONE))
                     viewModel.resetState()
                 } else {
                     Toast.makeText(this@SignInEmailVerifiedActivity, "Email no verificado...", Toast.LENGTH_SHORT).show()
-                    setLayoutVisibilities(listOf(View.GONE, View.VISIBLE, View.GONE))
+                    setLayoutVisibilities(listOf(View.GONE, View.GONE, View.VISIBLE, View.GONE))
                 }
             } else {
                 Toast.makeText(this@SignInEmailVerifiedActivity, "Hubo un problema en la verificación...", Toast.LENGTH_SHORT).show()
-                setLayoutVisibilities(listOf(View.GONE, View.VISIBLE, View.GONE))
+                setLayoutVisibilities(listOf(View.GONE, View.GONE, View.VISIBLE, View.GONE))
             }
         }
 
-        // VERIFICADO, button IR A MAIN ACTIVITY
-        signInEmailVerified_mainActivityButton.setOnClickListener() {
+        // VERIFICADO 1st, button IR A MAIN ACTIVITY
+        signInEmailVerified_firstMainActivityButton.setOnClickListener() {
 
             val firstName = signInEmailVerified_firstNameText.text.toString()
             val lastName = signInEmailVerified_lastNameText.text.toString()
@@ -114,19 +118,22 @@ class SignInEmailVerifiedActivity : AppCompatActivity() {
                     Toast.makeText(this@SignInEmailVerifiedActivity, "No se pudo actualizar el nombre...", Toast.LENGTH_SHORT).show()
                 }
 
-                if (!userExists) {
-                    val newUserImageURI = Uri.parse(
-                        "android.resource://$packageName/${ProfilePicturesRepository.returnPictureString(0)}"
-                    )
-                    if (firebaseAuthManager.updateUserImage(newUserImageURI)) {
-                        //
-                    } else {
-                        Toast.makeText(this@SignInEmailVerifiedActivity, "No se pudo actualizar la imagen...", Toast.LENGTH_SHORT).show()
-                    }
+                val newUserImageURI = Uri.parse(
+                    "android.resource://$packageName/${ProfilePicturesRepository.returnPictureString(0)}"
+                )
+                if (firebaseAuthManager.updateUserImage(newUserImageURI)) {
+                    //
+                } else {
+                    Toast.makeText(this@SignInEmailVerifiedActivity, "No se pudo actualizar la imagen...", Toast.LENGTH_SHORT).show()
                 }
 
                 goToMainActivity()
             }
+        }
+
+        //VERIFICADO not 1st, button IR A MAIN ACTIVITY
+        signInEmailVerified_notFirstMainActivityButton.setOnClickListener() {
+            goToMainActivity()
         }
 
         // NO VERIFICADO, button IR A SIGN IN
@@ -136,9 +143,10 @@ class SignInEmailVerifiedActivity : AppCompatActivity() {
     }
 
     private fun setLayoutVisibilities(listOfVisibilities: List<Int>) {
-        signInEmailVerified_verifiedLayout.visibility = listOfVisibilities[0]
-        signInEmailVerified_notVerifiedLayout.visibility = listOfVisibilities[1]
-        signInEmailVerified_loadingLayout.visibility = listOfVisibilities[2]
+        signInEmailVerified_verifiedFirstLayout.visibility = listOfVisibilities[0]
+        signInEmailVerified_verifiedNotFirstLayout.visibility = listOfVisibilities[1]
+        signInEmailVerified_notVerifiedLayout.visibility = listOfVisibilities[2]
+        signInEmailVerified_loadingLayout.visibility = listOfVisibilities[3]
     }
 
     fun String.isOnlyLetters() : Boolean {
@@ -146,6 +154,9 @@ class SignInEmailVerifiedActivity : AppCompatActivity() {
     }
 
     private fun goToMainActivity() {
+
+        //
+
         Intent(this, MainActivity::class.java).also {
             startActivity(it)
             finish()
