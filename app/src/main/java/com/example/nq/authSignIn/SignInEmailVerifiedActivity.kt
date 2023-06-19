@@ -15,6 +15,9 @@ import com.example.nq.authFirebase.SignInViewModel
 import com.example.nq.dataStore.DataStoreManager
 import com.example.nq.authFirebase.UserData
 import com.example.nq.recyclerViewProfilePictures.ProfilePicturesRepository
+import com.example.nq.recyclerViewTickets.TicketsRepository
+import com.example.nq.storageFirebase.FirebaseFriendsRepository
+import com.example.nq.storageFirebase.FirebaseRepository
 import com.google.android.gms.auth.api.identity.Identity
 import kotlinx.android.synthetic.main.activity_sign_in_email_verified.*
 import kotlinx.coroutines.launch
@@ -76,7 +79,7 @@ class SignInEmailVerifiedActivity : AppCompatActivity() {
         }
 
         // VERIFICADO, button IR A MAIN ACTIVITY
-        signInEmailVerified_mainActivityButton.setOnClickListener() {
+        signInEmailVerified_mainActivityButton.setOnClickListener {
 
             val firstName = signInEmailVerified_firstNameText.text.toString()
             val lastName = signInEmailVerified_lastNameText.text.toString()
@@ -109,20 +112,30 @@ class SignInEmailVerifiedActivity : AppCompatActivity() {
                     val lastNameKey = stringPreferencesKey("userLastName")
                     dataStoreManager.saveStringToDataStore(lastNameKey, lastName)
 
+                    // Cargar los datos desde Firebase al repositorio de Usuario
+                    /*val signedUserEmail = userDataGoogle?.mail
+                    val userData = fetchUserData(signedUserEmail!!)
+                    FirebaseRepository.userName = userData.name
+                    FirebaseRepository.userSurnames = userData.surnames
+                    FirebaseRepository.userImage = Uri.parse(userData.uri)
+                    FirebaseRepository.userEmail = userData.email
+                    val emailList:List<String> = userData.friendEmails
+                    FirebaseRepository.userFriendEmails = emailList as MutableList<String>
+                    // Cargar la lista con la info de los amigos al repositorio de Amigos
+                    FirebaseFriendsRepository.fetchFriendsData(emailList)
+                    // Cargar la lista de tickets al repositorio de Tickets
+                    TicketsRepository.fetchTicketData(signedUserEmail)*/
+
+
                     goToMainActivity()
                 } else {
                     Toast.makeText(this@SignInEmailVerifiedActivity, "No se pudo actualizar el nombre...", Toast.LENGTH_SHORT).show()
                 }
 
                 if (!userExists) {
-                    val newUserImageURI = Uri.parse(
-                        "android.resource://$packageName/${ProfilePicturesRepository.returnPictureString(0)}"
-                    )
-                    if (firebaseAuthManager.updateUserImage(newUserImageURI)) {
-                        //
-                    } else {
-                        Toast.makeText(this@SignInEmailVerifiedActivity, "No se pudo actualizar la imagen...", Toast.LENGTH_SHORT).show()
-                    }
+                    val newUserImageURI = Uri.parse("android.resource://com.example.nq/${R.drawable.ic_icon_04}")
+                    if (firebaseAuthManager.updateUserImage(newUserImageURI))
+                    else Toast.makeText(this@SignInEmailVerifiedActivity, "No se pudo actualizar la imagen...", Toast.LENGTH_SHORT).show()
                 }
 
                 goToMainActivity()

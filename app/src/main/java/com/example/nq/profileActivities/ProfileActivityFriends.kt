@@ -29,7 +29,6 @@ import kotlinx.android.synthetic.main.activity_profile_friends.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
-import java.text.FieldPosition
 
 class ProfileActivityFriends : AppCompatActivity(), FriendsListProfileInterface {
 

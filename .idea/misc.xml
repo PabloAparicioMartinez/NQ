@@ -11,7 +11,12 @@
         <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/ic_disco_sonora.xml" value="0.26" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/ic_icon_01.xml" value="0.349" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/ic_icon_02_background.xml" value="0.349" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/ic_icon_03.xml" value="0.349" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/ic_icon_04.xml" value="0.349" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/ic_icon_04_background.xml" value="0.349" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/ic_icon_04_foreground.xml" value="0.349" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/ic_loupe_nofull_01.xml" value="0.26" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/ic_money_android.xml" value="0.349" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/ic_splash_logo_02.xml" value="0.26" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/ic_ticket_full_01.xml" value="0.26" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/drawable/ic_ubication_01.xml" value="0.26" />
@@ -42,6 +47,7 @@
         <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/activity_profile_history.xml" value="0.20018115942028986" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/activity_profile_profile.xml" value="0.20018115942028986" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/activity_sign_in.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/activity_sign_in_email_verified.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/activity_sign_in_forget.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/activity_sign_up.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/NQ/app/src/main/res/layout/activity_start.xml" value="0.20018115942028986" />
