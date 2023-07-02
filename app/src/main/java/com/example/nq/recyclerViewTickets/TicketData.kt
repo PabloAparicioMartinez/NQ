@@ -6,6 +6,7 @@ data class TicketData(
     var email: String = "EMAIL",
     var discoName: String = "DISCOTECA",
     var eventName: String = "EVENTO",
+    var ticketType: String = "ENTRADA SIMPLE",
     var ticketNumber: String = "NUMERO DE TICKET",
     var date: String = "FECHA",
     var creationTimestamp: String = "FECHA DE COMPRA",

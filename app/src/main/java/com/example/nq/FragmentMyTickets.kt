@@ -5,16 +5,24 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.example.nq.authFirebase.FirebaseManager
+import com.example.nq.authFirebase.FirebaseAuthManager
 import com.example.nq.authSignIn.SignInActivity
 import com.example.nq.recyclerViewTickets.TicketData
 import com.example.nq.recyclerViewTickets.TicketsAdapter
 import com.example.nq.recyclerViewTickets.TicketsRepository
+import com.google.android.gms.auth.api.identity.Identity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.fragment_my_tickets.*
 import me.relex.circleindicator.CircleIndicator3
 
 class FragmentMyTickets : Fragment(R.layout.fragment_my_tickets) {
+
+    private val firebaseAuthManager by lazy {
+        FirebaseAuthManager(
+            context = requireContext(),
+            oneTapClient = Identity.getSignInClient(requireContext())
+        )
+    }
 
     private lateinit var mainActivityBotMenu: BottomNavigationView
 
@@ -26,7 +34,7 @@ class FragmentMyTickets : Fragment(R.layout.fragment_my_tickets) {
         (activity as AppCompatActivity).supportActionBar?.title = "ENTRADAS"
 
         //SET LAYOUT DEPENDING ON USER LOGGED IN STATE AND TICKET AVAILABILITY
-        if (!FirebaseManager().checkIfUserIsSignedIn()) {
+        if (firebaseAuthManager.getSignedInUser() == null) {
             showNotLoggedView()
         } else {
             val tickets = TicketsRepository.ticketList
@@ -45,7 +53,7 @@ class FragmentMyTickets : Fragment(R.layout.fragment_my_tickets) {
         fragMyTickets_unsignedInLayout.visibility = View.VISIBLE
 
         // Botón SignIn
-        fragMyTickets_signInButton.setOnClickListener() {
+        fragMyTickets_signInButton.setOnClickListener {
             Intent(activity, SignInActivity::class.java).also {
                 startActivity(it)
             }
@@ -79,7 +87,7 @@ class FragmentMyTickets : Fragment(R.layout.fragment_my_tickets) {
         fragMyTickets_signedInLayout_NoTickets.visibility = View.VISIBLE
 
         // Botón para volver a la pantalla de comprar tickets
-        fragMyTickets_buyTicketsUnsignedInButton.setOnClickListener {
+        fragMyTickets_buyTicketsSignedInButton.setOnClickListener {
             val fragmentBuyTickets = FragmentBuyTickets()
             SetFragment.setCurrentFragment(requireActivity().supportFragmentManager, fragmentBuyTickets, mainActivityBotMenu)
             requireActivity().invalidateOptionsMenu()

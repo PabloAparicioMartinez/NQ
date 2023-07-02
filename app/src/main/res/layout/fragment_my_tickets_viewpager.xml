@@ -1,4 +1,400 @@
 <?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginStart="28dp"
+    android:layout_marginEnd="28dp"
+    android:layout_marginTop="28dp"
+    android:layout_marginBottom="28dp"
+    android:backgroundTint="@color/white"
+    android:layout_gravity="center"
+    android:elevation="16dp"
+    app:cardCornerRadius="12dp">
+
+    <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="150dp"-->
+    <!--        android:background="@color/dark_blue"-->
+    <!--        android:visibility="visible"/>-->
+
+    <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="215dp"-->
+    <!--        android:background="@drawable/shape_gradient_01"-->
+    <!--        android:visibility="gone"/>-->
+
+    <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="400dp"-->
+    <!--        android:background="@drawable/shape_gradient_01"-->
+    <!--        android:visibility="gone"/>-->
+
+    <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:visibility="gone">-->
+
+    <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--            android:id="@+id/constraintLayout"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="70dp"-->
+    <!--            android:background="@color/dark_blue"-->
+    <!--            android:visibility="visible"-->
+    <!--            app:layout_constraintEnd_toEndOf="parent"-->
+    <!--            app:layout_constraintHorizontal_bias="0.5"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="155dp"-->
+    <!--            android:layout_marginTop="65dp"-->
+    <!--            android:background="@drawable/shape_gradient_01"-->
+    <!--            android:visibility="visible"-->
+    <!--            app:layout_constraintEnd_toEndOf="parent"-->
+    <!--            app:layout_constraintHorizontal_bias="0.5"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/dark_blue"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:orientation="vertical"
+            android:gravity="top">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp">
+
+                <TextView
+                    style="@style/NQ.TextBlack"
+                    android:id="@+id/textViewFecha"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="DIA\nFECHA"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    style="@style/NQ.TextBlack"
+                    android:id="@+id/textViewTipoDeEntrada"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="TIPO DE ENTRADA"
+                    android:textAlignment="textEnd"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/NQ.TextBlack"
+                android:id="@+id/textViewDiscoteca"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:layout_marginTop="8dp"
+                android:text="DISCO"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:layout_gravity="center"
+                android:textSize="36sp"/>
+
+            <!--            <TextView-->
+            <!--                style="@style/NQ.TextBlack"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:textAlignment="center"-->
+            <!--                android:layout_marginTop="0dp"-->
+            <!--                android:text="Entrada simple"-->
+            <!--                android:textAllCaps="false"-->
+            <!--                android:textColor="@color/white"-->
+            <!--                android:layout_gravity="center"-->
+            <!--                android:textSize="12sp"/>-->
+
+            <TextView
+                style="@style/NQ.TextBlack"
+                android:id="@+id/textViewEvento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:textAlignment="center"
+                android:text="EVENTO"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="16sp"/>
+
+            <TextView
+                style="@style/NQ.TextBlack"
+                android:id="@+id/textViewNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:textAlignment="center"
+                android:text="NOMBRE APELLIDOS"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="16sp"/>
+
+            <!--<TextView
+                style="@style/NQ.TextBlack"
+                android:id="@+id/textViewEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:textAlignment="center"
+                android:text="email@gmail.com"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="14sp"/>-->
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="0dp"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                style="@style/NQ.TextBlack"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="Entrada:"
+                android:textAlignment="center"
+                android:textColor="@color/black_01"
+                android:textSize="26sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_corner_02"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/dark_blue" />
+
+                <ImageView
+                    android:id="@+id/imageViewQR"
+                    android:layout_width="220dp"
+                    android:layout_height="220dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_corner_01"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:tint="@color/dark_blue" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+        <!--        <LinearLayout-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_weight="1"-->
+        <!--            android:orientation="vertical"-->
+        <!--            android:gravity="center">-->
+
+        <!--            <TextView-->
+        <!--                style="@style/NQ.TextBlack"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginTop="16dp"-->
+        <!--                android:layout_marginBottom="8dp"-->
+        <!--                android:text="Consumición:"-->
+        <!--                android:textAlignment="center"-->
+        <!--                android:textColor="@color/black_01"-->
+        <!--                android:textSize="20sp"-->
+        <!--                app:layout_constraintEnd_toEndOf="parent"-->
+        <!--                app:layout_constraintHorizontal_bias="0.5"-->
+        <!--                app:layout_constraintStart_toStartOf="parent" />-->
+
+        <!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                app:layout_constraintEnd_toEndOf="parent"-->
+        <!--                app:layout_constraintHorizontal_bias="0.5"-->
+        <!--                app:layout_constraintStart_toStartOf="parent"-->
+        <!--                app:layout_constraintTop_toTopOf="parent">-->
+
+        <!--                <ImageView-->
+        <!--                    android:layout_width="12dp"-->
+        <!--                    android:layout_height="12dp"-->
+        <!--                    android:src="@drawable/ic_corner_02"-->
+        <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+        <!--                    app:layout_constraintTop_toTopOf="parent"-->
+        <!--                    app:tint="@color/dark_blue" />-->
+
+        <!--                <ImageView-->
+        <!--                    android:layout_width="125dp"-->
+        <!--                    android:layout_height="125dp"-->
+        <!--                    android:layout_marginStart="8dp"-->
+        <!--                    android:layout_marginTop="8dp"-->
+        <!--                    android:layout_marginEnd="8dp"-->
+        <!--                    android:layout_marginBottom="8dp"-->
+        <!--                    android:src="@drawable/ic_qr_01"-->
+        <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+        <!--                    app:layout_constraintHorizontal_bias="0.5"-->
+        <!--                    app:layout_constraintStart_toStartOf="parent"-->
+        <!--                    app:layout_constraintTop_toTopOf="parent" />-->
+
+        <!--                <ImageView-->
+        <!--                    android:id="@+id/imageView5"-->
+        <!--                    android:layout_width="12dp"-->
+        <!--                    android:layout_height="12dp"-->
+        <!--                    android:src="@drawable/ic_corner_01"-->
+        <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--                    app:layout_constraintStart_toStartOf="parent"-->
+        <!--                    app:tint="@color/dark_blue" />-->
+
+        <!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+        <!--        </LinearLayout>-->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:padding="24dp"
+            android:text="Entrada antes de las 02:00h"
+            android:textAlignment="center"
+            android:textColor="@color/black_01"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/buttonSellTicket"
+            style="@style/NQ.Button.Full"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="48dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:text="VENDER ENTRADA"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintVertical_bias="0.1"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayoutTicketQR"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+
+    <!-- LOADING LAYOUT -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/sellTickets_loadingLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="false"
+        android:visibility="gone">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.12"
+            android:background="@color/black"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/view_buyTickets"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:background="@drawable/shape_background_loading"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textView_ejecutandoCompra"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Vendiendo..."
+                android:textColor="@color/black_01"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ProgressBar
+                android:id="@+id/progressBar_buyTickets"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:theme="@style/Theme.NQ.Progressbar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_ejecutandoCompra" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
+
+
+
+
+<!--
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -138,7 +534,7 @@
             app:layout_constraintVertical_bias="0.1"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayoutTicketQR" />
 
-    <!--LOADING LAYOUT-->
+    &lt;!&ndash;LOADING LAYOUT&ndash;&gt;
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/sellTickets_loadingLayout"
         android:layout_width="match_parent"
@@ -191,4 +587,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>-->

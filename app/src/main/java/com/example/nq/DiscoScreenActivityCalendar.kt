@@ -44,13 +44,13 @@ class DiscoScreenActivityCalendar : AppCompatActivity(), EventsInterface {
             actionBar.setDisplayHomeAsUpEnabled(true)
         }
 
-        discoName = intent.getStringExtra("EXTRA_NAME").toString()
+        discoName = intent.getStringExtra("EXTRA_DISCO_NAME").toString()
         discoScreen_DiscoName.text = discoName
-        discoScreenCalendar_discoImage.setImageResource(intent.getIntExtra("EXTRA_IMAGE", -1))
-        discoScreenCalendar_discoLocation.text = intent.getStringExtra("EXTRA_LOCATION")
+        discoScreenCalendar_discoImage.setImageResource(intent.getIntExtra("EXTRA_DISCO_IMAGE", -1))
+        discoScreenCalendar_discoLocation.text = intent.getStringExtra("EXTRA_DISCO_LOCATION")
 
         // BUTTON FECHA
-        discoScreenCalendar_calendar.setOnClickListener() {
+        discoScreenCalendar_calendar.setOnClickListener {
 
             if (selectedDate == null) selectedDate = MaterialDatePicker.todayInUtcMilliseconds()
 
@@ -85,7 +85,7 @@ class DiscoScreenActivityCalendar : AppCompatActivity(), EventsInterface {
         }
 
         // BUTTON TODAS
-        discoScreenCancer_showAll.setOnClickListener() {
+        discoScreenCancer_showAll.setOnClickListener {
             discoScreenCalendar_date.text = "Todas las fechas"
             discoScreenCancer_showAll.visibility = View.GONE
 
@@ -95,7 +95,7 @@ class DiscoScreenActivityCalendar : AppCompatActivity(), EventsInterface {
             }
         }
 
-        when (intent.getStringExtra("EXTRA_NAME")) {
+        when (intent.getStringExtra("EXTRA_DISCO_NAME")) {
             "BACK&STAGE" -> eventsAdapter = EventsAdapter(EventsRepository.backStageEvents, this)
             "FEVER" -> eventsAdapter = EventsAdapter(EventsRepository.feverEvents, this)
             "SONORA" -> eventsAdapter = EventsAdapter(EventsRepository.sonoraEvents, this)
@@ -152,13 +152,14 @@ class DiscoScreenActivityCalendar : AppCompatActivity(), EventsInterface {
     override fun onItemClick(eventData: EventsData) {
 
         Intent(this, EventScreenActivity::class.java).also {
-            it.putExtra("EXTRA_IMAGE", eventData.eventImage)
-            it.putExtra("EXTRA_NAME", eventData.eventName)
-            it.putExtra("EXTRA_MUSIC", eventData.eventMusic)
-            it.putExtra("EXTRA_DATE", eventData.eventDate)
-            it.putExtra("EXTRA_AVAILABILITY", eventData.eventAvailability)
-            it.putExtra("EXTRA_PRICE", eventData.eventPrice)
-            it.putExtra("EXTRA_INCLUDE", eventData.eventIncludedWithTicket)
+            it.putExtra("EXTRA_EVENT_IMAGE", eventData.eventImage)
+            it.putExtra("EXTRA_EVENT_NAME", eventData.eventName)
+            it.putExtra("EXTRA_EVENT_MUSIC", eventData.eventMusic)
+            it.putExtra("EXTRA_EVENT_DATE", eventData.eventDate)
+            it.putExtra("EXTRA_EVENT_AVAILABILITY", eventData.eventAvailability)
+            it.putExtra("EXTRA_EVENT_PRICE", eventData.eventPrice)
+            it.putExtra("EXTRA_EVENT_INCLUDE", eventData.eventIncludedWithTicket)
+            it.putExtra("EXTRA_DISCO_NAME", discoName)
             startActivity(it)
         }
     }
@@ -169,7 +170,7 @@ class DiscoScreenActivityCalendar : AppCompatActivity(), EventsInterface {
         val customLayout = LayoutInflater.from(this).inflate(R.layout.item_image_disco, null)
 
         val discoImage = customLayout.findViewById<ImageView>((R.id.itemImageDisco_image))
-        discoImage.setImageResource(intent.getIntExtra("EXTRA_IMAGE", -1))
+        discoImage.setImageResource(intent.getIntExtra("EXTRA_DISCO_IMAGE", -1))
 
         builder.setView(customLayout)
         val alertDialog = builder.create()

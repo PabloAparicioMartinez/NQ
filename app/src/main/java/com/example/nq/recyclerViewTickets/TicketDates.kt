@@ -29,15 +29,6 @@ class TicketDates {
         return "$year$month"
     }
 
-    // Función para obtener el mes y el año
-    fun getPreviousMonthAndYear(): String {
-        val calendar = Calendar.getInstance()
-        calendar.add(Calendar.MONTH, -1)
-        val month = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale("es", "ES"))
-        val year = calendar.get(Calendar.YEAR).toString()
-        return "$month-$year"
-    }
-
     fun formatDate(dateStr: String): String {
         // Definimos el formato de entrada
         val inputFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())

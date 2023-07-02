@@ -4,9 +4,9 @@ import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nq.FragmentMyTickets
@@ -148,13 +148,15 @@ class TicketsAdapter(
             val nameToShow: String = ticket.name.uppercase()
             val surnameToShow: String = ticket.surnames.uppercase()
             val emailToShow: String = ticket.email
+            val typeToShow: String = ticket.ticketType
 
             // Update UI
             binding.textViewDiscoteca.text = discoNameToShow
             binding.textViewEvento.text = eventToShow
             binding.textViewFecha.text = dateToShow
             binding.textViewNombre.text = "$nameToShow $surnameToShow"
-            binding.textViewEmail.text = emailToShow
+            // binding.textViewEmail.text = emailToShow
+            binding.textViewTipoDeEntrada.text = typeToShow
 
             // Generate QR code asynchronously using coroutines
             CoroutineScope(Dispatchers.Default).launch {

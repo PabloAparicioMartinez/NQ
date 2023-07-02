@@ -10,7 +10,7 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.nq.authFirebase.FirebaseUserData
+import com.example.nq.storageFirebase.FirebaseUserData
 import com.example.nq.recyclerViewFriendsList.FriendsListAdapter
 import com.example.nq.recyclerViewFriendsList.FriendsListInterface
 import com.example.nq.storageFirebase.FirebaseFriendsRepository
@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.activity_event_screen_search.*
 
 class EventScreenActivitySearch : AppCompatActivity(), FriendsListInterface{
 
-    private val friendsAdapter = FriendsListAdapter(FirebaseFriendsRepository.userFriends, this)
+    private val friendsAdapter = FriendsListAdapter(FirebaseFriendsRepository.userFriends, this,this)
 
     private var position = -1
     private var friendsEmailsList: ArrayList<String> = ArrayList()

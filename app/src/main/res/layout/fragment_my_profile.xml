@@ -159,7 +159,7 @@
                         android:layout_height="25dp"
                         android:layout_marginTop="0dp"
                         android:paddingEnd="16dp"
-                        android:text="Añade a tus amigos a esta lista para comprar entradas para ellos fácilmente"
+                        android:text="Añade a tus amigos en esta lista y así comprar entradas para ellos fácilmente"
                         android:textColor="@color/dark_grey_01"
                         android:textSize="10sp" />
 
@@ -181,13 +181,71 @@
                 android:layout_height="wrap_content" />
 
             <LinearLayout
+                android:id="@+id/fragMyProfile_notificationsButton"
+                style="@style/NQ.ProfileButtonStyle"
                 android:layout_width="match_parent"
-                android:layout_height="18dp"
-                android:background="@color/light_grey_01" />
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="6dp"
+                    android:src="@drawable/ic_notifications_01" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="24dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/NQ.TextBlack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="2dp"
+                        android:text="Notificaciones"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black_01"
+                        android:textSize="18sp"
+                        android:textStyle="" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="0dp"
+                        android:paddingEnd="16dp"
+                        android:text="Revisa tus notificaciones y entérate de todas las novedades aquí"
+                        android:textColor="@color/dark_grey_01"
+                        android:textSize="10sp" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="0dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_arrow_android"
+                    app:tint="@color/dark_blue" />
+
+            </LinearLayout>
 
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+
+            <!--<LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="18dp"
+                android:background="@color/light_grey_01" />-->
+
+            <!--<com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />-->
 
             <LinearLayout
                 android:id="@+id/fragMyProfile_paymentsButton"
@@ -301,14 +359,14 @@
 
             </LinearLayout>
 
-            <com.google.android.material.divider.MaterialDivider
+            <!--<com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content" />-->
 
-            <LinearLayout
+            <!--<LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="18dp"
-                android:background="@color/light_grey_01" />
+                android:background="@color/light_grey_01" />-->
 
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"

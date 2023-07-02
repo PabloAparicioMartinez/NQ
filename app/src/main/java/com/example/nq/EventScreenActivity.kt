@@ -15,8 +15,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.nq.authFirebase.FirebaseManager
-import com.example.nq.authFirebase.FirebaseUserData
+import com.example.nq.authFirebase.FirebaseAuthManager
+import com.example.nq.storageFirebase.FirebaseUserData
 import com.example.nq.recyclerViewFriendsTickets.FriendsTicketsAdapter
 import com.example.nq.recyclerViewFriendsTickets.FriendsTicketsData
 import com.example.nq.recyclerViewFriendsTickets.FriendsTicketsInterface
@@ -26,6 +26,7 @@ import com.example.nq.recyclerViewTickets.TicketNumberMapRepository
 import com.example.nq.recyclerViewTickets.TicketsRepository
 import com.example.nq.storageFirebase.FirebaseFriendsRepository
 import com.example.nq.storageFirebase.FirebaseRepository
+import com.google.android.gms.auth.api.identity.Identity
 import com.google.firebase.firestore.AggregateSource
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.Query
@@ -40,25 +41,27 @@ import kotlinx.android.synthetic.main.activity_event_screen.eventScreen_music
 import kotlinx.android.synthetic.main.activity_event_screen.eventScreen_name
 import kotlinx.android.synthetic.main.activity_event_screen.eventScreen_number
 import kotlinx.android.synthetic.main.activity_event_screen.eventScreen_plus
-import kotlinx.android.synthetic.main.item_ticket_for_friend.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
 import kotlin.random.Random
 
 class EventScreenActivity : AppCompatActivity(), FriendsTicketsInterface {
 
-    var ticketCount = 1
-    var ticketPrice = 0.00f
-    var moneyCount = 1.00f
+    private val firebaseAuthManager by lazy {
+        FirebaseAuthManager(
+            context = applicationContext,
+            oneTapClient = Identity.getSignInClient(applicationContext)
+        )
+    }
+
+    private var ticketCount = 1
+    private var ticketPrice = 0.00f
+    private var moneyCount = 1.00f
 
     private val friendsTicketsAdapterList: ArrayList<FriendsTicketsData> = ArrayList()
     private val friendsTicketsAdapter = FriendsTicketsAdapter(friendsTicketsAdapterList,this)
 
     private val datesInstance = TicketDates()
-
-    companion object {
-        private const val REQUEST_FRIEND_SELECTION = 1
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,21 +75,21 @@ class EventScreenActivity : AppCompatActivity(), FriendsTicketsInterface {
         }
 
         // Establecer la pantalla de tickets en función de si hay entradas disponibles o no
-        val ticketsDisponibility = intent.getStringExtra("EXTRA_AVAILABILITY")
+        val ticketsDisponibility = intent.getStringExtra("EXTRA_EVENT_AVAILABILITY")
         setTheLayout(ticketsDisponibility)
 
         // Obtener el valor de ticketPrice dentro de onCreate()
-        ticketPrice = intent.getFloatExtra("EXTRA_PRICE", 0.00f)
+        ticketPrice = intent.getFloatExtra("EXTRA_EVENT_PRICE", 0.00f)
 
         val eventScreenMyName = "${FirebaseRepository.userName.uppercase()} ${FirebaseRepository.userSurnames.uppercase()} (YO)"
-        if (FirebaseManager().checkIfUserIsSignedIn()) eventScreen_ticketName.text = eventScreenMyName
+        if (firebaseAuthManager.getSignedInUser() != null) eventScreen_ticketName.text = eventScreenMyName
 
-        // BUTTON large image
-        eventScreen_yesLayout.setOnClickListener() {
+        // BUTTON large ID
+        eventScreen_yesLayout.setOnClickListener {
             showLargeImage()
         }
         // Acciones para los botnes de + y -
-        if (FirebaseManager().checkIfUserIsSignedIn()) {
+        if (firebaseAuthManager.getSignedInUser() != null) {
             eventScreen_plus.setOnClickListener { changeTicketCount("Plus") }
             eventScreen_minus.setOnClickListener { changeTicketCount("Minus") }
         } else {
@@ -103,7 +106,7 @@ class EventScreenActivity : AppCompatActivity(), FriendsTicketsInterface {
         eventScreen_buyButton.setOnClickListener {
             // Comprobar si esta loggeado o no:
             // Si no está loggeado, debe hacerlo primero.
-            if (!FirebaseManager().checkIfUserIsSignedIn()) {
+            if (firebaseAuthManager.getSignedInUser() == null) {
                 Toast.makeText(this@EventScreenActivity, "¡Para comprar entradas debes iniciar sesión primero!", Toast.LENGTH_SHORT).show()
 
                 // Si está loggeado, se guardan las entradas en Firebase
@@ -165,19 +168,19 @@ class EventScreenActivity : AppCompatActivity(), FriendsTicketsInterface {
                 eventScreen_yesLayout.visibility = View.VISIBLE
                 eventScreen_noLayout.visibility = View.GONE
 
-                eventScreen_image.setImageResource(intent.getIntExtra("EXTRA_IMAGE", -1))
-                eventScreen_name.text = intent.getStringExtra("EXTRA_NAME")
-                eventScreen_music.text = intent.getStringExtra("EXTRA_MUSIC")
-                eventScreen_date.text = intent.getStringExtra("EXTRA_DATE")
+                eventScreen_image.setImageResource(intent.getIntExtra("EXTRA_EVENT_IMAGE", -1))
+                eventScreen_name.text = intent.getStringExtra("EXTRA_EVENT_NAME")
+                eventScreen_music.text = intent.getStringExtra("EXTRA_EVENT_MUSIC")
+                eventScreen_date.text = intent.getStringExtra("EXTRA_EVENT_DATE")
             }
             "AGOTADAS" -> {
                 eventScreen_noLayout.visibility = View.VISIBLE
                 eventScreen_yesLayout.visibility = View.GONE
 
-                eventScreenNot_image.setImageResource(intent.getIntExtra("EXTRA_IMAGE", -1))
-                eventScreenNot_name.text = intent.getStringExtra("EXTRA_NAME")
-                eventScreenNot_music.text = intent.getStringExtra("EXTRA_MUSIC")
-                eventScreenNot_date.text = intent.getStringExtra("EXTRA_DATE")
+                eventScreenNot_image.setImageResource(intent.getIntExtra("EXTRA_EVENT_IMAGE", -1))
+                eventScreenNot_name.text = intent.getStringExtra("EXTRA_EVENT_NAME")
+                eventScreenNot_music.text = intent.getStringExtra("EXTRA_EVENT_MUSIC")
+                eventScreenNot_date.text = intent.getStringExtra("EXTRA_EVENT_DATE")
             }
         }
     }
@@ -276,9 +279,9 @@ class EventScreenActivity : AppCompatActivity(), FriendsTicketsInterface {
             val selectedPosition: Int? = data?.getIntExtra("POSITION_BACK",0)
             val clickedItem = friendsTicketsAdapterList[selectedPosition!!]
 
-            val selectedFriendEmail: String? = data?.getStringExtra("USER_EMAIL")
-            val selectedFriendName: String? = data?.getStringExtra("USER_NAME")
-            val selectedFriendSurname: String? = data?.getStringExtra("USER_SURNAMES")
+            val selectedFriendEmail: String? = data.getStringExtra("USER_EMAIL")
+            val selectedFriendName: String? = data.getStringExtra("USER_NAME")
+            val selectedFriendSurname: String? = data.getStringExtra("USER_SURNAMES")
 
             if (selectedFriendName != null) {
                 clickedItem.friendName = selectedFriendName
@@ -374,8 +377,11 @@ class EventScreenActivity : AppCompatActivity(), FriendsTicketsInterface {
     private fun buyTickets() {
         // Info del evento
         val discoName: String = intent.getStringExtra("EXTRA_DISCO_NAME").toString()
-        val eventName: String = intent.getStringExtra("EXTRA_NAME").toString()
-        val eventDate: String = intent.getStringExtra("EXTRA_DATE").toString()
+        val eventName: String = intent.getStringExtra("EXTRA_EVENT_NAME").toString()
+        val eventDate: String = intent.getStringExtra("EXTRA_EVENT_DATE").toString()
+
+        // DE MOMENTO EL TICKET TYPE ES SIEMPRE "ENTRADA SIMPLE"
+        val ticketType = "Entrada simple"
 
         // Info de los usuario a los que se va a comprar la entrada
         val matchingFriends = mutableListOf<FirebaseUserData>()
@@ -383,7 +389,7 @@ class EventScreenActivity : AppCompatActivity(), FriendsTicketsInterface {
         val mySelf = FirebaseUserData(
             FirebaseRepository.userName,
             FirebaseRepository.userSurnames,
-            FirebaseRepository.userImage.toString(),
+            FirebaseRepository.userID,
             FirebaseRepository.userEmail,
             FirebaseRepository.userFriendEmails
         )
@@ -425,6 +431,7 @@ class EventScreenActivity : AppCompatActivity(), FriendsTicketsInterface {
                     .collection("TicketInfo")
 
                 val creationTimestamp = datesInstance.getCurrentTimestamp()
+
                 // Create the Ticket
                 val ticketData = TicketData(
                     buyer.name,
@@ -432,6 +439,7 @@ class EventScreenActivity : AppCompatActivity(), FriendsTicketsInterface {
                     buyer.email,
                     discoName,
                     eventName,
+                    ticketType,
                     ticketNumber,
                     eventDate,
                     creationTimestamp
@@ -449,7 +457,7 @@ class EventScreenActivity : AppCompatActivity(), FriendsTicketsInterface {
         val builder = MaterialAlertDialogBuilder(this, R.style.NQ_AlertDialogs)
         val customLayout = LayoutInflater.from(this).inflate(R.layout.item_image_event, null)
         val eventImage = customLayout.findViewById<ImageView>((R.id.itemImageEvent_image))
-        eventImage?.setImageResource(intent.getIntExtra("EXTRA_IMAGE", -1))
+        eventImage?.setImageResource(intent.getIntExtra("EXTRA_EVENT_IMAGE", -1))
 
         builder.setView(customLayout)
         val alertDialog = builder.create()

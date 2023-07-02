@@ -155,17 +155,4 @@ class FirebaseAuthManager(private val context: Context, private val oneTapClient
             if (e is CancellationException) throw e
         }
     }
-
-//    suspend fun checkIfEmailExists(email: String) : Boolean {
-//        return try {
-//
-//            auth.fetchSignInMethodsForEmail(email).await()
-//            true
-//
-//        } catch (e: Exception) {
-//            e.printStackTrace()
-//            if (e is CancellationException) throw e
-//            false
-//        }
-//    }
 }

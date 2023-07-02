@@ -63,7 +63,7 @@
             android:theme="@style/Theme.NQ.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".DiscoScreenActivity"
+            android:name=".zz_old_DiscoScreenActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.NQ.ActionBar" />

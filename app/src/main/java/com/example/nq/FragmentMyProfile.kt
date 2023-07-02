@@ -1,6 +1,8 @@
 package com.example.nq
 
+import CircleTransform
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
@@ -9,13 +11,17 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.nq.authFirebase.FirebaseAuthManager
 import com.example.nq.authSignIn.SignInActivity
-import com.example.nq.authFirebase.UserData
 import com.example.nq.profileActivities.*
+import com.example.nq.storageFirebase.FirebaseRepository
 import com.google.android.gms.auth.api.identity.Identity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.squareup.picasso.MemoryPolicy
+import com.squareup.picasso.NetworkPolicy
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_my_profile.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.io.File
 
 class FragmentMyProfile : Fragment(R.layout.fragment_my_profile) {
 
@@ -37,47 +43,47 @@ class FragmentMyProfile : Fragment(R.layout.fragment_my_profile) {
         }
 
         //BUTTONS
-        fragMyProfile_profileButton.setOnClickListener() {
+        fragMyProfile_profileButton.setOnClickListener {
             Intent(activity, ProfileActivityProfile::class.java).also {
                 startActivity(it)
             }
         }
 
-        fragMyProfile_friendsButton.setOnClickListener() {
+        fragMyProfile_friendsButton.setOnClickListener {
             Intent(activity, ProfileActivityFriends::class.java).also {
                 startActivity(it)
             }
         }
 
-        fragMyProfile_paymentsButton.setOnClickListener() {
+        fragMyProfile_paymentsButton.setOnClickListener {
             Intent(activity, ProfileActivityPayments::class.java).also {
                 startActivity(it)
             }
         }
 
-        fragMyProfile_historyButton.setOnClickListener() {
+        fragMyProfile_historyButton.setOnClickListener {
             Intent(activity, ProfileActivityHistory::class.java).also {
                 startActivity(it)
             }
         }
 
-        fragMyProfile_problemButton.setOnClickListener() {
+        fragMyProfile_problemButton.setOnClickListener {
             Intent(activity, ProfileActivityLegal::class.java).also {
                 startActivity(it)
             }
         }
 
-        fragMyProfile_helpButton.setOnClickListener() {
+        fragMyProfile_helpButton.setOnClickListener {
             Intent(activity, ProfileActivityHelp::class.java).also {
                 startActivity(it)
             }
         }
 
-        fragMyProfile_signOutButton.setOnClickListener() {
-            showSignOutAlertDialong()
+        fragMyProfile_signOutButton.setOnClickListener {
+            showSignOutAlertDialog()
         }
 
-        fragMyProfile_signInButton.setOnClickListener() {
+        fragMyProfile_signInButton.setOnClickListener {
             Intent(activity, SignInActivity::class.java).also {
                 it.putExtra("EXTRA_SignInClicked", true)
                 startActivity(it)
@@ -99,14 +105,37 @@ class FragmentMyProfile : Fragment(R.layout.fragment_my_profile) {
     private fun setUserInfoUI() {
         setLayoutVisibilities(listOf(View.VISIBLE, View.GONE, View.GONE))
 
-        val userData: UserData? = firebaseAuthManager.getSignedInUser()
-        fragMyProfile_name.text = userData?.name ?: "Name"
-        fragMyProfile_mail.text = userData?.mail ?: "Mail"
+        val showName = "${FirebaseRepository.userName} ${FirebaseRepository.userSurnames}"
+        fragMyProfile_name.text = showName
+        fragMyProfile_mail.text = FirebaseRepository.userEmail
 
-        val pictureURI = userData?.profilePictureURL
-        val pictureName = pictureURI?.substringAfterLast(".") ?: ""
-        val pictureID = resources.getIdentifier(pictureName, "drawable", activity?.packageName)
-        fragMyProfile_image.setImageResource(pictureID)
+        val userPicture = File(requireContext().filesDir, "${FirebaseRepository.userID}.png")
+        if (userPicture.exists()) {
+            val userPictureUrl = Uri.fromFile(userPicture).toString()
+            val cacheBustingUrl = "$userPictureUrl?${System.currentTimeMillis()}"
+            Picasso.get()
+                .load(cacheBustingUrl)
+                .memoryPolicy(MemoryPolicy.NO_CACHE)  // Disable memory cache
+                .networkPolicy(NetworkPolicy.NO_CACHE)  // Disable network cache
+                .transform(CircleTransform())
+                .into(fragMyProfile_image)
+        } else {
+            Picasso.get()
+                .load(R.drawable.png_nq)
+                .transform(CircleTransform())
+                .into(fragMyProfile_image)
+        }
+
+        /*val imageName = FirebaseRepository.userID
+        val userPicture = File(requireContext().filesDir, "${imageName}.png")
+        val newImageDrawable: Drawable? = if (userPicture.exists()) {
+            Drawable.createFromPath(userPicture.absolutePath)
+        } else {
+            ResourcesCompat.getDrawable(resources, R.drawable.png_user, null)
+        }
+
+        fragMyProfile_image.setImageDrawable(newImageDrawable)*/
+
     }
 
     private fun setLayoutVisibilities(listOfVisibilities: List<Int>) {
@@ -115,23 +144,23 @@ class FragmentMyProfile : Fragment(R.layout.fragment_my_profile) {
         fragMyProfile_loadingLayout.visibility = listOfVisibilities[2]
     }
 
-    fun showSignOutAlertDialong() {
+    private fun showSignOutAlertDialog() {
 
         val builder = MaterialAlertDialogBuilder(requireContext(), R.style.NQ_AlertDialogs)
 
         val title = TextView(requireContext())
-        title.text = "Cerrar sesión"
+        title.text = "CERRAR SESIÓN"
         title.setTextAppearance(R.style.NQ_AlertDialog_Title)
         title.setPadding(64, 48, 0, 0)
 
         builder.setCustomTitle(title)
         builder.setMessage("¿Estás seguro de que quieres cerrar sesión?")
-        builder.setPositiveButton("CONFIRMAR") { dialog, which ->
+        builder.setPositiveButton("CONFIRMAR") { _, _ ->
             lifecycleScope.launch {
                 signOutUser()
             }
         }
-        builder.setNegativeButton("Cancelar") { dialog, which ->
+        builder.setNegativeButton("Cancelar") { _, _ ->
 
         }
 
@@ -149,4 +178,5 @@ class FragmentMyProfile : Fragment(R.layout.fragment_my_profile) {
         Toast.makeText(activity, "Sesión cerrada", Toast.LENGTH_SHORT).show()
     }
 }
+
 

@@ -1,17 +1,22 @@
 package com.example.nq.recyclerViewFriendsList
 
+import CircleTransform
+import android.content.Context
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nq.R
-import com.example.nq.authFirebase.FirebaseUserData
+import com.example.nq.storageFirebase.FirebaseUserData
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_friend.view.*
+import java.io.File
 
 class FriendsListAdapter(
     private var friends: MutableList<FirebaseUserData>,
-    private val listener: FriendsListInterface
+    private val listener: FriendsListInterface,
+    private val context: Context
 ) : RecyclerView.Adapter<FriendsListAdapter.FriendsViewHolder>() {
 
     inner class FriendsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
@@ -36,8 +41,24 @@ class FriendsListAdapter(
 
     override fun onBindViewHolder(holder: FriendsViewHolder, position: Int) {
         val friend = friends[position]
+        val imageName = friends[position].ID
+        val userPicture = File(context.filesDir, "${imageName}.png")
+        
         holder.itemView.apply{
-            itemFriend_image.setImageURI(Uri.parse(friend.uri))
+            if (userPicture.exists()) {
+                val userPictureUrl = Uri.fromFile(userPicture).toString()
+                val cacheBustingUrl = "$userPictureUrl?${System.currentTimeMillis()}"
+                Picasso.get()
+                    .load(cacheBustingUrl)
+                    .transform(CircleTransform())
+                    .into(itemFriend_image)
+            } else {
+                Picasso.get()
+                    .load(R.drawable.png_nq)
+                    .transform(CircleTransform())
+                    .into(itemFriend_image)
+            }
+
             itemFriend_name.text = "${friend.name} ${friend.surnames}"
             itemFriend_mail.text = friend.email
         }

@@ -1,26 +1,41 @@
 package com.example.nq.authSignIn
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.core.content.res.ResourcesCompat
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.lifecycle.lifecycleScope
 import com.example.nq.MainActivity
 import com.example.nq.R
 import com.example.nq.authFirebase.FirebaseAuthManager
+import com.example.nq.storageFirebase.FirebaseUserData
 import com.example.nq.authFirebase.SignInViewModel
-import com.example.nq.dataStore.DataStoreManager
 import com.example.nq.authFirebase.UserData
-import com.example.nq.recyclerViewProfilePictures.ProfilePicturesRepository
+import com.example.nq.dataStore.DataStoreManager
 import com.example.nq.recyclerViewTickets.TicketsRepository
 import com.example.nq.storageFirebase.FirebaseFriendsRepository
 import com.example.nq.storageFirebase.FirebaseRepository
 import com.google.android.gms.auth.api.identity.Identity
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import kotlinx.android.synthetic.main.activity_sign_in_email_verified.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.FileOutputStream
 
 class SignInEmailVerifiedActivity : AppCompatActivity() {
 
@@ -30,11 +45,12 @@ class SignInEmailVerifiedActivity : AppCompatActivity() {
             oneTapClient = Identity.getSignInClient(applicationContext)
         )
     }
+
     private val viewModel = SignInViewModel()
+
     private val dataStoreManager by lazy {
         DataStoreManager(context = applicationContext)
     }
-    var userExists = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +58,7 @@ class SignInEmailVerifiedActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
 
-            setLayoutVisibilities(listOf(View.GONE, View.GONE, View.VISIBLE))
+            setLayoutVisibilities(listOf(View.GONE, View.GONE, View.GONE, View.VISIBLE))
 
             val introducedEmail = dataStoreManager.getStringFromDataStore(
                 stringPreferencesKey("introducedEmail"),
@@ -57,32 +73,34 @@ class SignInEmailVerifiedActivity : AppCompatActivity() {
 
                 if (viewModel.state.value.isSignInSuccessful) {
 
-                    val userData: UserData? = firebaseAuthManager.getSignedInUser()
-                    val userFirstName = dataStoreManager.getStringFromDataStore(stringPreferencesKey("userFirstName"), "Nombre")
-                    val userLastName = dataStoreManager.getStringFromDataStore(stringPreferencesKey("userLastName"), "Apellido(s)")
+                    val userIsRegistered = checkIfUserExistsOnDataStore(introducedEmail)
 
-                    signInEmailVerified_firstNameText.setText(userFirstName)
-                    signInEmailVerified_lastNameText.setText(userLastName)
+                    if (userIsRegistered) {
+                        // EL usuario ya estaba registrado
+                        setLayoutVisibilities(listOf(View.GONE, View.VISIBLE, View.GONE, View.GONE))
+                    } else {
+                        // Es la primera vez que se registra
+                        setLayoutVisibilities(listOf(View.VISIBLE, View.GONE, View.GONE, View.GONE))
+                    }
 
-                    if (userFirstName != "Nombre") userExists = true
-
-                    setLayoutVisibilities(listOf(View.VISIBLE, View.GONE, View.GONE))
                     viewModel.resetState()
+
                 } else {
                     Toast.makeText(this@SignInEmailVerifiedActivity, "Email no verificado...", Toast.LENGTH_SHORT).show()
-                    setLayoutVisibilities(listOf(View.GONE, View.VISIBLE, View.GONE))
+                    setLayoutVisibilities(listOf(View.GONE, View.GONE, View.VISIBLE, View.GONE))
                 }
+
             } else {
                 Toast.makeText(this@SignInEmailVerifiedActivity, "Hubo un problema en la verificación...", Toast.LENGTH_SHORT).show()
-                setLayoutVisibilities(listOf(View.GONE, View.VISIBLE, View.GONE))
+                setLayoutVisibilities(listOf(View.GONE, View.GONE, View.VISIBLE, View.GONE))
             }
         }
 
-        // VERIFICADO, button IR A MAIN ACTIVITY
+        // VERIFICADO POR PRIMERA VEZ, button IR A MAIN ACTIVITY
         signInEmailVerified_mainActivityButton.setOnClickListener {
 
             val firstName = signInEmailVerified_firstNameText.text.toString()
-            val lastName = signInEmailVerified_lastNameText.text.toString()
+            val surNames = signInEmailVerified_lastNameText.text.toString()
 
             if (firstName.isEmpty()) {
                 signInEmailVerified_firstNameLayout.error = "Introduce tu nombre"
@@ -92,66 +110,89 @@ class SignInEmailVerifiedActivity : AppCompatActivity() {
                 signInEmailVerified_firstNameLayout.error = "Introduce un nombre válido"
                 return@setOnClickListener
             }
-            if (lastName.isEmpty()) {
+            if (surNames.isEmpty()) {
                 signInEmailVerified_lastNameLayout.error = "Introduce tu(s) apellido(s)"
                 return@setOnClickListener
             }
-            if (!lastName.isOnlyLetters()) {
+            if (!surNames.isOnlyLetters()) {
                 signInEmailVerified_lastNameLayout.error = "Introduce un(os) apellido(s) válido(s)"
                 return@setOnClickListener
             }
 
             lifecycleScope.launch {
-                val newUserName = "$firstName $lastName"
+
+                val introducedEmail = dataStoreManager.getStringFromDataStore(
+                    stringPreferencesKey("introducedEmail"),
+                    ""
+                )
+
+                val newUserName = "$firstName $surNames"
+
+                val userDataGoogle: UserData? = firebaseAuthManager.getSignedInUser()
+                val userID = userDataGoogle?.userID
 
                 if (firebaseAuthManager.updateUserName(newUserName)) {
 
-                    val firstNameKey = stringPreferencesKey("userFirstName")
-                    dataStoreManager.saveStringToDataStore(firstNameKey, firstName)
+                    // Cargar los datos en Firebase
+                    val newUserImageResId = resources.getIdentifier("png_nq", "drawable", packageName)
+                    val newImageDrawable = ResourcesCompat.getDrawable(resources, newUserImageResId, null)
+                    val userData = FirebaseUserData(firstName,surNames,userID!!,introducedEmail)
+                    saveUserData(userData)
+                    saveUserImage(newImageDrawable!!,userID)
+                    FirebaseRepository.userName = firstName
+                    FirebaseRepository.userSurnames = surNames
+                    FirebaseRepository.userID = userID
+                    FirebaseRepository.userEmail = introducedEmail
 
-                    val lastNameKey = stringPreferencesKey("userLastName")
-                    dataStoreManager.saveStringToDataStore(lastNameKey, lastName)
-
-                    // Cargar los datos desde Firebase al repositorio de Usuario
-                    /*val signedUserEmail = userDataGoogle?.mail
-                    val userData = fetchUserData(signedUserEmail!!)
-                    FirebaseRepository.userName = userData.name
-                    FirebaseRepository.userSurnames = userData.surnames
-                    FirebaseRepository.userImage = Uri.parse(userData.uri)
-                    FirebaseRepository.userEmail = userData.email
-                    val emailList:List<String> = userData.friendEmails
-                    FirebaseRepository.userFriendEmails = emailList as MutableList<String>
-                    // Cargar la lista con la info de los amigos al repositorio de Amigos
-                    FirebaseFriendsRepository.fetchFriendsData(emailList)
-                    // Cargar la lista de tickets al repositorio de Tickets
-                    TicketsRepository.fetchTicketData(signedUserEmail)*/
-
-
-                    goToMainActivity()
                 } else {
                     Toast.makeText(this@SignInEmailVerifiedActivity, "No se pudo actualizar el nombre...", Toast.LENGTH_SHORT).show()
-                }
-
-                if (!userExists) {
-                    val newUserImageURI = Uri.parse("android.resource://com.example.nq/${R.drawable.ic_icon_04}")
-                    if (firebaseAuthManager.updateUserImage(newUserImageURI))
-                    else Toast.makeText(this@SignInEmailVerifiedActivity, "No se pudo actualizar la imagen...", Toast.LENGTH_SHORT).show()
                 }
 
                 goToMainActivity()
             }
         }
 
+        // VERIFICADO Y EXISTÍA EN LA BASE DE DATOS, button IR A MAIN ACTIVITY
+        signInEmailAlreadyVerified_mainActivityButton.setOnClickListener {
+
+            lifecycleScope.launch {
+
+                val introducedEmail = dataStoreManager.getStringFromDataStore(
+                    stringPreferencesKey("introducedEmail"),
+                    ""
+                )
+
+                // Cargar los datos desde Firebase al repositorio de Usuario
+                val userData = fetchUserData(introducedEmail)
+                fetchUserImage(userData.ID)
+                FirebaseRepository.userName = userData.name
+                FirebaseRepository.userSurnames = userData.surnames
+                FirebaseRepository.userID = userData.ID
+                FirebaseRepository.userEmail = userData.email
+                val emailList:List<String> = userData.friendEmails
+                FirebaseRepository.userFriendEmails = emailList as MutableList<String>
+                // Cargar la lista con la info de los amigos al repositorio de Amigos
+                FirebaseFriendsRepository.fetchFriendsData(emailList)
+                // Cargar la lista de tickets al repositorio de Tickets
+                TicketsRepository.fetchTicketData(introducedEmail)
+                // Actualizar la lista de imágenes de amigos
+                fetchFriendsImages(FirebaseFriendsRepository.userFriends)
+
+                goToMainActivity()
+            }
+        }
+
         // NO VERIFICADO, button IR A SIGN IN
-        signInEmailVerified_signInButton.setOnClickListener() {
+        signInEmailVerified_signInButton.setOnClickListener {
             goToSignInActivity()
         }
     }
 
     private fun setLayoutVisibilities(listOfVisibilities: List<Int>) {
-        signInEmailVerified_verifiedLayout.visibility = listOfVisibilities[0]
-        signInEmailVerified_notVerifiedLayout.visibility = listOfVisibilities[1]
-        signInEmailVerified_loadingLayout.visibility = listOfVisibilities[2]
+        signInEmailVerified_verifiedFirstTimeLayout.visibility = listOfVisibilities[0]
+        signInEmailVerified_alreadyVerifiedLayout.visibility = listOfVisibilities[1]
+        signInEmailVerified_notVerifiedLayout.visibility = listOfVisibilities[2]
+        signInEmailVerified_loadingLayout.visibility = listOfVisibilities[3]
     }
 
     private fun String.isOnlyLetters() : Boolean {
@@ -171,4 +212,159 @@ class SignInEmailVerifiedActivity : AppCompatActivity() {
             finish()
         }
     }
+
+    // Función para comprbar si el Usuario está guardado en la base de datos de Firebase
+    private suspend fun checkIfUserExistsOnDataStore(userEmail: String?): Boolean {
+        return try {
+            val documentSnapshot = Firebase.firestore
+                .collection("UserData")
+                .document(userEmail!!)
+                .collection("UserInfo")
+                .document("Data")
+                .get()
+                .await()
+
+            documentSnapshot.exists()
+        } catch (e: Exception) {
+            false
+        }
+    }
+
+    // Función para recibir la info del Usuario guardada en la base de datos de Firebase
+    private suspend fun fetchUserData(email:String): FirebaseUserData {
+        return try {
+            val querySnapshot = Firebase.firestore
+                .collection("UserData")
+                .document(email)
+                .collection("UserInfo")
+                .document("Data")
+                .get()
+                .await()
+            val userData = querySnapshot.toObject<FirebaseUserData>()
+            userData ?: FirebaseUserData() // Use default values if userData is null
+        } catch (e: Exception) {
+            FirebaseUserData()
+        }
+    }
+
+    // Función para cargar la info del Usuario en Firebase
+    // El path para cargar la info del usuario será: UserData/UserInfo/Datos del usuario
+    private fun saveUserData(userData: FirebaseUserData)
+            = CoroutineScope(Dispatchers.IO).launch {
+        try {
+            Firebase.firestore
+                .collection("UserData")
+                .document(userData.email)
+                .collection("UserInfo")
+                .document("Data")
+                .set(userData)
+                .await()
+        } catch (e: Exception) {
+            throw e
+        }
+    }
+
+    // Función para recibir la foto del Usuario guardada en Firebase Storage
+    private fun fetchUserImage(imageName: String) {
+        val storage = Firebase.storage
+        val storageRef = storage.reference
+        val imagesRef = storageRef.child("UserProfilePictures")
+        val imageRef = imagesRef.child("$imageName.png")
+
+        val localFile = File(this.filesDir, "$imageName.png")
+
+        if (localFile.exists()) {
+            // File already exists locally, no need to download
+            return
+        }
+
+        imageRef.getFile(localFile)
+            .addOnSuccessListener {
+                // Image downloaded successfully
+                // You can perform any further operations with the downloaded image here
+            }
+            .addOnFailureListener { exception ->
+                // Handle any errors that occurred during the download
+            }
+    }
+
+    // Función para recibir la foto del Usuario guardada en Firebase Storage
+    private fun fetchFriendsImages(friends: List<FirebaseUserData>) {
+        val userIDs: List<String> = friends.map { userData -> userData.ID }
+
+        for (imageName in userIDs) {
+            val storage = Firebase.storage
+            val storageRef = storage.reference
+            val imagesRef = storageRef.child("UserProfilePictures")
+            val imageRef = imagesRef.child("$imageName.png")
+
+            val localFile = File(this.filesDir, "$imageName.png")
+
+            if (localFile.exists()) {
+                // File already exists locally, no need to download
+                continue
+            }
+
+            imageRef.getFile(localFile)
+                .addOnSuccessListener {
+                    // Image downloaded successfully
+                    // You can perform any further operations with the downloaded image here
+                }
+                .addOnFailureListener { exception ->
+                    // Handle any errors that occurred during the download
+                }
+        }
+    }
+
+    private fun saveUserImage(image: Drawable, imageName:String) {
+        // Update the image in Firebase Storage
+        val storage = Firebase.storage
+        val storageRef = storage.reference
+        val imagesRef = storageRef.child("UserProfilePictures")
+        val imageRef = imagesRef.child("$imageName.png")
+
+        // Convert the drawable resource to a byte array
+        val bitmap = drawableToBitmap(image)
+        val baos = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos)
+        val imageData = baos.toByteArray()
+
+        val uploadTask = imageRef.putBytes(imageData)
+
+        uploadTask.addOnSuccessListener { taskSnapshot ->
+            // Image uploaded successfully
+
+            // Update the local file
+            val localFile = File(this.filesDir, "$imageName.png")
+            if (localFile.exists()) {
+                // Delete the existing local file
+                localFile.delete()
+            }
+
+            // Save the updated image locally
+            val fileOutputStream = FileOutputStream(localFile)
+            fileOutputStream.write(imageData)
+            fileOutputStream.close()
+
+        }.addOnFailureListener { exception ->
+            // Handle any errors that occurred during the upload
+        }
+    }
+
+    private fun drawableToBitmap(drawable: Drawable): Bitmap {
+        if (drawable is BitmapDrawable) {
+            return drawable.bitmap
+        }
+
+        val bitmap = Bitmap.createBitmap(
+            drawable.intrinsicWidth,
+            drawable.intrinsicHeight,
+            Bitmap.Config.ARGB_8888
+        )
+        val canvas = Canvas(bitmap)
+        drawable.setBounds(0, 0, canvas.width, canvas.height)
+        drawable.draw(canvas)
+        return bitmap
+    }
+
 }

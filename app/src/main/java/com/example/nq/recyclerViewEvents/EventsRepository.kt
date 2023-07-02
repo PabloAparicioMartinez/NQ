@@ -6,30 +6,48 @@ import com.example.nq.recyclerViewDates.DatesData
 object EventsRepository {
 
     val backStageEvents = mutableListOf(
-        EventsData(4, "Mayo",
-            "JUEVES, 4 de Mayo", R.drawable.png_event_01,
-            "SAFARI  +18", "Reggeaton & Latina",
-            14.00f,"Incluye 2 copas", "DISPONIBLES",
+        EventsData(
+            "06/07/2023",
+            R.drawable.png_event_01,
+            "SAFARI  +18",
+            "Reggeaton & Latina",
+            14.00f,
+            "Incluye 2 copas",
+            100,
+            "DISPONIBLES",
         ),
         EventsData(
-            5, "Mayo",
-            "VIERNES, 5 de Mayo", R.drawable.png_event_02,
-            "EUPHORIA  +24", "Comercial & Reggeaton",
-            12.50f,"Incluye 1 copa", "AGOTADAS",
+            "07/07/2023",
+            R.drawable.png_event_02,
+            "EUPHORIA  +24",
+            "Comercial & Reggeaton",
+            12.50f,
+            "Incluye 1 copa",
+            100,
+            "AGOTADAS",
         )
     )
 
     val feverEvents = mutableListOf(
-        EventsData(4, "Mayo",
-            "JUEVES, 4 de Mayo", R.drawable.png_event_03,
-            "LA TRINIDAD", "Rock",
-            7.00f,"Incluye 1 copa", "DISPONIBLES",
+        EventsData(
+            "06/07/2023",
+            R.drawable.png_event_03,
+            "LA TRINIDAD",
+            "Rock",
+            7.00f,
+            "Incluye 1 copa",
+            100,
+            "DISPONIBLES",
         ),
         EventsData(
-            5, "Mayo",
-            "VIERNES, 5 de Mayo", R.drawable.png_event_04,
-            "SAUROM", "Folk metal",
-            22.00f,"Incluye 1 copa", "DISPONIBLES",
+            "07/07/2023",
+            R.drawable.png_event_04,
+            "SAUROM",
+            "Folk metal",
+            22.00f,
+            "Incluye 1 copa",
+            100,
+            "DISPONIBLES",
         )
     )
 

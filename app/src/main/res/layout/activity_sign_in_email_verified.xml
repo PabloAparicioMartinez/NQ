@@ -6,9 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".authSignIn.SignInEmailVerifiedActivity">
 
-    <!--VERIFIED layout-->
+    <!--VERIFIED FIRST TIME layout-->
     <LinearLayout
-        android:id="@+id/signInEmailVerified_verifiedLayout"
+        android:id="@+id/signInEmailVerified_verifiedFirstTimeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -82,6 +82,52 @@
 
         <Button
             android:id="@+id/signInEmailVerified_mainActivityButton"
+            style="@style/NQ.Button.Full"
+            android:layout_marginTop="16dp"
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ENTRAR EN NQ"
+            android:textSize="14dp"/>
+
+    </LinearLayout>
+
+    <!--ALREADY VERIFIED layout-->
+    <LinearLayout
+        android:id="@+id/signInEmailVerified_alreadyVerifiedLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:alpha="1"
+            android:src="@drawable/ic_verified_01"
+            app:tint="@color/dark_blue" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¡Correo verificado!"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:textSize="14sp"
+            android:textColor="@color/dark_blue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/signInEmailAlreadyVerified_mainActivityButton"
             style="@style/NQ.Button.Full"
             android:layout_marginTop="16dp"
             android:padding="16dp"

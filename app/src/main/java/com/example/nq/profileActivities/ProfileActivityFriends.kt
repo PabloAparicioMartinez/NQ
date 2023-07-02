@@ -13,7 +13,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.nq.R
-import com.example.nq.authFirebase.FirebaseUserData
+import com.example.nq.storageFirebase.FirebaseUserData
 import com.example.nq.recyclerViewFriendsList.*
 import com.example.nq.storageFirebase.FirebaseFriendsRepository
 import com.example.nq.storageFirebase.FirebaseRepository
@@ -33,7 +33,7 @@ import kotlinx.coroutines.tasks.await
 class ProfileActivityFriends : AppCompatActivity(), FriendsListProfileInterface {
 
     private val friendsListProfileAdapter = FirebaseFriendsRepository.userFriends
-    private val friendsProfileAdapter = FriendsListProfileAdapter(friendsListProfileAdapter, this)
+    private val friendsProfileAdapter = FriendsListProfileAdapter(friendsListProfileAdapter, this,this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -129,14 +129,8 @@ class ProfileActivityFriends : AppCompatActivity(), FriendsListProfileInterface 
 
                                     delay(1000)
 
-                                    addFriendLoading.visibility = View.GONE
-                                    addFriendLayout.visibility = View.VISIBLE
-
-                                    val noFriendsLayoutVisibility = profileFriends_noFriendsLayout.visibility
-                                    val isNoFriendsLayoutVisible = noFriendsLayoutVisibility == View.VISIBLE
-                                    if (isNoFriendsLayoutVisible){
-                                        profileFriends_noFriendsLayout.visibility = View.GONE
-                                        profileFriends_yesFriendsLayout.visibility = View.VISIBLE
+                                    if (friendsListProfileAdapter.size  == 1){
+                                        updateFriendsList()
                                     }
 
                                     dialog.dismiss()
@@ -273,6 +267,10 @@ class ProfileActivityFriends : AppCompatActivity(), FriendsListProfileInterface 
                 lifecycleScope.launch{
                     deleteFriend(deleteEmail)
 
+                    if (friendsListProfileAdapter.size  < 1){
+                        updateFriendsList()
+                    }
+
                     dialog.dismiss()
                 }
             }
@@ -287,5 +285,6 @@ class ProfileActivityFriends : AppCompatActivity(), FriendsListProfileInterface 
         }
 
         alertDialog.show()
+
     }
 }

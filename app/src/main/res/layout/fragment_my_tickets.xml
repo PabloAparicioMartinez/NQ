@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="gone" >
+        android:visibility="visible" >
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/imageViewPagerAvailableTicket"
@@ -25,13 +25,13 @@
         <me.relex.circleindicator.CircleIndicator3
             android:id="@+id/circleIndicatorQR"
             android:layout_width="wrap_content"
-            android:layout_height="36dp"
+            android:layout_height="16dp"
             app:ci_width="6dp"
             app:ci_height="6dp"
             app:ci_drawable="@drawable/shape_circleindicator3"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="25dp" />
+            android:layout_marginBottom="16dp" />
 
     </RelativeLayout>
 
@@ -43,38 +43,38 @@
         android:layout_height="match_parent"
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp"
-        android:visibility="visible"
+        android:visibility="gone"
         android:orientation="vertical"
         android:gravity="center">
 
-        <include layout="@layout/item_ticket" />
+        <!--<include layout="@layout/item_ticket" />-->
 
-<!--        <ImageView-->
-<!--            android:layout_width="120dp"-->
-<!--            android:layout_height="120dp"-->
-<!--            android:src="@drawable/ic_ticket_no_01"-->
-<!--            app:tint="@color/dark_grey_02"-->
-<!--            android:alpha="0.75" />-->
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/ic_ticket_no_01"
+            app:tint="@color/dark_grey_02"
+            android:alpha="0.75" />
 
-<!--        <TextView-->
-<!--            android:id="@+id/textView6"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="24dp"-->
-<!--            android:text="Todavía no tienes ninguna entrada"-->
-<!--            android:textAlignment="center"-->
-<!--            android:textColor="@color/dark_grey_02" />-->
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Todavía no tienes ninguna entrada"
+            android:textAlignment="center"
+            android:textColor="@color/dark_grey_02" />
 
-<!--        <Button-->
-<!--            android:id="@+id/fragMyTickets_buyTicketsSignedInButton"-->
-<!--            style="@style/NQ.Button.Full"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="8dp"-->
-<!--            android:padding="16dp"-->
-<!--            android:text="COMPRAR ENTRADAS"-->
-<!--            android:textSize="14sp"-->
-<!--            android:textStyle="bold" />-->
+        <Button
+            android:id="@+id/fragMyTickets_buyTicketsSignedInButton"
+            style="@style/NQ.Button.Full"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:padding="16dp"
+            android:text="COMPRAR ENTRADAS"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
