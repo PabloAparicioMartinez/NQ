@@ -41,6 +41,12 @@
 
         <!-- SIGN IN -->
         <activity
+            android:name=".zzOld.SignUpActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.NQ.ActionBar" />
+
+        <activity
             android:name=".authSignIn.SignInActivity"
             android:exported="true"
             android:screenOrientation="portrait"
