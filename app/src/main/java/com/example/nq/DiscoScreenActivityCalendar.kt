@@ -26,8 +26,9 @@ import java.util.*
 class DiscoScreenActivityCalendar : AppCompatActivity(), EventsInterface {
 
     lateinit var eventsAdapter : EventsAdapter
-    var selectedDatesList = mutableListOf<DatesData>()
     lateinit var discoName: String
+
+    var selectedDatesList = mutableListOf<DatesData>()
 
     var selectedDate: Long? = null
     var selectedDay = 0
@@ -72,7 +73,10 @@ class DiscoScreenActivityCalendar : AppCompatActivity(), EventsInterface {
                 selectedMonth = calendar.get(Calendar.MONTH) + 1 // Months are zero-based, so add 1
                 selectedYear = calendar.get(Calendar.YEAR)
 
-                discoScreenCalendar_date.text = "Jun $selectedDay, 2023"
+                val meses = arrayOf("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre")
+                val mes = meses[selectedMonth-1]
+
+                discoScreenCalendar_date.text = "$selectedDay de $mes de $selectedYear"
                 discoScreenCancer_showAll.visibility = View.VISIBLE
 
                 selectedDatesList = DatesRepository.returnSelectedDateCalender(selectedDay)
@@ -108,7 +112,7 @@ class DiscoScreenActivityCalendar : AppCompatActivity(), EventsInterface {
             loadEventsInDateCalendar(selectedDatesList, true)
         }
 
-        discoScreenCalendar_linearLayout01.setOnClickListener() {
+        discoScreenCalendar_linearLayout01.setOnClickListener {
             showLargeImage()
         }
     }
@@ -156,7 +160,7 @@ class DiscoScreenActivityCalendar : AppCompatActivity(), EventsInterface {
             it.putExtra("EXTRA_EVENT_NAME", eventData.eventName)
             it.putExtra("EXTRA_EVENT_MUSIC", eventData.eventMusic)
             it.putExtra("EXTRA_EVENT_DATE", eventData.eventDate)
-            it.putExtra("EXTRA_EVENT_AVAILABILITY", eventData.eventAvailability)
+            it.putExtra("EXTRA_EVENT_TICKETS_AVAILABLE", eventData.eventTicketNumber)
             it.putExtra("EXTRA_EVENT_PRICE", eventData.eventPrice)
             it.putExtra("EXTRA_EVENT_INCLUDE", eventData.eventIncludedWithTicket)
             it.putExtra("EXTRA_DISCO_NAME", discoName)

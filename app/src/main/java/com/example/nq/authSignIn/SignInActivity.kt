@@ -28,6 +28,7 @@ import com.google.android.gms.auth.api.identity.Identity
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.storage.ktx.storage
 import kotlinx.android.synthetic.main.activity_sign_in.*
 import kotlinx.coroutines.CoroutineScope
@@ -53,7 +54,6 @@ class SignInActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         installSplashScreen()
-        //Thread.sleep(1000)
 
         setContentView(R.layout.activity_sign_in)
 
@@ -69,6 +69,15 @@ class SignInActivity : AppCompatActivity() {
                 // Cargar los datos desde Firebase al repositorio de Usuario
                 val signedUserEmail = signedInUser.mail
                 val userData = fetchUserData(signedUserEmail!!)
+                fetchUserImage(userData.ID)
+                // Cargar y actualizar siempre el token del dispositivo
+                val userDeviceToken = getDeviceToken()
+                if (userDeviceToken == userData.deviceToken) {
+                    FirebaseRepository.userDeviceToken = userData.deviceToken
+                } else {
+                    FirebaseRepository.userDeviceToken = userDeviceToken
+                    updateDeviceToken(userDeviceToken,userData.email)
+                }
                 FirebaseRepository.userName = userData.name
                 FirebaseRepository.userSurnames = userData.surnames
                 FirebaseRepository.userID = userData.ID
@@ -157,12 +166,20 @@ class SignInActivity : AppCompatActivity() {
                         // Cargar los datos desde Firebase al repositorio de Usuario
                         val userData = fetchUserData(userEmail!!)
                         fetchUserImage(userData.ID)
+                        // Cargar y actualizar siempre el token del dispositivo
+                        val userDeviceToken = getDeviceToken()
+                        if (userDeviceToken == userData.deviceToken) {
+                            FirebaseRepository.userDeviceToken = userData.deviceToken
+                        } else {
+                            FirebaseRepository.userDeviceToken = userDeviceToken
+                            updateDeviceToken(userDeviceToken, userData.email)
+                        }
                         FirebaseRepository.userName = userData.name
                         FirebaseRepository.userSurnames = userData.surnames
                         FirebaseRepository.userID = userData.ID
                         FirebaseRepository.userEmail = userData.email
                         val emailList:List<String> = userData.friendEmails
-                        FirebaseRepository.userFriendEmails = emailList as MutableList<String>
+                        FirebaseRepository.userFriendEmails = emailList.toMutableList()
                         // Cargar la lista con la info de los amigos al repositorio de Amigos
                         FirebaseFriendsRepository.fetchFriendsData(emailList)
                         // Cargar la lista de tickets al repositorio de Tickets
@@ -172,19 +189,25 @@ class SignInActivity : AppCompatActivity() {
 
                     } else {
                         // Cargar los datos en Firebase
-                        val newUserImageResId = resources.getIdentifier("png_nq", "drawable", packageName)
-                        val newImageDrawable = ResourcesCompat.getDrawable(resources, newUserImageResId, null)
-                        val userData = FirebaseUserData(firstName,surNames,userID!!,userEmail!!)
-                        saveUserData(userData)
-                        saveUserImage(newImageDrawable!!,userID)
-                        FirebaseRepository.userName = firstName
-                        FirebaseRepository.userSurnames = surNames
-                        FirebaseRepository.userID = userID
-                        FirebaseRepository.userEmail = userEmail
+                        lifecycleScope.launch {
+                            val newUserImageResId = resources.getIdentifier("png_nq", "drawable", packageName)
+                            val newImageDrawable = ResourcesCompat.getDrawable(resources, newUserImageResId, null)
+                            val deviceToken = getDeviceToken()
+                            val userData = FirebaseUserData(firstName, surNames, userID!!, userEmail!!, emptyList() , deviceToken)
+                            saveUserData(userData)
+                            saveUserImage(newImageDrawable!!, userID)
+                            FirebaseRepository.userName = firstName
+                            FirebaseRepository.userSurnames = surNames
+                            FirebaseRepository.userID = userID
+                            FirebaseRepository.userEmail = userEmail
+                            FirebaseRepository.userDeviceToken = deviceToken
+                        }
                     }
 
                     Toast.makeText(applicationContext, "¡Sesión iniciada!", Toast.LENGTH_SHORT).show()
+
                     viewModel.resetState()
+
                     goToMainActivity()
                 }
             }
@@ -364,6 +387,28 @@ class SignInActivity : AppCompatActivity() {
         drawable.setBounds(0, 0, canvas.width, canvas.height)
         drawable.draw(canvas)
         return bitmap
+    }
+
+    private suspend fun getDeviceToken(): String {
+        return try {
+            FirebaseMessaging.getInstance().token.await()
+        } catch (exception: Exception) {
+            throw IllegalStateException("Failed to get device token", exception)
+        }
+    }
+
+    private suspend fun updateDeviceToken(newDeviceToken: String, userEmail: String) {
+        val userDataRef = Firebase.firestore
+            .collection("UserData")
+            .document(userEmail)
+            .collection("UserInfo")
+            .document("Data")
+
+        val updateDeviceToken = hashMapOf<String, Any>(
+            "deviceToken" to newDeviceToken
+        )
+
+        userDataRef.update(updateDeviceToken).await()
     }
 
 }

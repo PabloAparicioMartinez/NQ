@@ -1,6 +1,5 @@
 package com.example.nq
 
-import CircleTransform
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -22,6 +21,7 @@ import kotlinx.android.synthetic.main.fragment_my_profile.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.io.File
+import CircleTransform as CircleTransform
 
 class FragmentMyProfile : Fragment(R.layout.fragment_my_profile) {
 

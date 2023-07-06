@@ -16,6 +16,9 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.nq.authFirebase.FirebaseAuthManager
+import com.example.nq.messagingFirebase.NotificationData
+import com.example.nq.messagingFirebase.PushNotification
+import com.example.nq.messagingFirebase.RetrofitInstance
 import com.example.nq.storageFirebase.FirebaseUserData
 import com.example.nq.recyclerViewFriendsTickets.FriendsTicketsAdapter
 import com.example.nq.recyclerViewFriendsTickets.FriendsTicketsData
@@ -75,7 +78,18 @@ class EventScreenActivity : AppCompatActivity(), FriendsTicketsInterface {
         }
 
         // Establecer la pantalla de tickets en función de si hay entradas disponibles o no
-        val ticketsDisponibility = intent.getStringExtra("EXTRA_EVENT_AVAILABILITY")
+        val ticketNumber = intent.getIntExtra("EXTRA_EVENT_TICKETS_AVAILABLE",-1)
+
+        val ticketsDisponibility = if (ticketNumber > 0) {
+            if (ticketNumber > 30){
+                "DISPONIBLES"
+            } else {
+                "ÚLTIMAS ENTRADAS"
+            }
+        } else {
+            "AGOTADAS"
+        }
+
         setTheLayout(ticketsDisponibility)
 
         // Obtener el valor de ticketPrice dentro de onCreate()
@@ -121,10 +135,12 @@ class EventScreenActivity : AppCompatActivity(), FriendsTicketsInterface {
                         // Cargar de nuevo la información de los tickets en el repositorio
                         buyTickets_loadingLayout.visibility = View.VISIBLE
 
-                        buyTickets()
+                        val sendNotificationsTokenList = buyTickets()
 
-                        // Delay de 3 segundos
-                        delay(3000)
+                        sendNotificationLauncher(sendNotificationsTokenList)
+
+                        // Delay de 1 segundo
+                        delay(1000)
 
                         // Actualizar el repositorio de tickets después de comprar la entrada
                         TicketsRepository.fetchTicketData(FirebaseRepository.userEmail)
@@ -173,6 +189,17 @@ class EventScreenActivity : AppCompatActivity(), FriendsTicketsInterface {
                 eventScreen_music.text = intent.getStringExtra("EXTRA_EVENT_MUSIC")
                 eventScreen_date.text = intent.getStringExtra("EXTRA_EVENT_DATE")
             }
+
+            "ÚLTIMAS ENTRADAS" -> {
+                eventScreen_yesLayout.visibility = View.VISIBLE
+                eventScreen_noLayout.visibility = View.GONE
+
+                eventScreen_image.setImageResource(intent.getIntExtra("EXTRA_EVENT_IMAGE", -1))
+                eventScreen_name.text = intent.getStringExtra("EXTRA_EVENT_NAME")
+                eventScreen_music.text = intent.getStringExtra("EXTRA_EVENT_MUSIC")
+                eventScreen_date.text = intent.getStringExtra("EXTRA_EVENT_DATE")
+            }
+
             "AGOTADAS" -> {
                 eventScreen_noLayout.visibility = View.VISIBLE
                 eventScreen_yesLayout.visibility = View.GONE
@@ -374,7 +401,7 @@ class EventScreenActivity : AppCompatActivity(), FriendsTicketsInterface {
     }
 
     // Función para compar la entrada
-    private fun buyTickets() {
+    private fun buyTickets(): MutableList<String> {
         // Info del evento
         val discoName: String = intent.getStringExtra("EXTRA_DISCO_NAME").toString()
         val eventName: String = intent.getStringExtra("EXTRA_EVENT_NAME").toString()
@@ -385,30 +412,37 @@ class EventScreenActivity : AppCompatActivity(), FriendsTicketsInterface {
 
         // Info de los usuario a los que se va a comprar la entrada
         val matchingFriends = mutableListOf<FirebaseUserData>()
+        val notificationDeviceTokenList = mutableListOf<String>()
 
         val mySelf = FirebaseUserData(
             FirebaseRepository.userName,
             FirebaseRepository.userSurnames,
             FirebaseRepository.userID,
             FirebaseRepository.userEmail,
-            FirebaseRepository.userFriendEmails
+            FirebaseRepository.userFriendEmails,
+            FirebaseRepository.userDeviceToken
         )
 
         // Añadirse a uno mismo
         matchingFriends.add(mySelf)
 
-        // Obtener solo la lista de emails
+        // Obtener solo la lista de emails para los que vamos a comprar una entrada
+        // y obtener su información personal
+        // Obtenemos también la información de su device token
         val friendsEmailsList: List<String> = friendsTicketsAdapterList
             .map { friendTicket -> friendTicket.friendEmail }
             .ifEmpty { listOf() }
+
         for (friendEmail in friendsEmailsList) {
             for (userFriend in FirebaseFriendsRepository.userFriends) {
                 if (userFriend.email == friendEmail) {
                     matchingFriends.add(userFriend)
+                    notificationDeviceTokenList.add(userFriend.deviceToken)
                     break
                 }
             }
         }
+
 
         // Dates collection --> Mes y año actual
         val dateCollection: String = datesInstance.getCurrentMonthAndYear()
@@ -448,8 +482,11 @@ class EventScreenActivity : AppCompatActivity(), FriendsTicketsInterface {
                 // Guardar la información en Firestore
                 saveTicketByDiscoName(ticketData, firestoreInstanceByDiscoName)
                 saveTicketByEmail(ticketData, firestoreInstanceByEmail)
+
             }
         }
+
+        return notificationDeviceTokenList
     }
 
     private fun showLargeImage() {
@@ -463,4 +500,34 @@ class EventScreenActivity : AppCompatActivity(), FriendsTicketsInterface {
         val alertDialog = builder.create()
         alertDialog.show()
     }
+
+    private fun sendNotificationLauncher(tokenList: List<String>){
+        val title = "¡Tienes una nueva entrada!"
+        val message = "${FirebaseRepository.userName} ha comprado una entrada para ti"
+
+        for (token in tokenList) {
+            PushNotification(
+                NotificationData(title, message),
+                token
+            ).also {
+                sendNotification(it)
+            }
+        }
+
+    }
+
+    private fun sendNotification(notification: PushNotification) = CoroutineScope(Dispatchers.IO).launch {
+        try {
+            val response = RetrofitInstance.api.postNotification(notification)
+            if(response.isSuccessful) {
+                // Log.d("TAG", "Response: ${Gson().toJson(response)}")
+            } else {
+                // Log.e("TAG", response.errorBody().toString())
+            }
+        } catch(e: Exception) {
+            // Log.e("TAG", e.toString())
+            throw e
+        }
+    }
+
 }

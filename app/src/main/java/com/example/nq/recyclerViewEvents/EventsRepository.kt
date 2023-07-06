@@ -2,6 +2,7 @@ package com.example.nq.recyclerViewEvents
 
 import com.example.nq.R
 import com.example.nq.recyclerViewDates.DatesData
+import com.example.nq.recyclerViewTickets.TicketDates
 
 object EventsRepository {
 
@@ -9,22 +10,29 @@ object EventsRepository {
         EventsData(
             "06/07/2023",
             R.drawable.png_event_01,
-            "SAFARI  +18",
+            "SAFARI",
             "Reggeaton & Latina",
-            14.00f,
+            14.50f,
             "Incluye 2 copas",
-            100,
-            "DISPONIBLES",
+            20
         ),
         EventsData(
             "07/07/2023",
             R.drawable.png_event_02,
-            "EUPHORIA  +24",
+            "EUPHORIA",
             "Comercial & Reggeaton",
             12.50f,
             "Incluye 1 copa",
-            100,
-            "AGOTADAS",
+            0
+        ),
+        EventsData(
+            "08/07/2023",
+            R.drawable.png_event_05,
+            "CIRCUS",
+            "Comercial & Reggeaton",
+            15.00f,
+            "Incluye 1 copa",
+            100
         )
     )
 
@@ -36,8 +44,7 @@ object EventsRepository {
             "Rock",
             7.00f,
             "Incluye 1 copa",
-            100,
-            "DISPONIBLES",
+            10
         ),
         EventsData(
             "07/07/2023",
@@ -46,12 +53,13 @@ object EventsRepository {
             "Folk metal",
             22.00f,
             "Incluye 1 copa",
-            100,
-            "DISPONIBLES",
+            100
         )
     )
 
     val sonoraEvents = mutableListOf<EventsData>()
+
+    private val ticketDatesInstance = TicketDates()
 
     fun returnEvents(discoName: String, datesList: List<DatesData>): List<EventsData> {
 
@@ -61,30 +69,35 @@ object EventsRepository {
             "BACK&STAGE" -> {
                 for (i in datesList.indices) {
                     for (j in 0 until backStageEvents.size) {
+                        val eventDateMonth = ticketDatesInstance.getMonthFromDate(backStageEvents[j].eventDate)
+                        val eventDateDay = ticketDatesInstance.getDayFromDate(backStageEvents[j].eventDate)
 
-                        if (datesList[i].dateMonth == backStageEvents[j].eventDateMonth && datesList[i].dateNumber == backStageEvents[j].eventDateNumber) {
+                        if (datesList[i].dateMonth == eventDateMonth && datesList[i].dateNumber == eventDateDay) {
                             eventsListToReturn.add(backStageEvents[j])
                         }
                     }
                 }
             }
+
             "FEVER" -> {
                 for (i in datesList.indices) {
                     for (j in 0 until feverEvents.size) {
+                        val eventDateMonth = ticketDatesInstance.getMonthFromDate(feverEvents[j].eventDate)
+                        val eventDateDay = ticketDatesInstance.getDayFromDate(feverEvents[j].eventDate)
 
-                        if (datesList[i].dateMonth == feverEvents[j].eventDateMonth && datesList[i].dateNumber == feverEvents[j].eventDateNumber) {
+                        if (datesList[i].dateMonth == eventDateMonth && datesList[i].dateNumber == eventDateDay) {
                             eventsListToReturn.add(feverEvents[j])
                         }
                     }
                 }
             }
+
             "SONORA" -> { }
 
             else -> println("NO DISCO NAME")
         }
 
         return eventsListToReturn
-
-        //Mini
     }
+
 }

@@ -5,6 +5,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
     <application
         android:allowBackup="true"
@@ -16,6 +17,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NQ"
         tools:targetApi="31">
+
+        <service android:name=".messagingFirebase.FirebaseMessagingService"
+            android:permission="com.google.android.c2dm.permission.SEND"
+            android:exported="false"
+            tools:ignore="Instantiatable,Instantiation">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </service>
+
+        <!-- Set custom default icon. This is used when no icon is set for incoming notification messages.
+        See README(https://goo.gl/l4GJaQ) for more. -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_icon_04" />
+        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
+        notification message. See README(https://goo.gl/6BKBk7) for more. -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/dark_blue" />
 
         <!-- SIGN IN -->
         <activity
@@ -29,6 +51,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".authSignIn.SignInEmailActivity"
             android:exported="false"
@@ -55,6 +78,7 @@
                     android:host="nqnoqueues.page.link"
                     android:scheme="https" />
             </intent-filter>
+
         </activity> <!-- MAIN -->
         <activity
             android:name=".MainActivity"
@@ -62,11 +86,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.NQ.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name=".zz_old_DiscoScreenActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.NQ.ActionBar" />
         <activity
             android:name=".DiscoScreenActivityCalendar"
             android:exported="false"
@@ -123,6 +142,7 @@
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.NQ.ActionBar" />
+
     </application>
 
 </manifest>

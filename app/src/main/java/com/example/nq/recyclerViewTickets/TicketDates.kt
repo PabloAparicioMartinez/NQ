@@ -29,6 +29,35 @@ class TicketDates {
         return "$year$month"
     }
 
+    // Función para obtener el día del mes
+    fun getDayFromDate(fecha: String): Int {
+        val formato = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        val fechaDate: Date = formato.parse(fecha) ?: return -1 // Retorna -1 si hay un error en el formato de fecha
+
+        val calendar = Calendar.getInstance()
+        calendar.time = fechaDate
+
+        val dia = calendar.get(Calendar.DAY_OF_MONTH)
+
+        return dia
+    }
+
+    // Función para obtener el el mes
+    fun getMonthFromDate(fecha: String): String {
+        val formato = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        val fechaDate: Date = formato.parse(fecha) ?: return "" // Retorna cadena vacía si hay un error en el formato de fecha
+
+        val calendar = Calendar.getInstance()
+        calendar.time = fechaDate
+
+        val mes = calendar.get(Calendar.MONTH)
+
+        val meses = arrayOf("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre")
+
+        return meses[mes]
+    }
+
+
     fun formatDate(dateStr: String): String {
         // Definimos el formato de entrada
         val inputFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())

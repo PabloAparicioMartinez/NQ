@@ -34,15 +34,17 @@ class EventsAdapter(
 
     override fun onBindViewHolder(holder: EventsViewHolder, position: Int) {
         holder.itemView.apply{
-            var priceDescription = "${events[position].eventPrice} € | ${events[position].eventIncludedWithTicket}"
+            val priceDescription = "${events[position].eventPrice} € | ${events[position].eventIncludedWithTicket}"
             itemDiscoEvent_image.setImageResource(events[position].eventImage)
             itemDiscoEvent_date.text = events[position].eventDate
             itemDiscoEvent_name.text = events[position].eventName
             itemDiscoEvent_music.text = events[position].eventMusic
             itemDiscoEvent_price.text = priceDescription
-            itemDiscoEvent_availability.text = events[position].eventAvailability
-            itemDiscoEvent_availability.setTextColor(returnAvailabilityColor(events[position].eventAvailability))
-            itemDiscoEvent_arrow.setColorFilter(returnArrowColor(events[position].eventAvailability))
+            val ticketNumber = events[position].eventTicketNumber
+            val ticketDisponibility = setTicketDisponibility(ticketNumber)
+            itemDiscoEvent_availability.text = ticketDisponibility
+            itemDiscoEvent_availability.setTextColor(returnAvailabilityColor(ticketDisponibility))
+            itemDiscoEvent_arrow.setColorFilter(returnArrowColor(ticketDisponibility))
         }
     }
 
@@ -55,9 +57,24 @@ class EventsAdapter(
         notifyDataSetChanged()
     }
 
+    private fun setTicketDisponibility(ticketNumber: Int): String {
+        val ticketsDisponibility: String = if (ticketNumber > 0) {
+            if (ticketNumber > 30) {
+                "DISPONIBLES"
+            } else {
+                "ÚLTIMAS ENTRADAS"
+            }
+        } else {
+            "AGOTADAS"
+        }
+
+        return ticketsDisponibility
+    }
+
     private fun returnAvailabilityColor(availabiliy: String): Int {
         return when(availabiliy){
             "DISPONIBLES" -> Color.rgb(0, 175, 0)
+            "ÚLTIMAS ENTRADAS" -> Color.rgb(204, 102, 0)
             "AGOTADAS" -> Color.rgb(175, 0, 0)
             else -> Color.rgb(0, 0, 0)
         }
@@ -66,6 +83,7 @@ class EventsAdapter(
     private fun returnArrowColor(availabiliy: String): Int {
         return when(availabiliy){
             "DISPONIBLES" -> Color.rgb(15, 76, 117)
+            "ÚLTIMAS ENTRADAS" -> Color.rgb(15, 76, 117)
             "AGOTADAS" -> Color.rgb(237, 239, 236)
             else -> Color.rgb(0, 0, 0)
         }
